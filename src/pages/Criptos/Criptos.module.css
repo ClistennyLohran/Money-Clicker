@@ -1,0 +1,27 @@
+@import '../../css/colors.css';
+
+.container {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  width: 100%;
+}
+.title {
+  margin-top: 5px;
+
+  color: var(--corTexto);
+
+  font-weight: 200;
+  font-size: 20px;
+}
+.title span {
+  font-weight: 600;
+}

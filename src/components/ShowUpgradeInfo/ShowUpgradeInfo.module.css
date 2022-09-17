@@ -1,0 +1,201 @@
+@import '../../css/colors.css';
+
+.containerBlur {
+  position: fixed;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
+  height: 100vh;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  background: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(4px);
+
+  opacity: 0;
+  pointer-events: none;
+
+  z-index: 5;
+
+  transition: 0.3s ease-in-out;
+}
+.showRebirthPoints {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  left: 10px;
+  top: 7px;
+
+  border-radius: 10px;
+
+  width: 260px;
+  height: 25px;
+
+  font-size: 14px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBranco);
+
+  transition: 0.3s ease-in-out;
+}
+.showRebirthPoints p {
+  margin-left: 10px;
+}
+
+/* Upgrade Container */
+
+.containerGeral {
+  width: 100%;
+}
+.upgradeContainer {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  width: 360px;
+  height: 280px;
+
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgb(0, 0, 0, 0.3);
+
+  background: var(--corFundoNav);
+}
+.close {
+  display: flex;
+  position: absolute;
+
+  align-items: center;
+  justify-content: center;
+
+  top: 5px;
+  right: 5px;
+
+  width: 30px;
+  height: 30px;
+
+  font-size: 24px;
+
+  border-radius: 100%;
+
+  color: var(--corTexto);
+
+  cursor: pointer;
+
+  transition: 0.3s ease-in-out;
+}
+.close:hover {
+  background: var(--corFundoNavHover);
+  color: var(--corTextoBranco);
+}
+
+/* Icon Box */
+
+.iconBox {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 80px;
+  height: 80px;
+
+  margin-left: 10px;
+  margin-top: 40px;
+
+  border-radius: 10px;
+
+  font-size: 50px;
+
+  background: var(--corFundo);
+  color: var(--corTexto);
+}
+.infosContainer {
+  display: flex;
+}
+.textContainer {
+  margin-top: 40px;
+  margin-left: 10px;
+}
+.title {
+  font-size: 16px;
+  font-weight: 300;
+
+  color: var(--corTexto);
+}
+.value {
+  font-size: 18px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+}
+.descriptionContainer {
+  width: calc(100% - 20px);
+  height: 70px;
+
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  color: var(--corTexto);
+  font-size: 14px;
+}
+.buyUpgrade {
+  margin-top: 20px;
+
+  width: 260px;
+  height: 35px;
+
+  border-radius: 50px;
+  border: none;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .upgradeContainer {
+    width: 250px;
+    height: 280px;
+  }
+  .showRebirthPoints {
+    width: 200px;
+    height: 25px;
+  
+    font-size: 11px;
+  }
+  .iconBox {
+    width: 70px;
+    height: 70px;
+
+    font-size: 40px;
+  }
+  .title {
+    font-size: 14px;
+  }
+  .value {
+    font-size: 16px;
+  }
+  .descriptionContainer {
+    font-size: 13px;
+  }
+  .buyUpgrade {
+    margin-top: 35px;
+  
+    width: 220px;
+    height: 30px;
+  }
+}

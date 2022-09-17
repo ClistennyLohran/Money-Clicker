@@ -1,0 +1,182 @@
+@import '../../../css/colors.css';
+
+.container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBtn);
+  font-size: 30px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  background: var(--corFundo);
+  color: var(--corIcone);
+
+  transition: 0.3s ease-in-out;
+}
+.container:hover {
+  background: var(--corFundoNavHover);
+  color: var(--corIconeHover);
+}
+.containerDisabled {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBtn);
+  font-size: 30px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  background: var(--corFundoDisabled);
+  color: var(--corIcone);
+
+  transition: 0.3s ease-in-out;
+}
+
+/* Rebirth Container */
+
+.rebirthContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBtn);
+  font-size: 30px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  background: var(--corPrimaria);
+  color: var(--corIconeRebirth);
+
+  transition: 0.3s ease-in-out;
+}
+.rebirthContainer:hover {
+  background: var(--corPrimariaHover);
+  color: var(--corIconeHover);
+}
+
+/* Golden Container */
+
+.goldenContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBtn);
+  font-size: 30px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  background: linear-gradient(45deg, #FFB800 0%, #FFAF00 26.04%, #FFCF63 51.56%, #FFAF00 75.52%, #FFB800 100%);;
+  color: var(--corIconeRebirth);
+
+  transition: 0.3s ease-in-out;
+}
+.goldenContainer:hover {
+  background: linear-gradient(45deg, #FFC225 0%, #FFC225 26.04%, #FFDF98 51.56%, #FFC225 75.52%, #FFC225 100%);;
+  color: var(--corIconeHover);
+}
+.goldenContainerDisabled {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBtn);
+  font-size: 30px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  background: linear-gradient(45deg, #c2b07f 0%, #c2b07f 25%, #d2c298 51.56%, #c2b07f 75.52%, #c2b07f 100%);;
+  color: var(--corIconeBranco);
+
+  transition: 0.3s ease-in-out;
+}
+
+@media (max-width: 480px) {
+  .container {
+    font-size: 24px;
+  
+    width: 60px;
+    height: 60px;
+  }
+  .containerDisabled {
+    font-size: 24px;
+  
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Rebirth Container */
+
+  .rebirthContainer {
+    font-size: 24px;
+
+    width: 60px;
+    height: 60px;
+  }
+  .rebirthContainerDisabled {
+    font-size: 24px;
+
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Golden Container */
+
+  .goldenContainer {
+    font-size: 24px;
+
+    width: 60px;
+    height: 60px;
+  }
+  .goldenContainerDisabled {
+    font-size: 24px;
+
+    width: 60px;
+    height: 60px;
+
+  }
+}

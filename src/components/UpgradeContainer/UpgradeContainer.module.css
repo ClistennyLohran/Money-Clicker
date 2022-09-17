@@ -1,0 +1,72 @@
+@import '../../css/colors.css';
+
+.container {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  width: 400px;
+  height: 460px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  font-weight: 200;
+  font-size: 20px;
+
+  color: var(--corTexto);
+
+  transition: 0.3s ease-in-out;
+}
+.title span {
+  font-weight: 700;
+}
+
+/* RollDown */
+
+.rollDown {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 80%;
+  height: 360px;
+
+  overflow-y: scroll;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 260px;
+    height: 390px;
+  }
+  .title {
+    font-size: 16px;
+  }
+
+  /* RollDown */
+
+  .rollDown {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 92%;
+    height: 311px;
+
+    overflow-y: scroll;
+  }
+}

@@ -1,0 +1,38 @@
+:root {
+  --corFundo: #222133;
+  --corFundoDisabled: #3a3a50;
+  --corFundoHover: #3c3954;
+
+  --corTooltip: #17161F;
+  --corTooltipHover: #1c1c26;
+
+  --corFundoNav: #2C2A42;
+  --corFundoNavHover: #44406D;
+
+  --corPrimaria: #0a84ff;
+  --corPrimariaEscuro: #0775e2;
+  --corPrimariaHover: #2f97ff;
+  --corPrimariaDisabled: #65686a;
+
+  --corIcone: #A9A8B6;
+  --corIconeBranco: #FFFFFF;
+  --corIconeHover: #FFFFFF;
+
+  --corIconeRebirth: #FFFFFF;
+  --corIconeRebirthHover: #FFFFFF;
+
+  --corTexto: #A9A8B6;
+  --corTextoBranco: #FFFFFF;
+  --corTextoValor: #FFFFFF;
+  --corTextoPlaceHolder: #595672;
+  --corTextoBtn: #FFFFFF;
+
+  --corInputClaro: #373551;
+
+  --corValor: #FFFFFF;
+
+  /* Beta Tester */
+
+  --betaTester: linear-gradient(263.66deg, #007AFF 0%, #3797FF 39.19%, #84BFFF 47.92%, #49A0FF 57.29%, #007AFF 100%);
+
+}

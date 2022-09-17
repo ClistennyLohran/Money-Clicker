@@ -1,0 +1,67 @@
+@import '../../css/colors.css';
+
+.container {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  width: 100%;
+}
+.title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  
+  font-weight: 200;
+  font-size: 20px;
+
+  color: var(--corTexto);
+}
+.title span {
+  font-weight: 700;
+}
+.gridContainer {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  transition: 0.3s ease-in-out;
+}
+
+/* Special Upgrades Container */
+
+.specialGridContainer {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1220px) {
+  .gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 860px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+
+  /* Special Upgrades Container */
+
+  .specialGridContainer {
+    display: grid;
+
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 18px;
+  }
+}

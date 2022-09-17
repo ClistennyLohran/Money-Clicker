@@ -1,0 +1,143 @@
+@charset "UTF-8";
+* {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.notification-container {
+  box-sizing: border-box;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  z-index: 999999;
+
+  width: 360px;
+  padding-left: 15px;
+
+  max-height: calc(100% - 40px);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  transition: 0.3s ease-in-out;
+}
+
+.notification {
+  box-sizing: border-box;
+  padding: 10px 10px 10px 58px;
+  border-radius: 5px;
+  color: #fff;
+
+  right: 0;
+
+  border-left: 6px solid var(--corPrimariaEscuro);
+
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative;
+  opacity: 1;
+
+  transition: 0.3s ease-in-out;
+}
+
+.notification .title {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.notification:hover, .notification:focus {
+  right: 15px;
+}
+
+.notification-enter {
+  visibility: hidden;
+  transform: translate3d(100%, 0, 0);
+}
+
+.notification-enter.notification-enter-active {
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.4s;
+}
+
+.notification-exit {
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+.notification-exit.notification-exit-active {
+  visibility: hidden;
+  transform: translate3d(100%, 0, 0);
+  transition: all 0.4s;
+}
+
+.notification:before {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  margin-top: -14px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 28px;
+}
+
+.notification-info {
+  background-color: var(--corPrimaria);
+}
+
+.notification-info:before {
+  font-size: 34px;
+  content: "";
+}
+
+.notification-success {
+  background-color: #51a351;
+}
+
+.notification-success:before {
+  content: "";
+}
+
+.notification-warning {
+  background-color: #f89406;
+}
+
+.notification-warning:before {
+  content: "";
+}
+
+.notification-error {
+  background-color: #bd362f;
+}
+
+.notification-error:before {
+  content: "";
+}
+
+@media (max-width: 480px) {
+  .notification-container {
+    width: 260px;
+  }
+  
+  .notification {
+    padding: 10px 10px 10px 58px;
+    font-size: 12px;
+  }
+  
+  .notification .title {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+  }
+
+  .notification-info:before {
+    font-size: 28px;
+    content: "";
+  }
+}

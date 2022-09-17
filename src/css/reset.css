@@ -1,0 +1,26 @@
+body, html {
+  overflow-x: hidden;
+}
+* {
+  padding: 0;
+  margin: 0;
+
+  font-family: 'Fira Sans', sans-serif;
+
+  outline: none;
+  text-decoration: none;
+}
+ul, ol, li {
+  list-style: none;
+}
+
+::-webkit-scrollbar { 
+	width: 5px;
+}
+::-webkit-scrollbar-thumb { 
+	background-color: var(--corPrimaria);
+	border-radius: 20px;
+}
+::-webkit-scrollbar-track { 
+	background-color: var(--corFundo);
+}

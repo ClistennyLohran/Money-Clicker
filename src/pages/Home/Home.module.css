@@ -1,0 +1,242 @@
+@import '../../css/colors.css';
+
+body {
+  background: var(--corFundo);
+
+  width: 100%;
+  height: 100vh;
+
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  flex-direction: column;
+}
+.gridContainer {
+  display: grid;
+
+  opacity: 0;
+  pointer-events: none;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  width: 100%;
+}
+.infoPanelGrid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+}
+.center {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+/* Title */
+
+.title {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: 60px;
+
+  margin-bottom: 20px;
+
+  color: var(--corTexto);
+}
+.topTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+.subtitle {
+  font-weight: 200;
+  font-size: 20px;
+}
+
+/* Info Panel */
+
+.infoPanel {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  width: 400px;
+
+  border-radius: 10px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+
+  background: var(--corFundoNav);
+  color: var(--corTexto);
+}
+.infoPanelText {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  font-weight: 200;
+  font-size: 20px;
+}
+.infoPanelText span {
+  font-weight: 700;
+}
+
+/* Button */
+
+.btnInvest {
+  width: 400px;
+  height: 45px;
+
+  border: none;
+  border-radius: 100px;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  font-size: 20px;
+  font-weight: 300;
+
+  margin-top: 5px;
+  margin-bottom: 15px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  cursor: pointer;
+}
+
+/* Number Animation */
+
+.number {
+  font-size: 20px;
+
+  animation-name: number;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+
+  font-weight: 300;
+
+  color: white;
+}
+
+@keyframes number {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -260px;
+  }
+}
+
+/* Adaptabilidade */
+
+@media (max-width: 1235px) {
+  .gridContainer {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .infoPanelGrid {
+    display: grid;
+
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .hideShow {
+    display: none;
+  }
+}
+@media (max-width: 880px) {
+  .gridContainer {
+    display: grid;
+  
+    grid-template-columns: repeat(1, 1fr);
+  
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .topTitle {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .subtitle {
+    font-weight: 200;
+    font-size: 16px;
+  }
+
+  /* Info Display */
+
+  .infoPanel {
+    width: 260px;
+  }
+  .infoPanelText {
+    font-size: 18px;
+  }
+
+  /* Button */
+
+  .btnInvest {
+    width: 260px;
+    height: 40px;
+
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  /* Number Animation */
+
+  .number {
+    font-size: 16px;
+  
+    animation-name: number;
+    animation-duration: 1.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  
+    font-weight: 300;
+  
+    color: white;
+  }
+
+  @keyframes number {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      margin-top: -160px;
+    }
+  }
+}
