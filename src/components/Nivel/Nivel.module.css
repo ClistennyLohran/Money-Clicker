@@ -1,0 +1,167 @@
+@import '../../css/colors.css';
+
+.container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  margin-bottom: 10px;
+
+  width: 100%;
+
+  transition: 0.3s ease-in-out;
+}
+.innerContainer {
+  display: flex;
+
+  justify-content: center;
+
+  width: 100%;
+
+  transition: 0.3s ease-in-out;
+}
+.circularProgress {
+  display: grid;
+  position: relative;
+
+  place-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.circularProgress:before {
+  content: '';
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: var(--corFundo);
+
+  transition: 0.3s ease-in-out;
+}
+.levelDisplay {
+  position: absolute;
+
+  color: var(--corTextoBranco);
+
+  transition: 0.3s ease-in-out;
+}
+.leftWing {
+  font-size: 34px;
+
+  color: var(--corTextoBranco);
+
+  transition: 0.3s ease-in-out;
+}
+.rightWing {
+  font-size: 34px;
+
+  color: var(--corTextoBranco);
+  transform: scaleX(-1);
+
+  transition: 0.3s ease-in-out;
+}
+.xpGroup {
+  position: absolute;
+  display: flex;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: var(--corTextoBranco);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+.progressContainer {
+  position: relative;
+
+  width: 400px;
+  
+  margin-top: 10px;
+
+  transition: 0.3s ease-in-out;
+}
+.levelText {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBranco);
+
+  font-weight: 500;
+  font-size: 14px;
+
+  margin-bottom: 5px;
+
+  transition: 0.3s ease-in-out;
+}
+.levelProgress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 20px;
+}
+.levelProgress[value]::-webkit-progress-bar {
+  border-radius: 10px;
+
+  background: var(--corFundoNav);
+}
+.levelProgress[value]::-webkit-progress-value {
+  border-radius: 10px;
+
+  background: var(--corPrimaria);
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+
+    margin-bottom: 10px;
+  }
+  .circularProgress {
+    width: 40px;
+    height: 40px;
+  }
+  .circularProgress:before {
+    width: 30px;
+    height: 30px;
+  }
+  .value {
+    font-size: 12px;
+  }
+  .leftWing {
+    font-size: 28px;
+  }
+  .rightWing {
+    font-size: 28px;
+  }
+  .nivelText {
+    font-size: 12px;
+  }
+  .xpGroup {
+    font-size: 11px;
+  }
+  .progressContainer {
+    position: relative;
+  
+    width: 260px;
+    
+    margin-top: 10px;
+  }
+}

@@ -50,10 +50,16 @@
   transition: 0.3s ease-in-out;
 }
 .text {
-  color: var(--corTexto);
-  font-weight: 200;
+  display: flex;
 
-  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+
+  font-size: 18px;
+
+  color: var(--corTextoBranco);
 
   transition: 0.3s ease-in-out;
 }

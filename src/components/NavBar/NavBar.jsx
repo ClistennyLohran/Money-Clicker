@@ -1,6 +1,6 @@
 import styles from './NavBar.module.css';
 
-import { FaHome, FaBtc, FaShoppingCart, FaPencilAlt, FaBars, FaQuestionCircle, FaEdit } from 'react-icons/fa';
+import { FaHome, FaBtc, FaBars, FaQuestionCircle, FaEdit, FaCashRegister } from 'react-icons/fa';
 import { BsLightbulbFill } from 'react-icons/bs';
 import { IoClose } from 'react-icons/io5';
 import { GiHeartWings } from 'react-icons/gi';
@@ -57,18 +57,18 @@ export default function NavBar() {
             </li>
             <li className={styles.itemContainer}>
               <Link to="/upgrade" className={router.pathname === "/upgrade" ? styles.optionsItemSelected : styles.optionsItem}>
-                <FaShoppingCart className={styles.optionsIcon}/>
+                <FaCashRegister className={styles.optionsIcon}/>
                 <p>Loja de Melhorias</p>
               </Link>
             </li>
             <li className={styles.itemContainer}>
-              <Link to="/criptos" className={router.pathname === "/criptos" ? styles.optionsItemSelected : styles.optionsItem}>
+              <Link to="/investimento/bitcoin" className={router.pathname === "/investimento/bitcoin" ? styles.optionsItemSelected : styles.optionsItem}>
                 <FaBtc className={styles.optionsIcon}/>
                 <p>Mineração de Bitcoin</p>
               </Link>
             </li>
             <li className={styles.itemContainer}>
-              <Link to="/rebirth" className={router.pathname === "/rebirth" ? styles.optionsItemSelected : styles.optionsItem}>
+              <Link to="/renascimento" className={router.pathname === "/renascimento" ? styles.optionsItemSelected : styles.optionsItem}>
                 <GiHeartWings className={styles.optionsIcon}/>
                 <p>Renascimento</p>
               </Link>
@@ -102,13 +102,13 @@ export default function NavBar() {
           <Link to="/"><FaHome className={styles.icon}/></Link>
         </li>
         <li className={router.pathname === "/upgrade" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/upgrade"><FaShoppingCart className={styles.icon}/></Link>
+          <Link to="/upgrade"><FaCashRegister className={styles.icon}/></Link>
         </li>
-        <li className={router.pathname === "/criptos" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/criptos"><FaBtc className={styles.icon}/></Link>
+        <li className={router.pathname === "/investimento/bitcoin" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/investimento/bitcoin"><FaBtc className={styles.icon}/></Link>
         </li>
-        <li className={router.pathname === "/rebirth" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/rebirth"><GiHeartWings className={styles.icon}/></Link>
+        <li className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/renascimento"><GiHeartWings className={styles.icon}/></Link>
         </li>
         <li 
           className={styles.optionsMenu}

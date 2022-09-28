@@ -21,13 +21,18 @@
   transition: 0.3s ease-in-out;
 }
 .title {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
   margin-top: 20px;
   margin-bottom: 20px;
 
-  font-weight: 200;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 16px;
 
-  color: var(--corTexto);
+  color: var(--corTextoBranco);
 
   transition: 0.3s ease-in-out;
 }
@@ -54,7 +59,7 @@
     height: 390px;
   }
   .title {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   /* RollDown */

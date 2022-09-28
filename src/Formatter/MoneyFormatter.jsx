@@ -99,7 +99,7 @@ var SI_SYMBOL =
   " Centilhões",
   " Centilhões",
   " Centilhões",
-  " Infinity"
+  " Infinito"
 ];
 
 function MoneyFormatter(number){

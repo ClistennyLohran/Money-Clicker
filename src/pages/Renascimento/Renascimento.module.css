@@ -1,0 +1,359 @@
+@import '../../css/colors.css';
+
+.container {
+  display: flex;
+
+  align-items: center;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: 100vh;
+}
+
+/* Title */
+
+.titleContainer {
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBranco);
+}
+.text {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 200;
+  font-size: 18px;
+}
+.textBold {
+  font-weight: 700;
+}
+
+/* Valor Minimo */
+
+.minValContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 90%;
+
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+  text-align: center;
+
+  color: var(--corTexto);
+}
+.valMinText {
+  font-weight: 200;
+}
+.valMinBold {
+  font-weight: 700;
+}
+
+/* Pontos de Renascimento */
+
+.rebirthPointsContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  color: var(--corTextoBranco);
+  
+  width: 400px;
+  height: 70px;
+
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+
+  background: var(--corPrimaria);
+
+  transition: 0.3s ease-in-out;
+}
+.rebirthPointsTitle {
+  font-size: 16px;
+}
+.rebirthPointsText {
+  font-size: 32px;
+}
+.limitInfo {
+  color: var(--corTexto);
+  font-weight: 400;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  padding-bottom: 10px;
+}
+
+/* Painel de Informações */
+
+.infoPanel {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 400px;
+  
+  border-radius: 10px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.infoPanelText {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  font-size: 16px;
+
+  color: var(--corTextoBranco);
+}
+.infoPanelText span {
+  font-weight: 700;
+}
+
+/* Rebirth Button */
+
+.rebirthButton {
+  width: 400px;
+  height: 40px;
+
+  border: none;
+  border-radius: 100px;
+
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  font-size: 20px;
+  font-weight: 300;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  cursor: pointer;
+}
+
+/* Custom Checkbox */
+
+.customCheckboxContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: row;
+}
+
+.containerCb {
+  position: relative;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  margin-top: 20px;
+  margin-right: 3px;
+  
+  transition: 0.3s ease-in-out;
+}
+.containerCb input {
+  position: absolute;
+
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+
+  transition: 0.3s ease-in-out;
+}
+.checkmark {
+  position: absolute;
+  
+  box-sizing: border-box;
+
+  bottom: 0;
+  right: 0;
+
+  height: 20px;
+  width: 20px;
+
+  border-radius: 5px;
+  border: 2px solid var(--corPrimaria);
+
+  background: transparent;
+
+  transition: 0.3s ease-in-out;
+}
+.containerCb:hover input ~ .checkmark {
+  background: var(--corFundoInput);
+}
+.containerCb input:checked ~ .checkmark {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--corPrimaria);
+}
+.checkmark:after {
+  content: "";
+
+  position: absolute;
+  display: none;
+}
+.containerCb input:checked ~ .checkmark:after {
+  display: block;
+}
+.containerCb .checkmark:after {
+  width: 10px;
+  height: 10px;
+
+  background: var(--corValor);
+  
+  border-radius: 3px;
+}
+.checkBoxText {
+  color: var(--corTextoBranco);
+
+  font-size: 14px;
+}
+
+/* Alert Text */
+
+.termsContainer {
+  width: 90%;
+
+  text-align: center;
+}
+.alert {
+  margin-top: 20px;
+  font-weight: 200;
+
+  color: var(--corTextoBranco);
+}
+.alertBold {
+  font-weight: 700;
+}
+
+/* Adaptabilidade */
+
+@media (max-width: 480px) {
+  .text {
+    font-size: 16px;
+
+    height: 60px;
+  }
+  .infoPanel {
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+  
+    flex-direction: column;
+  
+    width: 260px;
+    
+    border-radius: 10px;
+  
+    background: var(--corFundoNav);
+  }
+  .infoPanelText {
+    font-size: 16px;
+  }
+
+  /* Rebirth Button */
+
+  .rebirthButton {
+    width: 260px;
+    height: 35px;
+    min-height: 35px;
+
+    border: none;
+    border-radius: 100px;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    font-size: 16px;
+    font-weight: 300;
+
+    background: var(--corPrimaria);
+    color: var(--corTextoBtn);
+
+    cursor: pointer;
+  }
+  .alert {
+    font-size: 14px;
+  }
+
+  /* Valor Minimo */
+
+  .minValContainer {
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    font-size: 14px;
+  }
+
+  /* Pontos de Renascimento */
+
+  .rebirthPointsContainer {
+    width: 260px;
+    height: 60px;
+
+    min-height: 60px;
+  }
+  .rebirthPointsTitle {
+    font-size: 14px;
+  }
+  .rebirthPointsText {
+    font-size: 24px;
+  }
+  .limitInfo {
+    color: var(--corTexto);
+    font-weight: 400;
+  
+    font-size: 11px;
+  
+    text-align: center;
+    
+    padding-bottom: 10px;
+  }
+
+  /* Custom Checkbox */
+
+  .customCheckboxContainer {
+    padding-bottom: 50px;
+  }
+}

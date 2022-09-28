@@ -1,0 +1,186 @@
+@import '../../../css/colors.css';
+
+.container {
+  position: relative;
+  display: flex;
+
+  flex-direction: column;
+
+  border-radius: 10px;
+  border-left: 4px solid var(--corPrimaria);
+
+  margin-bottom: 10px;
+
+  width: 320px;
+  height: 144px;
+
+  min-height: 144px;
+
+  background: var(--corFundo);
+  color: var(--corTextoBranco);
+}
+.title {
+  margin-top: 5px;
+  margin-bottom: 4px;
+}
+.titleQtd {
+  font-size: 12px;
+}
+.text {
+  margin-left: 6px;
+
+  font-size: 14px;
+  font-weight: 300;
+}
+.bold {
+  font-weight: 700;
+}
+.totais {
+  margin-left: 6px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Amount Control */
+
+.amountControl {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  right: 6px;
+  top: 6px;
+
+  color: var(--corTextoBranco);
+}
+.amountControl .title {
+  font-size: 12px;
+}
+.amountContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 76px;
+  height: 20px;
+
+  margin-top: 5px;
+  border-radius: 50px;
+
+  font-size: 12px;
+
+  background: var(--corFundoNav);
+}
+.stopProduction {
+  width: 76px;
+  height: 25px;
+
+  margin-top: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+.stopProduction:hover {
+  background: var(--corPrimariaHover);
+}
+.amountControlGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  margin-top: 5px;
+  width: 76px;
+}
+.button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  margin: auto;
+
+  border-radius: 100%;
+  border: none;
+
+  color: var(--corTextoBranco);  
+  background: var(--corFundoNav);
+
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.button:hover {
+  background: var(--corFundoNavHover);
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 220px;
+    height: 104px;
+  
+    min-height: 104px;
+  }
+  .title {
+    margin-top: 5px;
+    margin-bottom: 4px;
+  }
+  .text {
+    margin-left: 6px;
+  
+    font-size: 10px;
+    font-weight: 300;
+  }
+  .bold {
+    font-weight: 700;
+  }
+  .totais {
+    font-size: 10px;
+  }
+
+  /* Amount Control */
+
+  .amountControl {
+    right: 0px;
+  }
+  .amountControl .title {
+    font-size: 9px;
+  }
+  .amountContainer {
+    width: 60px;
+    height: 20px;
+
+    font-size: 10px;
+  }
+  .stopProduction {
+    width: 60px;
+    height: 18px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+  
+    margin-top: 5px;
+  }
+  .button {
+    width: 25px;
+    height: 25px;
+
+    font-size: 10px;
+  }
+}

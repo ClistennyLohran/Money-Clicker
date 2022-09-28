@@ -3,7 +3,7 @@ import styles from './Updates.module.css';
 import { motion } from 'framer-motion';
 
 import { FaBug } from 'react-icons/fa';
-import { MdVerified } from 'react-icons/md';
+import { MdVerified, MdTipsAndUpdates } from 'react-icons/md';
 
 import ReactTooltip from 'react-tooltip';
 
@@ -17,8 +17,10 @@ export default function Updates() {
           place="top"
           multiline={true}
         />
-        <p className={styles.title}>Notícias e <span>Atualizações</span></p>
-        
+        <div className={styles.titleContainer}>
+          <p className={styles.title}>{<MdTipsAndUpdates/>}&nbsp;ATUALIZAÇÕES&nbsp;{<MdTipsAndUpdates/>}</p>
+        </div>
+
         {/* v1.6.0 */}
 
         <div className={styles.versionContainer}>
@@ -34,10 +36,22 @@ export default function Updates() {
         </ul>
         <div className={styles.updateSeparator}></div>
         
-        {/* v1.5.0 */}
+        {/* v1.5.1 */}
 
         <div className={styles.versionContainer}>
           <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
+          <p className={styles.version}>v1.5.1 - 17/09/2022</p>
+        </div>
+        <ul className={styles.newsContainer}>
+          
+          <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+          <li>• Corrigido problema ao mudar nome da empresa.</li>
+        </ul>
+        <div className={styles.updateSeparator}></div>
+        
+        {/* v1.5.0 */}
+
+        <div className={styles.versionContainer}>
           <p className={styles.version}>v1.5.0 - 16/09/2022</p>
         </div>
         <ul className={styles.newsContainer}>

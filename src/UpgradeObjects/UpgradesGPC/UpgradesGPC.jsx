@@ -6,6 +6,7 @@ export const gpcList = [
     gpcAmount: 1.0,
     upgradeValue: 2500.0,
     level: 1,
+    minLevelUnlock: 1,
   }, {
     id: '2',
     name: 'Aumenta',
@@ -13,6 +14,7 @@ export const gpcList = [
     gpcAmount: 2.0,
     upgradeValue: 10000.0,
     level: 1,
+    minLevelUnlock: 2,
   }, {
     id: '3',
     name: 'Aumenta',
@@ -20,6 +22,7 @@ export const gpcList = [
     gpcAmount: 5.0,
     upgradeValue: 25000.0,
     level: 1,
+    minLevelUnlock: 3,
   }, {
     id: '4',
     name: 'Aumenta',
@@ -27,6 +30,7 @@ export const gpcList = [
     gpcAmount: 10.0,
     upgradeValue: 75000.0,
     level: 1,
+    minLevelUnlock: 5,
   }, {
     id: '5',
     name: 'Aumenta',
@@ -34,6 +38,7 @@ export const gpcList = [
     gpcAmount: 50.0,
     upgradeValue: 150000.0,
     level: 1,
+    minLevelUnlock: 7,
   }, {
     id: '6',
     name: 'Aumenta',
@@ -41,6 +46,7 @@ export const gpcList = [
     gpcAmount: 100.0,
     upgradeValue: 300000.0,
     level: 1,
+    minLevelUnlock: 10,
   }, {
     id: '7',
     name: 'Aumenta',
@@ -48,6 +54,7 @@ export const gpcList = [
     gpcAmount: 500.0,
     upgradeValue: 750000.0,
     level: 1,
+    minLevelUnlock: 14,
   }, {
     id: '8',
     name: 'Aumenta',
@@ -55,6 +62,7 @@ export const gpcList = [
     gpcAmount: 1000.0,
     upgradeValue: 1000000.0,
     level: 1,
+    minLevelUnlock: 18,
   }, {
     id: '9',
     name: 'Aumenta',
@@ -62,6 +70,7 @@ export const gpcList = [
     gpcAmount: 2500.0,
     upgradeValue: 5000000.0,
     level: 1,
+    minLevelUnlock: 21,
   }, {
     id: '10',
     name: 'Aumenta',
@@ -69,6 +78,7 @@ export const gpcList = [
     gpcAmount: 5000.0,
     upgradeValue: 17500000.0,
     level: 1,
+    minLevelUnlock: 25,
   }, {
     id: '11',
     name: 'Aumenta',
@@ -76,6 +86,7 @@ export const gpcList = [
     gpcAmount: 7500.0,
     upgradeValue: 47500000.0,
     level: 1,
+    minLevelUnlock: 28,
   }, {
     id: '12',
     name: 'Aumenta',
@@ -83,5 +94,6 @@ export const gpcList = [
     gpcAmount: 10000.0,
     upgradeValue: 127500000.0,
     level: 1,
+    minLevelUnlock: 32,
   }
 ]

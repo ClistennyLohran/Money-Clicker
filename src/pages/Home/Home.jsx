@@ -8,50 +8,56 @@ import MoneyFormatter from '../../Formatter/MoneyFormatter';
 
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { useContext } from 'react';
-import BalanceDisplay from '../../components/BalanceDisplay/BalanceDisplay';
+import BalanceDisplay from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
 import { useEffect } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 
-import { FaMousePointer, FaMouse, FaClock, FaQuestion, FaBtc } from 'react-icons/fa';
+import { FaMousePointer, FaMouse, FaClock, FaQuestion, FaTimes, FaLightbulb } from 'react-icons/fa';
+import { GiJusticeStar, GiCash, GiConcentrationOrb, GiTriorb } from 'react-icons/gi';
+
+import Nivel from '../../components/Nivel/Nivel';
 
 export default function Home() {
-  const { balance, setBalance, gpcValue, mpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, setMpcRebirth, gpsRebirth, gpcRebirth, mpcRebirth, mpcBoost, mpcMultiply, gpcRebirthBoost, gpsRebirthBoost, mpcRebirthBoost, rebirthPoints, setRebirthPoints } = useContext(ValuesContext);
-  const { specialGpcBoost, specialGpsBoost, specialMpcBoost } = useContext(ValuesContext);
-  const { specialGpcBoostStatus, specialGpsBoostStatus, specialMpcBoostStatus } = useContext(ValuesContext);
-  
+  const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost } = useContext(ValuesContext);
+  const { specialGpcBoost, specialGpsBoost, specialLevelBoost } = useContext(ValuesContext);
+  const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
+  const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost } = useContext(ValuesContext);
+
   function clickEvent() {
-    setBalance(parseFloat((balance + ((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)).toFixed(2)));
-    if(gpcRebirth >= 300) {
-      setGpcRebirth(300);
+    setBalance(prevBalance => prevBalance + ((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO
+    setClickAmount(clickAmount => clickAmount + ((xpAmountPerClick * ((levelBoost + specialLevelBoost) + levelRebirthBoost)) * levelMultiply)); // PARA O XP
+    setTotalClickAmount(totalClickAmount => totalClickAmount + 1);
+    if(gpcRebirth >= maxValueRebirth) {
+      setGpcRebirth(maxValueRebirth);
     }else {
-      setGpcRebirth(gpcRebirth + (balance * 0.000000000000001));
+      setGpcRebirth(prevGpcRebirth => prevGpcRebirth + (balance * 0.000000000000001));
     }
 
-    if(gpsRebirth >= 300) {
-      setGpsRebirth(300);
+    if(gpsRebirth >= maxValueRebirth) {
+      setGpsRebirth(maxValueRebirth);
     }else {
-      setGpsRebirth(gpsRebirth + (balance * 0.000000000000001));
+      setGpsRebirth(prevGpsRebirth => prevGpsRebirth + (balance * 0.000000000000002));
     }
 
-    if(mpcRebirth >= 300) {
-      setMpcRebirth(300);
+    if(levelRebirth >= maxValueRebirth) {
+      setLevelRebirth(maxValueRebirth);
     }else {
-      setMpcRebirth(mpcRebirth + (balance * 0.000000000000001));
+      setLevelRebirth(prevGpsRebirth => prevGpsRebirth + (balance * 0.000000000000001));
     }
   }
 
   useEffect(() => {
-    if(gpcRebirth >= 300) {
-      setGpcRebirth(300);
+    if(gpcRebirth >= maxValueRebirth) {
+      setGpcRebirth(maxValueRebirth);
     }
-    if(gpsRebirth >= 300) {
-      setGpsRebirth(300);
+    if(gpsRebirth >= maxValueRebirth) {
+      setGpsRebirth(maxValueRebirth);
     }
-    if(mpcRebirth >= 300) {
-      setMpcRebirth(300);
+    if(levelRebirth >= maxValueRebirth) {
+      setLevelRebirth(maxValueRebirth);
     }
-  }, [gpcRebirth, gpsRebirth, mpcRebirth]);
+  }, [gpcRebirth, gpsRebirth, levelRebirth]);
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -90,32 +96,32 @@ export default function Home() {
         className={styles.center}
         animate={{ opacity: [0, 1], x: [-600, 0] }}
       >
-        <div className={styles.title}>
-          <p className={styles.topTitle}>{businessName}</p>
-          <p className={styles.subtitle}>Sinta-se livre para Arriscar</p>
+        <div className={styles.titleContainer}>
+          <p className={styles.topTitle}>{<GiCash/>}&nbsp;{businessName}&nbsp;{<GiCash/>}</p>
         </div>
+        <Nivel/>
         <BalanceDisplay/>
         <div className={styles.infoPanelGrid}>
           <div className={styles.hideShow}>
             <div className={styles.infoPanel}>
-              <p className={styles.infoPanelText}>Painel de <span>Bônus</span></p>
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados a GPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Bônus de " titleBold="GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados a GPS<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Bônus de " titleBold="GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados a MPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaBtc/>} title="Bônus de " titleBold="MPC" value={specialMpcBoostStatus === 1 ? parseFloat(((mpcBoost + specialMpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(mpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((mpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(mpcRebirthBoost * 100).toFixed(2) + "%"} />
+              <p className={styles.infoPanelText}>{<GiJusticeStar/>}&nbsp;<span>PAINEL DE BÔNUS</span>&nbsp;{<GiJusticeStar/>}</p>
+              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Bônus de " titleBold="GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
+              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPS<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Bônus de " titleBold="GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
+              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao XPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<GiConcentrationOrb/>} title="Bônus de " titleBold="XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
             </div>
           </div>
           <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>Painel de <span>Informações</span></p>
+            <p className={styles.infoPanelText}>{<FaLightbulb/>}&nbsp;<span>PAINEL DE INFORMAÇÕES</span>&nbsp;{<FaLightbulb/>}</p>
             <InfoDisplay datatip="GPC - Ganho por Clique<br><br>Este é o valor que você vai ganhar a cada clique.<br>Os bônus acima estão aplicados." tooltipIcon={<FaQuestion/>} title="Ganho por" titleBold="Clique - GPC" value={MoneyFormatter(((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply))} />
             <InfoDisplay datatip="GPS - Ganho por Segundo<br><br>Este é o valor que você ganha por segundo!<br>Os bônus acima estão aplicados." tooltipIcon={<FaQuestion/>} title="Ganho por" titleBold="Segundo - GPS" value={MoneyFormatter(((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply))} />
-            <InfoDisplay datatip="MPC - Mineração por Ciclo<br><br>Este é o valor que você vai<br>ganhar a cada ciclo de mineração." tooltipIcon={<FaQuestion/>} title="Mineração por" titleBold="Ciclo - MPC" value={parseFloat((mpcValue * ((mpcBoost + specialMpcBoost) + mpcRebirthBoost)) * mpcMultiply).toFixed(5) + " BTC"} />
+            <InfoDisplay datatip="XPC - XP por Clique<br><br>Este é o valor de XP que você ganha por clique!<br>Os bônus acima estão aplicados." tooltipIcon={<FaQuestion/>} title="XP por" titleBold="Clique - XPC" value={"XP " +((xpAmountPerClick * ((levelBoost + specialLevelBoost) + levelRebirthBoost)) * levelMultiply).toFixed(2)} />
           </div>
           <div className={styles.hideShow}>
             <div className={styles.infoPanel}>
-              <p className={styles.infoPanelText}>Painel de <span>Multiplicadores</span></p>
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPS" tooltipIcon={<FaQuestion/>} icon={<FaMouse/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a MPC" tooltipIcon={<FaQuestion/>} icon={<FaBtc/>} title="Mutiplicador de " titleBold="MPC" value={parseFloat(mpcMultiply).toFixed(2) + "x"} />
+            <p className={styles.infoPanelText}>{<FaTimes/>}&nbsp;<span>PAINEL DE MULTIPLICADORES</span>&nbsp;{<FaTimes/>}</p>
+              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
+              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPS" tooltipIcon={<FaQuestion/>} icon={<FaMouse/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
+              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao XPC" tooltipIcon={<FaQuestion/>} icon={<GiTriorb/>} title="Multiplicador de " titleBold="XPC" value={parseFloat(levelMultiply).toFixed(2) + "x"} />
             </div>
           </div>
         </div>
@@ -131,17 +137,17 @@ export default function Home() {
         </motion.button>
         <div className={styles.gridContainer}>
           <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>Painel de <span>Bônus</span></p>
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados a GPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Bônus de " titleBold="GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados a GPS<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Bônus de " titleBold="GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados a MPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaBtc/>} title="Bônus de " titleBold="MPC" value={specialMpcBoostStatus === 1 ? parseFloat(((mpcBoost + specialMpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(mpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((mpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(mpcRebirthBoost * 100).toFixed(2) + "%"} />
+            <p className={styles.infoPanelText}>{<GiJusticeStar/>}&nbsp;<span>PAINEL DE BÔNUS</span>&nbsp;{<GiJusticeStar/>}</p>
+            <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Bônus de " titleBold="GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
+            <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPS<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Bônus de " titleBold="GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
+            <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao XPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<GiConcentrationOrb/>} title="Bônus de " titleBold="XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
           </div>
 
           <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>Painel de <span>Multiplicadores</span></p>
+            <p className={styles.infoPanelText}>{<FaTimes/>}&nbsp;<span>PAINEL DE MULTIPLICADORES</span>&nbsp;{<FaTimes/>}</p>
             <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
             <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPS" tooltipIcon={<FaQuestion/>} icon={<FaMouse/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
-            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a MPC" tooltipIcon={<FaQuestion/>} icon={<FaBtc/>} title="Mutiplicador de " titleBold="MPC" value={parseFloat(mpcMultiply).toFixed(2) + "x"} />
+            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao XPC" tooltipIcon={<FaQuestion/>} icon={<GiTriorb/>} title="Multiplicador de " titleBold="XPC" value={parseFloat(levelMultiply).toFixed(2) + "x"} />
           </div>
         </div>
       </motion.div>

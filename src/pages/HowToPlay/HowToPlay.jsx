@@ -3,6 +3,7 @@ import styles from './HowToPlay.module.css';
 import { motion } from 'framer-motion';
 
 import { FaShoppingCart, FaBtc } from 'react-icons/fa';
+import { GiBookPile } from 'react-icons/gi';
 
 export default function HowToPlay() {
   return (
@@ -11,7 +12,7 @@ export default function HowToPlay() {
       animate={{ opacity: [0, 1], x: [-600, 0] }}
     >
       <div className={styles.titleContainer}>
-        <p className={styles.text}>Como esse jogo <span className={styles.textBold}>Funciona?</span></p>
+        <p className={styles.text}>{<GiBookPile/>}&nbsp;TUTORIAL&nbsp;{<GiBookPile/>}</p>
       </div>
 
       <div className={styles.tutorialContainer}>
@@ -35,12 +36,12 @@ export default function HowToPlay() {
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>O QUE É GPC, GPS e MPC?</p>
+          <p className={styles.title}>O QUE É GPC, GPS e NPC?</p>
           <p className={styles.dialogText}><span className={styles.textBold}>O GPC é o Ganho por Clique:</span> ele é o valor que você vai ganhar toda vez que clicar no botão azul Investir.</p>
           <br></br>
           <p className={styles.dialogText}><span className={styles.textBold}>O GPS é o Ganho por Segundo:</span> a cada 1 segundo o valor do seu GPS será adicionado ao seu dinheiro.</p>
           <br></br>
-          <p className={styles.dialogText}><span className={styles.textBold}>O MPC é a Mineração por Clique:</span> a cada ciclo de mineração ou seja toda vez que a barrinha de progresso atingir 100% este valor será adicionado ao seu saldo de Bitcoin.</p>
+          <p className={styles.dialogText}><span className={styles.textBold}>O NPC é o Nível por Clique:</span> a cada clique que você der no botão azul Investir, você irá ganhar uma quantidade de XP.</p>
         </div>
 
         <div className={styles.section}>
@@ -54,11 +55,11 @@ export default function HowToPlay() {
 
         <div className={styles.section}>
           <p className={styles.title}>O QUE É MINERAR BITCOIN?</p>
-          <p className={styles.dialogText}>Assim como o carrinho da loja o centro de mineração de Bitcoin também tem um ícone localizado lá encima, como você pode notar os menus que você mais vai utilizar estarão ali encima.</p>
+          <p className={styles.dialogText}>O sistema de mineração de bitcoin é uma forma alternativa de ganhar dinheiro, eu diria que é até divertido.</p>
           <div className={styles.topIcon}>
             {<FaBtc/>}
           </div>
-          <p className={styles.dialogText}>Para minerar na central de Bitcoins é simples, basta clicar no botão de minerar, uma barrinha de progresso vai começar a aumentar, quando ela chegar em 100% você irá receber o valor minerado em sua carteira de Bitcoins, em seguida você poderá converter os seus Bitcoins, basta colocar a quantidade que deseja converter e clicar em converter, certifique-se de ter a quantidade digitada na carteira, a e caso esteja com preguiça de digitar basta clicar no botão copiar, ele copia toda a sua quantia em Bitcoin para o campo de conversão.</p>
+          <p className={styles.dialogText}>Para minerar bitcoins é muito simples, você começa com um valor de $1.600,00 isso mesmo, estamos falando de dólares aqui, a sua empresa de mineração está localizada em algum lugar dos EUA, este valor inicial é suficiente para comprar o seu primeiro gerador de energia e a sua primeira placa de vídeo, após comprar os dois a sua produção de bitcoins irá começar!<br></br><br></br>Mas tome muito cuidado, fique sempre atento na temperatura ela não pode ser nem muito baixa e nem muito alta, o mesmo vale para o consumo de energia, evite ao máximo usar além do que você pode gerar.<br></br><br></br>Após minerar bastante bitcoins você poderá converter para dólares, após converter você poderá investir em novos equipamentos, você também pode converter o seu dinheiro ganho em dólares para reais!</p>
         </div>
 
         <div className={styles.section}>

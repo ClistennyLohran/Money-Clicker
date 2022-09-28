@@ -1,6 +1,5 @@
 /* Pages */
 import Home from './pages/Home/Home';
-import Criptos from './pages/Criptos/Criptos';
 import Upgrade from './pages/Upgrade/Upgrade';
 import Updates from './pages/Updates/Updates';
 
@@ -11,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { ValuesContext } from './contexts/ValuesContext/ValuesContext';
 import { BuyContext } from './contexts/BuyContext/BuyContext';
-import { RebirthUpgradeContext } from './contexts/RebirthUpgradeContext/RebirthUpgradeContext';
+import { AdvancedMiningContext } from './contexts/AdvancedMiningContext/AdvancedMiningContext';
 
 import { useState, useEffect } from 'react';
 
@@ -19,19 +18,24 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 import '../src/css/notifications.css';
 
-import ShowUpgradeInfo from './components/ShowUpgradeInfo/ShowUpgradeInfo';
+import ShowUpgradeInfo from './components/TelaDaMelhoria/TelaDaMelhoria';
 
 import HowToPlay from './pages/HowToPlay/HowToPlay';
-import Rebirth from './pages/Rebirth/Rebirth';
+import Renascimento from './pages/Renascimento/Renascimento';
 
 import { Buffer } from 'buffer';
 import CustomizeBusiness from './pages/CustomizeBusiness/CustomizeBusiness';
+import InvestimentoBitcoin from './pages/InvestimentoBitcoin/InvestimentoBitcoin';
 
 const varList = require('./VariblesObject/VariablesObject');
 
 const upgradesGps = require('./UpgradeObjects/UpgradesGPS/UpgradesGPS');
 const upgradesGpc = require('./UpgradeObjects/UpgradesGPC/UpgradesGPC');
-const upgradesMpc = require('./UpgradeObjects/UpgradesMPC/UpgradesMPC');
+const specialUpgrades = require('./UpgradeObjects/SpecialUpgrade/SpecialUpgrade');
+const specialUpgradesRebirth = require('./UpgradeObjects/SpecialUpgradeRebirth/SpecialUpgradeRebirth');
+const PlacaDeVideo = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/PlacaDeVideo/PlacaDeVideo');
+const GeradoresEnergia = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/GeradoresEnergia/GeradoresEnergia');
+const MaquinasRefrigeracao = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/MaquinasRefrigeracao/MaquinasRefrigeracao');
 
 function App() {
   const [ variables, setVariables ] = useState(() => {
@@ -46,7 +50,6 @@ function App() {
       }
       return newVariables || varList.variablesList;
     } catch(err) { /* Caso ainda não esteja criptografado */
-      console.log(err);
       const savedVariables = localStorage.getItem('MoneyClickerSave');
       const newVariables = JSON.parse(savedVariables);
       if(newVariables != null) {
@@ -60,77 +63,74 @@ function App() {
 
   /* Currency */
   const [ balance, setBalance ] = useState(() => parseFloat(variables[0].currency.balance) || 0);
-  const [ btcBalance, setBtcBalance ] = useState(() => parseFloat(variables[0].currency.btcBalance) || 0);
+  const [ dollarBalance, setDollarBalance ] = useState(() => parseFloat(variables[0].currency.dollarBalance) || 1600);
+  const [ dollarAmountConvert, setDollarAmountConvert ] = useState(() => parseFloat(variables[0].currency.dollarAmountConvert) || 0.00);
+  const [ btcAmount, setBtcAmount ] = useState(() => parseFloat(variables[0].currency.btcAmount) || 0.000000);
+
+  /* Advanced Mining */
+  const [ miningPower, setMiningPower ] = useState(() => parseFloat(variables[0].advancedMining.miningPower) || 0.00);
+  const [ miningPowerDecrease, setMiningPowerDecrease ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerDecrease) || 1.00);
+  const [ energyPower, setEnergyPower ] = useState(() => parseFloat(variables[0].advancedMining.energyPower) || 0.00);
+  const [ energyPowerUsed, setEnergyPowerUsed ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerUsed) || 0.00);
+  const [ temperature, setTemperature ] = useState(() => parseFloat(variables[0].advancedMining.temperature) || 0.00);
+  const [ temperatureDecrease, setTemperatureDecrease ] = useState(() => parseFloat(variables[0].advancedMining.temperatureDecrease) || 1.00);
+  const [ miningPowerBoost, setMiningPowerBoost ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerBoost) || 1.0);
+  const [ miningPowerMultiply, setMiningPowerMultiply ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerMultiply) || 1.0);
+  const [ energyPowerBoost, setEnergyPowerBoost ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerBoost) || 1.0);
+  const [ energyPowerMultiply, setEnergyPowerMultiply ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerMultiply) || 1.0);
+  const [ miningBusinessName, setMiningBusinessName ] = useState(() => parseFloat(variables[0].advancedMining.miningBusinessName) || 'Bitmine Farm');
+  const [ graphicsCardAmount, setGraphicsCardAmount ] = useState(() => parseFloat(variables[0].advancedMining.graphicsCardAmount) || 0);
+  const [ energyGeneratorAmount, setEnergyGeneratorAmount ] = useState(() => parseFloat(variables[0].advancedMining.energyGeneratorAmount) || 0);
+  const [ cardLevel, setCardLevel ] = useState(() => parseFloat(variables[0].advancedMining.cardLevel) || 1);
 
   /* Earn values */
   const [ gpcValue, setGpcValue ] = useState(() => parseFloat(variables[0].earnValues.gpcValue) || 1);
   const [ gpsValue, setGpsValue ] = useState(() => parseFloat(variables[0].earnValues.gpsValue) || 0);
-  const [ mpcValue, setMpcValue ] = useState(() => parseFloat(variables[0].earnValues.mpcValue) || 0.00750);
 
   /* Business Data */
   const [ businessName, setBusinessName ] = useState(() => variables[0].businessData.businessName || 'MoneyClicker Invest');
-
-  /* Upgrades Especiais */
-  const [ upgrade01, setUpgrade01 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade01) || 0);
-  const [ upgrade02, setUpgrade02 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade02) || 0);
-  const [ upgrade03, setUpgrade03 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade03) || 0);
-  const [ upgrade04, setUpgrade04 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade04) || 0);
-  const [ upgrade05, setUpgrade05 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade05) || 0);
-  const [ upgrade06, setUpgrade06 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade06) || 0);
-  const [ upgrade07, setUpgrade07 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade07) || 0);
-  const [ upgrade08, setUpgrade08 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade08) || 0);
-  const [ upgrade09, setUpgrade09 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade09) || 0);
-  const [ upgrade10, setUpgrade10 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade10) || 0);
-  const [ upgrade11, setUpgrade11 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade11) || 0);
-  const [ upgrade12, setUpgrade12 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade12) || 0);
-  const [ upgrade13, setUpgrade13 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade13) || 0);
-  const [ upgrade14, setUpgrade14 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade14) || 0);
-  const [ upgrade15, setUpgrade15 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade15) || 0);
-  const [ upgrade16, setUpgrade16 ] = useState(() => parseInt(variables[0].specialsUpgrade.upgrade16) || 0);
-
-  /* Variáveis upgrades do Renascimento */
-  const [ rebirthUpgrade1, setRebirthUpgrade1 ] = useState(() => parseFloat(variables[0].rebirthSpecialUpgrade.rebirthUpgrade1) || 0);
-  const [ rebirthUpgrade2, setRebirthUpgrade2 ] = useState(() => parseFloat(variables[0].rebirthSpecialUpgrade.rebirthUpgrade2) || 0);
-  const [ rebirthUpgrade3, setRebirthUpgrade3 ] = useState(() => parseFloat(variables[0].rebirthSpecialUpgrade.rebirthUpgrade3) || 0);
-  const [ rebirthUpgrade4, setRebirthUpgrade4 ] = useState(() => parseFloat(variables[0].rebirthSpecialUpgrade.rebirthUpgrade4) || 0);
-  const [ rebirthUpgrade5, setRebirthUpgrade5 ] = useState(() => parseFloat(variables[0].rebirthSpecialUpgrade.rebirthUpgrade5) || 0);
-  const [ rebirthUpgrade6, setRebirthUpgrade6 ] = useState(() => parseFloat(variables[0].rebirthSpecialUpgrade.rebirthUpgrade6) || 0);
+  const [ level, setLevel ] = useState(() => variables[0].businessData.level || 1);
+  const [ xp, setXp ] = useState(() => variables[0].businessData.xp || 100);
+  const [ xpAmountPerClick, setXpAmountPerClick ] = useState(() => variables[0].businessData.xpAmountPerClick || 1);
+  const [ clickAmount, setClickAmount ] = useState(() => variables[0].businessData.clickAmount || 0);
+  const [ clickAmountMultiply, setClickAmountMultiply ] = useState(() => variables[0].businessData.clickAmount || 1);
+  const [ levelProgressValue, setLevelProgressValue ] = useState(() => variables[0].businessData.levelProgressValue || 0);
+  const [ totalClickAmount, setTotalClickAmount ] = useState(() => variables[0].businessData.totalClickAmount || 0);
 
   /* Acrescenta os Boosts em Porcentagem */
   const [ gpcBoost, setGpcBoost ] = useState(() => parseFloat(variables[0].boosts.gpcBoost) || 1.0);
   const [ gpsBoost, setGpsBoost ] = useState(() => parseFloat(variables[0].boosts.gpsBoost) || 1.0);
-  const [ mpcBoost, setMpcBoost ] = useState(() => parseFloat(variables[0].boosts.mpcBoost) || 1.0);
+  const [ levelBoost, setLevelBoost ] = useState(() => parseFloat(variables[0].boosts.levelBoost) || 1.0);
 
   /* Multiplicador */
   const [ gpcMultiply, setGpcMultiply ] = useState(() => parseFloat(variables[0].multipliers.gpcMultiply) || 1.0);
   const [ gpsMultiply, setGpsMultiply ] = useState(() => parseFloat(variables[0].multipliers.gpsMultiply) || 1.0);
-  const [ mpcMultiply, setMpcMultiply ] = useState(() => parseFloat(variables[0].multipliers.mpcMultiply) || 1.0);
+  const [ levelMultiply, setLevelMultiply ] = useState(() => parseFloat(variables[0].multipliers.levelMultiply) || 1.0);
 
   /* Acrescenta os Boosts do Rebirth em Porcentagem */
   const [ gpcRebirthBoost, setGpcRebirthBoost ] = useState(() => parseFloat(variables[0].rebirthBoostsToApply.gpcRebirthBoost) || 0.0);
   const [ gpsRebirthBoost, setGpsRebirthBoost ] = useState(() => parseFloat(variables[0].rebirthBoostsToApply.gpsRebirthBoost) || 0.0);
-  const [ mpcRebirthBoost, setMpcRebirthBoost ] = useState(() => parseFloat(variables[0].rebirthBoostsToApply.mpcRebirthBoost) || 0.0);
-
-  /* Melhora o tempo de mineração */
-  const [ miningTime, setMiningTime ] = useState(() => parseFloat(variables[0].miningData.miningTime) || 1.0);
+  const [ levelRebirthBoost, setLevelRebirthBoost ] = useState(() => parseFloat(variables[0].rebirthBoostsToApply.levelRebirthBoost) || 0.0);
 
   /* Renascimento Boosters */
   const [ gpsRebirth, setGpsRebirth ] = useState(() => parseFloat(variables[0].rebirthBoosts.gpsRebirth) || 0);
   const [ gpcRebirth, setGpcRebirth ] = useState(() => parseFloat(variables[0].rebirthBoosts.gpcRebirth) || 0);
-  const [ mpcRebirth, setMpcRebirth ] = useState(() => parseFloat(variables[0].rebirthBoosts.mpcRebirth) || 0);
+  const [ levelRebirth, setLevelRebirth ] = useState(() => parseFloat(variables[0].rebirthBoosts.levelRebirth) || 0);
 
   /* Pontos de Renascimento */
   const [ rebirthPoints, setRebirthPoints ] = useState(() => parseInt(variables[0].rebirthData.rebirthPoints) || 0);
+  const [ maxValueRebirth, setMaxValueRebirth ] = useState(() => parseInt(variables[0].rebirthData.maxValueRebirth) || 300);
 
   /* Upgrades especiais de Renascimento */
   const [ specialGpsBoost, setSpecialGpsBoost ] = useState(() => parseFloat(variables[0].specialRebirthBoosts.specialGpsBoost) || 0.0);
   const [ specialGpcBoost, setSpecialGpcBoost ] = useState(() => parseFloat(variables[0].specialRebirthBoosts.specialGpcBoost) || 0.0);
-  const [ specialMpcBoost, setSpecialMpcBoost ] = useState(() => parseFloat(variables[0].specialRebirthBoosts.specialMpcBoost) || 0.0);
+  const [ specialLevelBoost, setSpecialLevelBoost ] = useState(() => parseFloat(variables[0].specialRebirthBoosts.specialLevelBoost) || 0.0);
   
   /* Status dos upgrades especiais de Renascimento */
   const [ specialGpsBoostStatus, setSpecialGpsBoostStatus ] = useState(() => parseFloat(variables[0].specialRebirthStatus.specialGpsBoostStatus) || 0);
   const [ specialGpcBoostStatus, setSpecialGpcBoostStatus ] = useState(() => parseFloat(variables[0].specialRebirthStatus.specialGpcBoostStatus) || 0);
-  const [ specialMpcBoostStatus, setSpecialMpcBoostStatus ] = useState(() => parseFloat(variables[0].specialRebirthStatus.specialMpcBoostStatus) || 0);
+  const [ specialLevelBoostStatus, setSpecialLevelBoostStatus ] = useState(() => parseFloat(variables[0].specialRebirthStatus.specialLevelBoostStatus) || 0);
+
 
   /* Tema ativo */
   const [ activeTheme, setActiveTheme ] = useState(() => variables[0].themes.activeTheme || 1);
@@ -147,10 +147,10 @@ function App() {
       return NotificationManager.info('Você não possui dinheiro para comprar esta melhoria.', 'Valor Insuficiente', 3000);
     } else if(notificationType === 2) {
       setNotificationType(0);
-      return NotificationManager.info('Insira o valor que deseja converter em Bitcoins!', 'Campo Vazio', 3000);
+      return NotificationManager.info(`Parabéns você subiu para o nível ${level}!!!`, 'Subiu de Nível', 3000); /* Disponível para Uso */
     } else if(notificationType === 3) {
       setNotificationType(0);
-      return NotificationManager.info('Você não possui esta quantia de Bitcoins para converter.', 'Bitcoin Insuficiente', 3000);
+      return NotificationManager.info('Esta melhoria é inferior a que você possui, vou manter o maior, eu sei eu sou incrível!', 'Salvando Você', 3000); /* Disponível para Uso */
     } else if(notificationType === 4) {
       setNotificationType(0);
       return NotificationManager.info('Você deve confirmar que leu os termos para continuar.', 'Confirme a Leitura', 3000);
@@ -172,7 +172,10 @@ function App() {
     } else if(notificationType === 10) {
       setNotificationType(0);
       return NotificationManager.info('Você deve comprar os temas para poder aplicá-los!', 'Compre os Temas', 3000);
-    }
+    } else if(notificationType === 11) { // ------------------------ Notificações da Mineração de Bitcoin ---------------------------
+      setNotificationType(0);
+      return NotificationManager.info('', '', 3000);
+    } 
   }, [notificationType]);
 
   useEffect(() => {
@@ -181,77 +184,73 @@ function App() {
         { 
           currency: { 
             balance: balance.toFixed(5), 
-            btcBalance: btcBalance.toFixed(5),
+            btcAmount: btcAmount.toFixed(6),
+            dollarBalance: dollarBalance.toFixed(2),
+            dollarAmountConvert: dollarAmountConvert.toFixed(2),
+          },
+          advancedMining: {
+            miningPower: miningPower,
+            miningPowerDecrease: miningPowerDecrease,
+            energyPower: energyPower,
+            energyPowerUsed: energyPowerUsed,
+            temperature: temperature,
+            temperatureDecrease: temperatureDecrease,
+            miningPowerBoost: miningPowerBoost,
+            miningPowerMultiply: miningPowerMultiply,
+            energyPowerBoost: energyPowerBoost,
+            energyPowerMultiply: energyPowerMultiply,
+            miningBusinessName: miningBusinessName,
+            graphicsCardAmount: graphicsCardAmount,
+            energyGeneratorAmount: energyGeneratorAmount,
+            cardLevel: cardLevel,
           },
           earnValues: {
             gpcValue: gpcValue.toFixed(5),
             gpsValue: gpsValue.toFixed(5),
-            mpcValue: mpcValue.toFixed(5),
           },
           businessData: {
             businessName: businessName,
-          },
-          specialsUpgrade: {
-            upgrade01: upgrade01,
-            upgrade02: upgrade02,
-            upgrade03: upgrade03,
-            upgrade04: upgrade04,
-            upgrade05: upgrade05,
-            upgrade06: upgrade06,
-            upgrade07: upgrade07,
-            upgrade08: upgrade08,
-            upgrade09: upgrade09,
-            upgrade10: upgrade10,
-            upgrade11: upgrade11,
-            upgrade12: upgrade12,
-            upgrade13: upgrade13,
-            upgrade14: upgrade14,
-            upgrade15: upgrade15,
-            upgrade16: upgrade16,
-          },
-          rebirthSpecialUpgrade: {
-            rebirthUpgrade1: rebirthUpgrade1,
-            rebirthUpgrade2: rebirthUpgrade2,
-            rebirthUpgrade3: rebirthUpgrade3,
-            rebirthUpgrade4: rebirthUpgrade4,
-            rebirthUpgrade5: rebirthUpgrade5,
-            rebirthUpgrade6: rebirthUpgrade6,
+            level: level,
+            xp: xp,
+            xpAmountPerClick: xpAmountPerClick,
+            clickAmount: clickAmount,
+            clickAmountMultiply: clickAmountMultiply,
+            levelProgressValue: levelProgressValue,
+            totalClickAmount: totalClickAmount,
           },
           boosts: {
             gpcBoost: gpcBoost.toFixed(2),
             gpsBoost: gpsBoost.toFixed(2),
-            mpcBoost: mpcBoost.toFixed(2),
+            levelBoost: levelBoost.toFixed(2),
           },
           multipliers: {
             gpcMultiply: gpcMultiply.toFixed(5),
             gpsMultiply: gpsMultiply.toFixed(5),
-            mpcMultiply: mpcMultiply.toFixed(5),
+            levelMultiply: levelMultiply.toFixed(5),
           },
           rebirthBoostsToApply: {
             gpcRebirthBoost: gpcRebirthBoost.toFixed(14),
             gpsRebirthBoost: gpsRebirthBoost.toFixed(14),
-            mpcRebirthBoost: mpcRebirthBoost.toFixed(14),
-          },
-          miningData: {
-            miningTime: miningTime,
+            levelRebirthBoost: levelRebirthBoost.toFixed(14),
           },
           rebirthBoosts: {
             gpcRebirth: gpcRebirth.toFixed(14),
             gpsRebirth: gpsRebirth.toFixed(14),
-            mpcRebirth: mpcRebirth.toFixed(14),
+            levelRebirth: levelRebirth.toFixed(14),
           },
           rebirthData: {
             rebirthPoints: rebirthPoints,
+            maxValueRebirth: maxValueRebirth,
           },
           specialRebirthBoosts: {
             specialGpsBoost: specialGpsBoost,
             specialGpcBoost: specialGpcBoost,
-            specialMpcBoost: specialMpcBoost,
+            specialLevelBoost: specialLevelBoost,
           },
           specialRebirthStatus: {
             specialGpsBoostStatus: specialGpsBoostStatus,
             specialGpcBoostStatus: specialGpcBoostStatus,
-            specialMpcBoostStatus: specialMpcBoostStatus,
+            specialLevelBoostStatus: specialLevelBoostStatus,
           },
           themes: {
             activeTheme: activeTheme,
@@ -261,7 +260,7 @@ function App() {
         }
       ]
     );
-  }, [balance, rebirthPoints, btcBalance, activeTheme, activeColor]);
+  }, [balance, rebirthPoints, btcAmount, activeTheme, activeColor, miningPower, dollarBalance]);
 
   useEffect(() => {
     const savedVariables = JSON.stringify(variables);
@@ -282,6 +281,17 @@ function App() {
     }
   }, [balance]);
 
+  useEffect(() => {
+    let btcAmountIncrease = setInterval(() => {
+      setBtcAmount(btcAmount => btcAmount + (((miningPower * 0.00000001266) * miningPowerDecrease) / 100));
+      setDollarAmountConvert(btcAmount * 500000);
+    }, 10);
+
+    return () => {
+      clearInterval(btcAmountIncrease);
+    }
+  }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerDecrease,]);
+
   const [ showHide, setShowHide ] = useState(false);
   const [ showHideRebirth, setShowHideRebirth ] = useState(false);
 
@@ -290,8 +300,33 @@ function App() {
   const [ buyDescription, setBuyDescription ] = useState('Descrição aleatória!');
   const [ buyIcon, setBuyIcon ] = useState('Um Icone');
   const [ buyId, setBuyId ] = useState(0);
+  const [ upgradeType, setUpgradeType ] = useState(0);
 
-  const upgradesGroup = [ upgradesGps.gpsList, upgradesGpc.gpcList, upgradesMpc.mpcList ];
+  const upgradesGroup = [ upgradesGps.gpsList, upgradesGpc.gpcList, specialUpgrades.specialUpgradesList, specialUpgradesRebirth.specialUpgradeRebirthList, PlacaDeVideo.PlacaDeVideoList, GeradoresEnergia.GeradoresEnergiaList, MaquinasRefrigeracao.MaquinasRefrigeracaoList ];
+
+  function checkUpgradesList(newGeneralUpgrades) {
+    if(newGeneralUpgrades[0].length < upgradesGps.gpsList.length) {
+      newGeneralUpgrades[0] = Object.assign(upgradesGps.gpsList, newGeneralUpgrades[0]);
+    }
+    if(newGeneralUpgrades[1].length < upgradesGpc.gpcList.length) {
+      newGeneralUpgrades[1] = Object.assign(upgradesGpc.gpcList, newGeneralUpgrades[1]);
+    }
+    if(newGeneralUpgrades[2].length < specialUpgrades.specialUpgradesList.length) {
+      newGeneralUpgrades[2] = Object.assign(specialUpgrades.specialUpgradesList, newGeneralUpgrades[2]);
+    }
+    if(newGeneralUpgrades[3].length < specialUpgrades.specialUpgradesList.length) {
+      newGeneralUpgrades[3] = Object.assign(specialUpgradesRebirth.specialUpgradeRebirthList, newGeneralUpgrades[3]);
+    }
+    if(newGeneralUpgrades[4].length < PlacaDeVideo.PlacaDeVideoList.length) {
+      newGeneralUpgrades[4] = Object.assign(PlacaDeVideo.PlacaDeVideoList, newGeneralUpgrades[4]);
+    }
+    if(newGeneralUpgrades[5].length < GeradoresEnergia.GeradoresEnergiaList.length) {
+      newGeneralUpgrades[5] = Object.assign(GeradoresEnergia.GeradoresEnergiaList, newGeneralUpgrades[5]);
+    }
+    if(newGeneralUpgrades[6].length < MaquinasRefrigeracao.MaquinasRefrigeracaoList.length) {
+      newGeneralUpgrades[6] = Object.assign(MaquinasRefrigeracao.MaquinasRefrigeracaoList, newGeneralUpgrades[6]);
+    }
+  }
 
   const [ generalUpgrades, setGeneralUpgrades ] = useState(() => {
     try {
@@ -299,36 +334,21 @@ function App() {
       const decodedGeneralUpgrades = Buffer.from(savedGeneralUpgrades, 'base64').toString('utf8');
       const newGeneralUpgrades = JSON.parse(decodedGeneralUpgrades);
       if(newGeneralUpgrades != null) {
-        if(newGeneralUpgrades[0].length < upgradesGps.gpsList.length) {
-          newGeneralUpgrades[0] = Object.assign(upgradesGps.gpsList, newGeneralUpgrades[0]);
-        }
-        if(newGeneralUpgrades[1].length < upgradesGpc.gpcList.length) {
-          newGeneralUpgrades[1] = Object.assign(upgradesGpc.gpcList, newGeneralUpgrades[1]);
-        }
-        if(newGeneralUpgrades[2].length < upgradesMpc.mpcList.length) {
-          newGeneralUpgrades[2] = Object.assign(upgradesMpc.mpcList, newGeneralUpgrades[2]);
-        }
+        checkUpgradesList(newGeneralUpgrades);
       }
       return newGeneralUpgrades || upgradesGroup;
     } catch(SyntaxError) {
       const savedGeneralUpgrades = localStorage.getItem('MoneyClickerData');
       const newGeneralUpgrades = JSON.parse(savedGeneralUpgrades);
       if(newGeneralUpgrades != null) {
-        if(newGeneralUpgrades[0].length < upgradesGps.gpsList.length) {
-          newGeneralUpgrades[0] = Object.assign(upgradesGps.gpsList, newGeneralUpgrades[0]);
-        }
-        if(newGeneralUpgrades[1].length < upgradesGpc.gpcList.length) {
-          newGeneralUpgrades[1] = Object.assign(upgradesGpc.gpcList, newGeneralUpgrades[1]);
-        }
-        if(newGeneralUpgrades[2].length < upgradesMpc.mpcList.length) {
-          newGeneralUpgrades[2] = Object.assign(upgradesMpc.mpcList, newGeneralUpgrades[2]);
-        }
+        checkUpgradesList(newGeneralUpgrades);
       }
       return newGeneralUpgrades || upgradesGroup;
     }
   });
 
   useEffect(() => {
+    console.log(generalUpgrades);
     const savedGeneralUpgrades = JSON.stringify(generalUpgrades);
     localStorage.setItem('MoneyClickerData', Buffer.from(savedGeneralUpgrades, 'binary').toString('base64'));
   }, [generalUpgrades]);
@@ -589,54 +609,69 @@ function App() {
           setBalance,
           gpcValue,
           setGpcValue,
+          dollarBalance,
+          setDollarBalance,
+          dollarAmountConvert,
+          setDollarAmountConvert,
           businessName,
           setBusinessName,
+          level,
+          setLevel,
+          xp,
+          setXp,
+          xpAmountPerClick,
+          setXpAmountPerClick,
+          clickAmount,
+          setClickAmount,
+          clickAmountMultiply,
+          setClickAmountMultiply,
+          levelProgressValue,
+          setLevelProgressValue,
+          totalClickAmount,
+          setTotalClickAmount,
           gpsValue,
           setGpsValue,
-          btcBalance,
-          setBtcBalance,
-          mpcValue,
-          setMpcValue,
+          btcAmount,
+          setBtcAmount,
           notificationType,
           setNotificationType,
           showHide,
           setShowHide,
           showHideRebirth,
           setShowHideRebirth,
-          /* Multiplicadores e Boosters */
-          miningTime,
-          setMiningTime,
           /* Boost por porcentagem */
           gpcBoost,
           setGpcBoost,
-          mpcBoost,
-          setMpcBoost,
           gpsBoost,
           setGpsBoost,
+          levelBoost,
+          setLevelBoost,
           /* Multiplicador */
-          mpcMultiply,
-          setMpcMultiply,
           gpcMultiply,
           setGpcMultiply,
           gpsMultiply,
           setGpsMultiply,
+          levelMultiply,
+          setLevelMultiply,
           /* Rebirth */
           gpsRebirth,
           setGpsRebirth,
           gpcRebirth,
           setGpcRebirth,
-          mpcRebirth,
-          setMpcRebirth,
+          levelRebirth,
+          setLevelRebirth,
           /* Rebirth Boost */
           gpcRebirthBoost,
           setGpcRebirthBoost,
           gpsRebirthBoost,
           setGpsRebirthBoost,
-          mpcRebirthBoost,
-          setMpcRebirthBoost,
+          levelRebirthBoost,
+          setLevelRebirthBoost,
           /* Rebirth Points */
           rebirthPoints,
           setRebirthPoints,
+          maxValueRebirth,
+          setMaxValueRebirth,
           /* Variables */
           variables,
           setVariables,
@@ -645,15 +680,15 @@ function App() {
           setSpecialGpcBoost,
           specialGpsBoost,
           setSpecialGpsBoost,
-          specialMpcBoost,
-          setSpecialMpcBoost,
+          specialLevelBoost,
+          setSpecialLevelBoost,
           /* Special upgrades status */
           specialGpsBoostStatus,
           setSpecialGpsBoostStatus,
           specialGpcBoostStatus,
           setSpecialGpcBoostStatus,
-          specialMpcBoostStatus,
-          setSpecialMpcBoostStatus,
+          specialLevelBoostStatus,
+          setSpecialLevelBoostStatus,
           /* General Upgrades */
           generalUpgrades,
           setGeneralUpgrades,
@@ -680,65 +715,15 @@ function App() {
             setBuyIcon,
             buyId,
             setBuyId,
-            /* Upgrades Comprados */
-            upgrade01,
-            setUpgrade01,
-            upgrade02,
-            setUpgrade02,
-            upgrade03,
-            setUpgrade03,
-            upgrade04,
-            setUpgrade04,
-            upgrade05,
-            setUpgrade05,
-            upgrade06,
-            setUpgrade06,
-            upgrade07,
-            setUpgrade07,
-            upgrade08,
-            setUpgrade08,
-            upgrade09,
-            setUpgrade09,
-            upgrade10,
-            setUpgrade10,
-            upgrade11,
-            setUpgrade11,
-            upgrade12,
-            setUpgrade12,
-            upgrade13,
-            setUpgrade13,
-            upgrade14,
-            setUpgrade14,
-            upgrade15,
-            setUpgrade15,
-            upgrade16,
-            setUpgrade16,
+            upgradeType,
+            setUpgradeType,
             /* General Upgrades */
             generalUpgrades,
             setGeneralUpgrades,
           }
         }
       >
-        <RebirthUpgradeContext.Provider 
-        value={
-          {
-            rebirthUpgrade1,
-            setRebirthUpgrade1,
-            rebirthUpgrade2,
-            setRebirthUpgrade2,
-            rebirthUpgrade3,
-            setRebirthUpgrade3,
-            rebirthUpgrade4,
-            setRebirthUpgrade4,
-            rebirthUpgrade5,
-            setRebirthUpgrade5,
-            rebirthUpgrade6,
-            setRebirthUpgrade6,
-            /* General Upgrades */
-            generalUpgrades,
-            setGeneralUpgrades,
-          }
-        }>
+        <AdvancedMiningContext.Provider value={{ btcAmount, setBtcAmount, dollarBalance, setDollarBalance, miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, miningPowerBoost, setMiningPowerBoost, miningPowerMultiply, setMiningPowerMultiply, energyPowerBoost, setEnergyPowerBoost, energyPowerMultiply, setEnergyPowerMultiply, miningBusinessName, setMiningBusinessName, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount, cardLevel, setCardLevel, temperatureDecrease, setTemperatureDecrease, miningPowerDecrease, setMiningPowerDecrease }}>
           <Router>
             <ShowUpgradeInfo/>
             <NavBar/>
@@ -746,14 +731,14 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home/>}></Route>
               <Route path="/upgrade" element={<Upgrade/>}></Route>
-              <Route path="/criptos" element={<Criptos/>}></Route>
-              <Route path="/rebirth" element={<Rebirth/>}></Route>
+              <Route path="/investimento/bitcoin" element={<InvestimentoBitcoin/>}></Route>
+              <Route path="/renascimento" element={<Renascimento/>}></Route>
               <Route path="/customize" element={<CustomizeBusiness/>}></Route>
               <Route path="/updates" element={<Updates/>}></Route>
               <Route path="/howtoplay" element={<HowToPlay/>}></Route>
             </Routes>
           </Router>
-        </RebirthUpgradeContext.Provider>
+        </AdvancedMiningContext.Provider>
       </BuyContext.Provider>
     </ValuesContext.Provider>
   );

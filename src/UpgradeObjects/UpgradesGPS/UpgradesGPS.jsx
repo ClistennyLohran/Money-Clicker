@@ -6,6 +6,7 @@ export const gpsList = [
     gpsAmount: 1.0,
     upgradeValue: 100.0,
     level: 1,
+    minLevelUnlock: 1,
   }, {
     id: '2',
     name: 'Aumenta',
@@ -13,6 +14,7 @@ export const gpsList = [
     gpsAmount: 5.0,
     upgradeValue: 1000.0,
     level: 1,
+    minLevelUnlock: 2,
   }, {
     id: '3',
     name: 'Aumenta',
@@ -20,6 +22,7 @@ export const gpsList = [
     gpsAmount: 10.0,
     upgradeValue: 5000.0,
     level: 1,
+    minLevelUnlock: 3,
   }, {
     id: '4',
     name: 'Aumenta',
@@ -27,6 +30,7 @@ export const gpsList = [
     gpsAmount: 50.0,
     upgradeValue: 15000.0,
     level: 1,
+    minLevelUnlock: 4,
   }, {
     id: '5',
     name: 'Aumenta',
@@ -34,6 +38,7 @@ export const gpsList = [
     gpsAmount: 100.0,
     upgradeValue: 30000.0,
     level: 1,
+    minLevelUnlock: 5,
   }, {
     id: '6',
     name: 'Aumenta',
@@ -41,6 +46,7 @@ export const gpsList = [
     gpsAmount: 500.0,
     upgradeValue: 75000.0,
     level: 1,
+    minLevelUnlock: 6,
   }, {
     id: '7',
     name: 'Aumenta',
@@ -48,6 +54,7 @@ export const gpsList = [
     gpsAmount: 1000.0,
     upgradeValue: 200000.0,
     level: 1,
+    minLevelUnlock: 7,
   }, {
     id: '8',
     name: 'Aumenta',
@@ -55,6 +62,7 @@ export const gpsList = [
     gpsAmount: 2500.0,
     upgradeValue: 550000.0,
     level: 1,
+    minLevelUnlock: 8,
   }, {
     id: '9',
     name: 'Aumenta',
@@ -62,6 +70,7 @@ export const gpsList = [
     gpsAmount: 5000.0,
     upgradeValue: 1000000.0,
     level: 1,
+    minLevelUnlock: 10,
   }, {
     id: '10',
     name: 'Aumenta',
@@ -69,6 +78,7 @@ export const gpsList = [
     gpsAmount: 7500.0,
     upgradeValue: 7500000.0,
     level: 1,
+    minLevelUnlock: 12,
   }, {
     id: '11',
     name: 'Aumenta',
@@ -76,6 +86,7 @@ export const gpsList = [
     gpsAmount: 10000.0,
     upgradeValue: 27500000.0,
     level: 1,
+    minLevelUnlock: 15,
   }, {
     id: '12',
     name: 'Aumenta',
@@ -83,5 +94,6 @@ export const gpsList = [
     gpsAmount: 15000.0,
     upgradeValue: 95000000.0,
     level: 1,
+    minLevelUnlock: 25,
   }
 ]
