@@ -6,12 +6,13 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AiFillAlert } from 'react-icons/ai';
-import { GiPaintBucket, GiMoneyStack, GiPaintRoller, GiPaintBrush } from 'react-icons/gi';
+import { GiSave, GiPaintBucket, GiMoneyStack, GiPaintRoller, GiPaintBrush } from 'react-icons/gi';
 import { BiRename } from 'react-icons/bi';
 import { RiRestartFill } from 'react-icons/ri';
+import { MdBackup, MdCloudDownload } from 'react-icons/md';
 
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
-import BalanceDisplay from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
+import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
 
 export default function CustomizeBusiness() {
   
@@ -44,12 +45,11 @@ export default function CustomizeBusiness() {
       for (var i = 0 ; i < highestTimeoutId ; i++) {
           clearTimeout(i); 
       }
-      await sleep(200);
+      await sleep(50);
       localStorage.clear();
-      await sleep(200);
-      localStorage.clear();
-      await sleep(200);
+      await sleep(50);
       navigate('/');
+      await sleep(50);
       document.location.reload(true);
     }else {
       setNotificationType(4);
@@ -64,6 +64,57 @@ export default function CustomizeBusiness() {
       setNotificationType(9);
     }
   }
+
+  const generateSave = (e) => {
+    let saveCode = document.getElementById('saveCode');
+
+    let moneyClickerSave = localStorage.getItem('MoneyClickerSave');
+    let moneyClickerData = localStorage.getItem('MoneyClickerData');
+
+    saveCode.value = moneyClickerSave + "|" + moneyClickerData;
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  const loadSave = async (e) => {
+    let saveLoad = document.getElementById('saveLoad');
+    
+    if(saveLoad.value.length >= 0 && saveLoad.value !== "" && saveLoad.value !== null) {
+
+      let moneyClickerSave = saveLoad.value.slice(0, saveLoad.value.indexOf("|"));
+      let moneyClickerData = saveLoad.value.slice(saveLoad.value.indexOf("|") + 1, saveLoad.value.length);
+
+      var highestTimeoutId = setTimeout(";");
+      for (var i = 0 ; i < highestTimeoutId ; i++) {
+          clearTimeout(i); 
+      }
+      localStorage.clear();
+
+      await sleep(100);
+
+      localStorage.setItem('MoneyClickerSave', moneyClickerSave);
+      localStorage.setItem('MoneyClickerData', moneyClickerData);
+
+      await sleep(100);
+      navigate('/');
+      document.location.reload(true);
+    } else {
+      setNotificationType(14);
+    }
+  }
+
+  /* Copy and Paste Content */
+
+  const copyContent = () => {
+    let saveCode = document.getElementById('saveCode');
+
+    saveCode.select();
+    document.execCommand('copy');
+
+    setNotificationType(13);
+  }
   
   return (
     <motion.div
@@ -74,7 +125,7 @@ export default function CustomizeBusiness() {
         <p className={styles.title}>{<GiPaintBucket/>}&nbsp;<span className={styles.titleBold}>CUSTOMIZAÇÃO DA LOJA</span>&nbsp;{<GiPaintBucket/>}</p>
       </div>
       <div className={styles.center}>
-        <BalanceDisplay/>
+        <DisplayDinheiroReais/>
       </div>
 
       <div className={styles.separator}></div>
@@ -95,7 +146,7 @@ export default function CustomizeBusiness() {
         >
           ALTERAR
         </motion.button>
-        <p className={styles.buyText}>{<GiMoneyStack/>}&nbsp;<span className={styles.bold}>VALOR DA ALTERAÇÃO:</span>&nbsp;<span className={styles.titleBold}>R$2.500,00</span></p>
+        <p className={styles.buyText}>{<GiMoneyStack/>}&nbsp;<span className={styles.bold}>VALOR DA ALTERAÇÃO:</span>&nbsp;<span className={styles.titleBold}>R$2.5K</span></p>
       </div>
 
       <div className={styles.separator}></div>
@@ -189,7 +240,7 @@ export default function CustomizeBusiness() {
         </motion.button>
 
         <div className={styles.textContainer}>
-          <p className={styles.buyText}>{<GiMoneyStack/>}&nbsp;<span className={styles.textBold}>VALOR DAS CORES E TEMAS: R$250.000,00</span></p>
+          <p className={styles.buyText}>{<GiMoneyStack/>}&nbsp;<span className={styles.textBold}>VALOR DAS CORES E TEMAS: R$250K</span></p>
         </div>
       </div>
 
@@ -215,6 +266,48 @@ export default function CustomizeBusiness() {
             <span className={styles.checkmark}></span>
           </label>
           <p className={styles.checkBoxText}>Li e estou ciente!</p>
+        </div>
+      </div>
+
+      <div className={styles.separator}></div>
+
+      <div className={styles.saveGameContainer}>
+        <div className={styles.textContainerSave}>
+          <p className={styles.text}>{<GiSave/>}&nbsp;<span className={styles.textBold}>SAVE GAME</span>&nbsp;{<GiSave/>}</p>
+          <p className={styles.resetText}>Escolha se quer carregar um save existente ou fazer um backup do seu save atual!</p>
+          <div className={styles.backupContainer}>
+            <p className={styles.saveText}>{<MdBackup/>}&nbsp;FAZER BACKUP&nbsp;{<MdBackup/>}</p>
+            <p className={styles.alertText}>Clique no botão gerar save para gerar o seu código, guarde o código em um bloco de notas.</p>
+            <div className={styles.saveValueContainer}>
+              <input type="text" id="saveCode" className={styles.saveCode} autoComplete={'off'} placeholder="O seu save será gerado aqui!" ></input>
+              <button onClick={() => copyContent()} className={styles.copyBtn}>COPIAR</button>
+            </div>
+            <motion.button 
+              className={styles.dataBtn}
+              transition={{ type: "spring", stiffness: 700, damping: 30 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+              onClick={(e) => generateSave(e)}
+            >
+              GERAR SAVE
+            </motion.button>
+          </div>
+          <div className={styles.loadContainer}>
+            <p className={styles.saveText}>{<MdCloudDownload/>}&nbsp;CARREGAR SAVE&nbsp;{<MdCloudDownload/>}</p>
+            <p className={styles.alertText}>Cole o seu save no campo abaixo, é sempre recomendado fazer um backup do save atual no campo acima.</p>
+            <div className={styles.saveValueContainer}>
+              <input type="text" id="saveLoad" className={styles.saveCode} autoComplete={'off'} placeholder="Cole o seu save aqui!" />
+            </div>
+            <motion.button 
+              className={styles.dataBtn}
+              transition={{ type: "spring", stiffness: 700, damping: 30 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+              onClick={(e) => loadSave(e)}
+            >
+              CARREGAR SAVE
+            </motion.button>
+          </div>
         </div>
       </div>
     </motion.div>

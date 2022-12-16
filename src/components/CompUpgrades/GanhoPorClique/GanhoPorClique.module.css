@@ -131,6 +131,15 @@
 
   transition: 0.3s ease-in-out;
 }
+.noValue {
+  margin-left: 5px;
+  margin-top: 8px;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  color: var(--semDinheiro);
+}
 
 /* Level */
 
@@ -185,7 +194,7 @@
 
   border-radius: 5px;
 
-  background: linear-gradient(263.66deg, #28BAEE 0%, #78DCFF 39.19%, #80DEFF 53.41%, #28BAEE 100%);
+  background: var(--corPrimaria);
 }
 .levelBoxMax p {
   font-size: 14px;
@@ -235,6 +244,11 @@
     font-size: 11px;
   }
   .value {
+    margin-top: 6px;
+
+    font-size: 14px;
+  }
+  .noValue {
     margin-top: 6px;
 
     font-size: 14px;

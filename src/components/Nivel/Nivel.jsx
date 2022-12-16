@@ -5,7 +5,7 @@ import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { GiCurlyWing } from 'react-icons/gi';
 import { TiArrowUpThick } from 'react-icons/ti';
 
-import AnimatedNumber from 'animated-number-react';
+import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
 
 import styles from './Nivel.module.css';
 
@@ -25,7 +25,7 @@ export default function Nivel() {
       if(clickAmount >= xp) {
         setClickAmount(0);
         setLevel(level => level + 1);
-        setXp(xp => Number((xp * 1.3369).toFixed(0)));
+        setXp(xp => Number((xp * 1.4688).toFixed(0)));
         setNotificationType(2);
       }
     }

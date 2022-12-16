@@ -9,13 +9,23 @@ export const specialUpgradeRebirthList = [
     status: 0,
     value: 1,
     classId: 1
-  }, {
+  }, { // Esse aqui
     id: 2,
+    status: 0,
+    value: 1,
+    classId: 1
+  }, {
+    id: 3,
     status: 0,
     value: 2,
     classId: 1
   }, {
-    id: 3,
+    id: 4,
+    status: 0,
+    value: 2,
+    classId: 1
+  }, {
+    id: 5,
     status: 0,
     value: 2,
     classId: 1

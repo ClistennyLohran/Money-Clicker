@@ -7,67 +7,167 @@ export const specialUpgradesList = [
   }, {
     id: 1,
     status: 0,
-    value: 100000.0,
+    value: 50000.0,
     classId: 0
   }, {
     id: 2,
     status: 0,
-    value: 250000.0,
+    value: 100000.0,
     classId: 0
   }, {
     id: 3,
     status: 0,
-    value: 600000.0,
+    value: 250000.0,
     classId: 0
-  }, { // Esse q vou modificar
+  }, {
     id: 4,
     status: 0,
-    value: 1250000.0,
+    value: 400000.0,
     classId: 0
   }, {
     id: 5,
     status: 0,
-    value: 2500000.0,
+    value: 600000.0,
     classId: 0
   }, {
     id: 6,
     status: 0,
-    value: 20000000.0,
+    value: 900000.0,
     classId: 0
   }, {
     id: 7,
     status: 0,
-    value: 50000000.0,
+    value: 1250000.0,
     classId: 0
   }, {
     id: 8,
     status: 0,
-    value: 75000000.0,
+    value: 1500000.0,
     classId: 0
   }, {
     id: 9,
     status: 0,
-    value: 160000000.0,
+    value: 2000000.0,
     classId: 0
   }, {
     id: 10,
     status: 0,
+    value: 2500000.0,
+    classId: 0
+  }, { 
+    id: 11,
+    status: 0,
+    value: 4000000.0,
+    classId: 0
+  }, { 
+    id: 12,
+    status: 0,
+    value: 7500000.0,
+    classId: 0
+  }, { 
+    id: 13,
+    status: 0,
+    value: 10000000.0,
+    classId: 0
+  }, { 
+    id: 14,
+    status: 0,
+    value: 13000000.0,
+    classId: 0
+  }, {
+    id: 15,
+    status: 0,
+    value: 20000000.0,
+    classId: 0
+  }, {
+    id: 16,
+    status: 0,
+    value: 50000000.0,
+    classId: 0
+  }, {
+    id: 17,
+    status: 0,
+    value: 75000000.0,
+    classId: 0
+  }, {
+    id: 18,
+    status: 0,
+    value: 100000000.0,
+    classId: 0
+  }, {
+    id: 19,
+    status: 0,
+    value: 160000000.0,
+    classId: 0
+  }, {
+    id: 20,
+    status: 0,
     value: 350000000.0,
     classId: 0
   }, {
-    id: 11,
+    id: 21,
+    status: 0,
+    value: 550000000.0,
+    classId: 0
+  }, {
+    id: 22,
+    status: 0,
+    value: 850000000.0,
+    classId: 0
+  }, {
+    id: 23,
+    status: 0,
+    value: 1250000000.0,
+    classId: 0
+  }, {
+    id: 24,
     status: 0,
     value: 2000000000.0,
     classId: 0
   }, {
-    id: 12,
+    id: 25,
     status: 0,
-    value: 5000000000.0,
+    value: 2500000000.0,
+    classId: 0
+  }, {
+    id: 26,
+    status: 0,
+    value: 4000000000.0,
+    classId: 0
+  }, {
+    id: 27,
+    status: 0,
+    value: 8500000000.0,
     classId: 2
   }, {
-    id: 13,
+    id: 28,
     status: 0,
     value: 10000000000.0,
+    classId: 2
+  }, {
+    id: 29,
+    status: 0,
+    value: 12500000000.0,
+    classId: 2
+  }, {
+    id: 30,
+    status: 0,
+    value: 15000000000.0,
+    classId: 2
+  }, {
+    id: 31,
+    status: 0,
+    value: 17500000000.0,
+    classId: 2
+  }, {
+    id: 32,
+    status: 0,
+    value: 20000000000.0,
+    classId: 2
+  }, {
+    id: 33,
+    status: 0,
+    value: 25000000000.0,
     classId: 2
   }
 ];

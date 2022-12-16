@@ -21,29 +21,64 @@ export default function Updates() {
           <p className={styles.title}>{<MdTipsAndUpdates/>}&nbsp;ATUALIZAÇÕES&nbsp;{<MdTipsAndUpdates/>}</p>
         </div>
 
+        {/* v1.6.2 */}
+
+        <div className={styles.versionContainer}>
+          <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
+            <p className={styles.version}>v1.6.2 - 22/11/2022</p>
+          </div>
+          <ul className={styles.newsContainer}>
+            <li>• Melhor balanceamento do jogo.</li>
+            <li>• Sistemas de segurança adicionados ao jogo.</li>
+            <li>• Escolher quantidade de melhorias compradas na loja, opções 1, 10 e 100.</li>
+            <li>• Nova forma de ganhar dinheiro com os mini jogos do Cassino!</li>
+            <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+            <li>• Problema relacionado a conversão de Bitcoins.</li>
+            <li>• O multiplicador de poder de mineração agora também é aplicado no cálculo de mineração manual.</li>
+            <li>• Melhoria no balanço do sistema de Bitcoin.</li>
+          </ul>
+        <div className={styles.updateSeparator}></div>
+        
+        {/* v1.6.1 */}
+
+        <div className={styles.versionContainer}>
+          <p className={styles.version}>v1.6.1 - 01/10/2022</p>
+        </div>
+        <ul className={styles.newsContainer}>
+          <li>• Pequena mudança no sistema de mineração manual, agora a sua mineração manual aumenta conforme o seu poder de mineração aumenta.</li>
+          <li>• Pequenos ajustes nos valores do jogo visando melhorar o equilíbrio.</li>
+          <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+          <li>• Pequeno problema relacionado a animação do display de dinheiro.</li>
+        </ul>
+        <div className={styles.updateSeparator}></div>
+        
         {/* v1.6.0 */}
 
         <div className={styles.versionContainer}>
-          <p className={styles.version}>Previsão para Atualização v1.6.0</p>
+          <p className={styles.version}>v1.6.0 - Nível e Bitcoin - 30/09/2022</p>
         </div>
         <ul className={styles.newsContainer}>
-          <li>• Início do planejamento de um sistema secreto para ganhar dinheiro, aguardem!</li>
-          <li>• Implantação de um sistema de investimento, você poderá investir o seu dinheiro e deixar rendendo.</li>
+          <li>• Atenção caso não seja sua primeira vez jogando, esta atualização requer obrigatóriamente um <span className={styles.textBold}>reset geral de progresso</span> para melhor experiência, não resetar poderá te privar da experiência completa, causar bugs ou desativar as novidades.</li>
+          <br></br>
+          <li>• Reconstrução completa do sistema de mineração de Bitcoins.</li>
+          <li>• Repaginação do visual geral do jogo.</li>
+          <li>• Sistema de nível adicionado, agora algumas melhorias requerem certos níveis.</li>
           <li>• Carregar seu save em outros navegadores ou trocar de saves com os amigos.</li>
           <li>• Novos upgrades especiais.</li>
           <li>• Novos upgrades especiais do renascimento.</li>
           <li>• Novas melhorias douradas.</li>
+          <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+          <li>• Correção de problemas com os boosts do renascimento.</li>
+          <li>• Correções na adaptabilidade do jogo.</li>
         </ul>
         <div className={styles.updateSeparator}></div>
         
         {/* v1.5.1 */}
 
         <div className={styles.versionContainer}>
-          <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
           <p className={styles.version}>v1.5.1 - 17/09/2022</p>
         </div>
         <ul className={styles.newsContainer}>
-          
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
           <li>• Corrigido problema ao mudar nome da empresa.</li>
         </ul>

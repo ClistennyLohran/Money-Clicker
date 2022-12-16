@@ -14,7 +14,7 @@ export const gpcList = [
     gpcAmount: 2.0,
     upgradeValue: 10000.0,
     level: 1,
-    minLevelUnlock: 2,
+    minLevelUnlock: 6,
   }, {
     id: '3',
     name: 'Aumenta',
@@ -22,7 +22,7 @@ export const gpcList = [
     gpcAmount: 5.0,
     upgradeValue: 25000.0,
     level: 1,
-    minLevelUnlock: 3,
+    minLevelUnlock: 9,
   }, {
     id: '4',
     name: 'Aumenta',
@@ -30,7 +30,7 @@ export const gpcList = [
     gpcAmount: 10.0,
     upgradeValue: 75000.0,
     level: 1,
-    minLevelUnlock: 5,
+    minLevelUnlock: 12,
   }, {
     id: '5',
     name: 'Aumenta',
@@ -38,7 +38,7 @@ export const gpcList = [
     gpcAmount: 50.0,
     upgradeValue: 150000.0,
     level: 1,
-    minLevelUnlock: 7,
+    minLevelUnlock: 15,
   }, {
     id: '6',
     name: 'Aumenta',
@@ -46,7 +46,7 @@ export const gpcList = [
     gpcAmount: 100.0,
     upgradeValue: 300000.0,
     level: 1,
-    minLevelUnlock: 10,
+    minLevelUnlock: 18,
   }, {
     id: '7',
     name: 'Aumenta',
@@ -54,7 +54,7 @@ export const gpcList = [
     gpcAmount: 500.0,
     upgradeValue: 750000.0,
     level: 1,
-    minLevelUnlock: 14,
+    minLevelUnlock: 21,
   }, {
     id: '8',
     name: 'Aumenta',
@@ -62,7 +62,7 @@ export const gpcList = [
     gpcAmount: 1000.0,
     upgradeValue: 1000000.0,
     level: 1,
-    minLevelUnlock: 18,
+    minLevelUnlock: 24,
   }, {
     id: '9',
     name: 'Aumenta',
@@ -70,7 +70,7 @@ export const gpcList = [
     gpcAmount: 2500.0,
     upgradeValue: 5000000.0,
     level: 1,
-    minLevelUnlock: 21,
+    minLevelUnlock: 26,
   }, {
     id: '10',
     name: 'Aumenta',
@@ -78,7 +78,7 @@ export const gpcList = [
     gpcAmount: 5000.0,
     upgradeValue: 17500000.0,
     level: 1,
-    minLevelUnlock: 25,
+    minLevelUnlock: 28,
   }, {
     id: '11',
     name: 'Aumenta',
@@ -86,7 +86,7 @@ export const gpcList = [
     gpcAmount: 7500.0,
     upgradeValue: 47500000.0,
     level: 1,
-    minLevelUnlock: 28,
+    minLevelUnlock: 30,
   }, {
     id: '12',
     name: 'Aumenta',

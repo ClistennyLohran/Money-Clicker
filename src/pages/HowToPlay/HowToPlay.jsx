@@ -36,12 +36,12 @@ export default function HowToPlay() {
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>O QUE É GPC, GPS e NPC?</p>
+          <p className={styles.title}>O QUE É GPC, GPS e XPC?</p>
           <p className={styles.dialogText}><span className={styles.textBold}>O GPC é o Ganho por Clique:</span> ele é o valor que você vai ganhar toda vez que clicar no botão azul Investir.</p>
           <br></br>
           <p className={styles.dialogText}><span className={styles.textBold}>O GPS é o Ganho por Segundo:</span> a cada 1 segundo o valor do seu GPS será adicionado ao seu dinheiro.</p>
           <br></br>
-          <p className={styles.dialogText}><span className={styles.textBold}>O NPC é o Nível por Clique:</span> a cada clique que você der no botão azul Investir, você irá ganhar uma quantidade de XP.</p>
+          <p className={styles.dialogText}><span className={styles.textBold}>O XPC é o XP por Clique:</span> a cada clique que você der no botão azul Investir, você irá ganhar uma quantidade de XP.</p>
         </div>
 
         <div className={styles.section}>
@@ -59,7 +59,7 @@ export default function HowToPlay() {
           <div className={styles.topIcon}>
             {<FaBtc/>}
           </div>
-          <p className={styles.dialogText}>Para minerar bitcoins é muito simples, você começa com um valor de $1.600,00 isso mesmo, estamos falando de dólares aqui, a sua empresa de mineração está localizada em algum lugar dos EUA, este valor inicial é suficiente para comprar o seu primeiro gerador de energia e a sua primeira placa de vídeo, após comprar os dois a sua produção de bitcoins irá começar!<br></br><br></br>Mas tome muito cuidado, fique sempre atento na temperatura ela não pode ser nem muito baixa e nem muito alta, o mesmo vale para o consumo de energia, evite ao máximo usar além do que você pode gerar.<br></br><br></br>Após minerar bastante bitcoins você poderá converter para dólares, após converter você poderá investir em novos equipamentos, você também pode converter o seu dinheiro ganho em dólares para reais!</p>
+          <p className={styles.dialogText}>Para minerar bitcoins é muito simples, você começa com um valor de $800,00 isso mesmo, estamos falando de dólares aqui, a sua empresa de mineração está localizada em algum lugar dos EUA, este valor inicial é suficiente para comprar o seu primeiro gerador de energia e a sua primeira placa de vídeo, após comprar os dois a sua produção de bitcoins irá começar!<br></br><br></br>Mas tome muito cuidado, fique sempre atento na temperatura ela não pode ser nem muito baixa e nem muito alta, o mesmo vale para o consumo de energia, evite ao máximo usar além do que você pode gerar.<br></br><br></br>Após minerar bastante bitcoins você poderá converter para dólares, após converter você poderá investir em novos equipamentos, você também pode converter o seu dinheiro ganho em dólares para reais!<br></br><br></br>O sistema de mineração manual é tão simples quanto aparenta ser, você pode minerar clicando no botão azul e quando alcançar um valor mínimo de 0.00001000 você podera enviar seus bitcoins minerados manualmente para a sua quantia total de Bitcoins.</p>
         </div>
 
         <div className={styles.section}>

@@ -3,11 +3,11 @@ import styles from './Renascimento.module.css';
 import { motion } from 'framer-motion';
 
 import { FaQuestion, FaMousePointer, FaClock, FaLightbulb } from 'react-icons/fa';
-import { GiDragonOrb, GiDoubleRingedOrb } from 'react-icons/gi';
+import { GiDragonOrb, GiDoubleRingedOrb, GiMoneyStack } from 'react-icons/gi';
 
 import ReactTooltip from 'react-tooltip';
 
-import BalanceDisplay from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
+import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
 import InfoDisplayBonus from '../../components/InfoDisplay/InfoDisplayBonus';
 
 import { useContext } from 'react';
@@ -44,19 +44,20 @@ export default function Renascimento() {
     if(checked && balance >= 20000000000) {
       var highestTimeoutId = setTimeout(";");
       for (var i = 0 ; i < highestTimeoutId ; i++) {
-          clearTimeout(i);
+        clearTimeout(i);
       }
-      await sleep(200);
+      await sleep(100);
       localStorage.clear();
-      await sleep(200);
+      await sleep(100);
       setVariables(
         [
           { 
             currency: { 
-              balance: 0, 
-              btcAmount: 0,
+              balance: 0.00,
+              btcAmount: 0.00000000,
               dollarBalance: 0.00,
               dollarAmountConvert: 0.00,
+              minedAmount: 0.00000000,
             },
             advancedMining: {
               miningPower: 0.00,
@@ -69,7 +70,8 @@ export default function Renascimento() {
               miningPowerMultiply: 1.0,
               energyPowerBoost: 1.0,
               energyPowerMultiply: 1.0,
-              miningBusinessName: 'Bitmine Farm',
+              energyEconomy: 1.0,
+              miningBusinessName: 'Bitcoin Mine',
               graphicsCardAmount: 0,
               energyGeneratorAmount: 0,
               cardLevel: 1,
@@ -133,6 +135,7 @@ export default function Renascimento() {
       let pickUpgradesArr = [...generalUpgrades[3]];
       setGeneralUpgrades({...upgradesGroup, 3: pickUpgradesArr});
       navigate('/');
+      await sleep(100);
       document.location.reload(true);
     }else {
       setNotificationType(7);
@@ -151,9 +154,10 @@ export default function Renascimento() {
       <div className={styles.titleContainer}>
         <p className={styles.text}>{<GiDragonOrb/>}&nbsp;<span className={styles.textBold}>BÔNUS DE RENASCIMENTO</span>&nbsp;{<GiDragonOrb/>}</p>
       </div>
-      <BalanceDisplay/>
+      <DisplayDinheiroReais/>
       <div className={styles.minValContainer}>
-        <p className={styles.valMinText}>Valor Mínimo para<br></br>Renascimento: <span className={styles.valMinBold}>R$20 Bilhões</span></p>
+        <p className={styles.valMinText}>{<GiMoneyStack/>}&nbsp;Valor mínimo para renascimento!</p>
+        <p className={styles.valMinBold}>R$20 Bilhões</p>
       </div>
       <div className={styles.rebirthPointsContainer}>
         <p className={styles.rebirthPointsTitle}>Pontos de Renascimento</p>

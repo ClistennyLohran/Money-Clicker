@@ -1,0 +1,609 @@
+@import '../../css/colors.css';
+
+.container {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  width: 100%;
+}
+
+.title {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 18px;
+
+  transition: 0.3s ease-in-out;
+}
+.titleContainer {
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBranco);
+}
+.title span {
+  font-weight: 700;
+}
+
+/* Timer and Crash */
+
+.timerCrashContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 660px;
+  height: 80px;
+
+  transition: 0.3s ease-in-out;
+}
+.timerContainer {
+  display: flex;
+  
+  width: 220px;
+  height: 80px;
+
+  margin-right: 10px;
+
+  border-radius: 10px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.crashHistoryContainer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: row-reverse;
+
+  padding-left: 10px;
+
+  width: 420px;
+  height: 80px;
+
+  border-radius: 10px;
+
+  background: var(--corFundoNav);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  transition: 0.3s ease-in-out;
+}
+.crashContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 10px;
+
+  border-radius: 10px;
+  border: 3px solid var(--corFundoNavHover);
+
+  width: 80px;
+  height: 60px;
+
+  min-width: 80px;
+  min-height: 60px;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+  background: var(--corFundo);
+
+  transition: 0.3s ease-in-out;
+}
+.timerIconContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  min-width: 70px;
+  min-height: 70px;
+
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 10px;
+
+  border-radius: 10px;
+
+  background: var(--corFundo);
+
+  transition: 0.3s ease-in-out;
+}
+.icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 50px;
+
+  color: var(--corIconeBranco);
+
+  transition: 0.3s ease-in-out;
+}
+.infoContainer {
+  width: 100%;
+  height: 100%;
+
+  transition: 0.3s ease-in-out;
+}
+.timerTitle {
+  margin-top: 15px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+
+  transition: 0.3s ease-in-out;
+}
+.displayTimer {
+  margin-top: 2px;
+
+  font-size: 24px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+
+  transition: 0.3s ease-in-out;
+}
+.graphContainer {
+  position: relative;
+
+  width: 660px;
+  height: 330px;
+
+  transition: 0.3s ease-in-out;
+}
+.multiplierDisplay {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  flex-direction: column;
+
+  top: 50%;
+  left: 50%;
+
+  font-size: 40px;
+
+  color: var(--corTextoBranco);
+
+  transform: translate(-50%, -100%);
+
+  transition: 0.3s ease-in-out;
+}
+.multiplierDisplayCrashed {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  flex-direction: column;
+
+  top: 50%;
+  left: 50%;
+
+  font-size: 40px;
+
+  color: var(--crashColor);
+
+  transform: translate(-50%, -100%);
+
+  transition: 0.3s ease-in-out;
+}
+.buttonContainer {
+  position: relative;
+
+  top: -15px;
+
+  transition: 0.3s ease-in-out;
+}
+.button {
+  width: 660px;
+  height: 40px;
+
+  border-radius: 10px;
+  border: none;
+  
+  font-size: 20px;
+  font-weight: 300;
+
+  color: var(--corTextoBtn);
+  background: var(--corPrimaria);
+
+  cursor: pointer;
+
+  transition: 0.3s ease-in-out;
+}
+.button:hover {
+  background: var(--corPrimariaHover);
+}
+.autoBet {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  right: 5px;
+  top: 5px;
+
+  border-radius: 10px;
+  border: none;
+
+  font-size: 24px;
+
+  width: 70px;
+  height: 30px;
+
+  color: var(--corIconeBranco);
+  background: var(--corPrimariaEscuro);
+
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.autoBet:hover {
+  background: var(--corPrimariaHover);
+}
+.inputContainer {
+  display: flex;
+
+  margin-top: 10px;
+
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.3s ease-in-out;
+}
+.input {
+  width: 205px;
+  height: 30px;
+
+  padding: 0px 10px;
+
+  color: var(--corTextoBranco);
+
+  text-align: start;
+
+  margin-top: 2px;
+
+  border: none;
+  border-radius: 5px;
+
+  font-size: 12px;
+
+  background: var(--corFundo);
+
+  transition: 0.3s ease-in-out;
+}
+.inputMargin {
+  margin-right: 10px;
+}
+.input::placeholder {
+  color: var(--corTextoPlaceHolder);
+}
+.crashDisplayContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0px 10px;
+  margin-right: 10px;
+
+  height: 35px;
+
+  border-radius: 10px;
+
+  background: var(--corPrimaria);
+
+  transition: 0.3s ease-in-out;
+}
+.displayCrashDirection {
+  display: flex;
+}
+.inputsContainer {
+  display: flex;
+
+  width: 660px;
+  height: 80px;
+
+  margin-top: 10px;
+
+  transition: 0.3s ease-in-out;
+}
+.inputBox {
+  display: flex;
+
+  width: 325px;
+  height: 80px;
+
+  border-radius: 10px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.marginRight {
+  margin-right: 10px;
+}
+.inputTitle {
+  margin-top: 8px;
+  
+  font-weight: 700;
+  color: var(--corTextoBranco);
+}
+.littleInfo {
+  font-size: 11px;
+
+  margin-top: 3px;
+
+  font-weight: 700;
+  color: var(--corTextoBranco);
+}
+.lucroText {
+  font-size: 16px;
+}
+.lucroBold {
+  font-weight: 700;
+}
+.crashWithdraw {
+  font-size: 16px;
+  font-weight: 400;
+
+  color: var(--corTextoBranco);
+}
+
+@media (max-width: 720px) {
+  .timerCrashContainer {
+    display: grid;
+
+    width: 400px;
+    height: auto;
+
+    grid-template-columns: 1fr;
+  }
+  .crashHistoryContainer {
+    width: 390px;
+    height: 70px;
+
+    margin: 0;
+  }
+  .timerContainer {
+    width: 400px;
+    height: 70px;
+
+    margin: 0;
+
+    margin-bottom: 10px;
+  }
+  .timerTitle {
+    margin-top: 12px;
+  }
+  .timerIconContainer {
+    width: 60px;
+    height: 60px;
+
+    min-width: 60px;
+    min-height: 60px;
+  }
+  .inputsContainer {
+    display: grid;
+
+    width: 420px;
+    height: auto;
+
+    grid-template-columns: 1fr;
+  }
+  .marginRight {
+    margin-bottom: 10px;
+  }
+  .crashContainer {
+    height: 45px;
+
+    min-height: 45px;
+  }
+
+  /* Graph Container */
+
+  .graphContainer {
+    width: 400px;
+    height: 200px;
+  }
+  .button {
+    width: 400px;
+  }
+  .multiplierDisplay {
+    font-size: 24px;
+  }
+  .multiplierDisplayCrashed {
+    font-size: 24px;
+  }
+
+  /* Inputs */
+  .inputsContainer {
+    width: 400px;
+  }
+  .inputBox {
+    width: 400px;
+    height: 70px;
+  }
+  .icon {
+    font-size: 36px;
+  }
+  .inputTitle {
+    font-size: 13px;
+
+    margin-top: 4px;
+  }
+  .input {
+    width: 295px;
+  }
+
+  .lucroText {
+    font-size: 12px;
+  }
+  .lucroBold {
+    font-weight: 700;
+  }
+  .crashWithdraw {
+    font-size: 12px;
+    font-weight: 400;
+  
+    color: var(--corTextoBranco);
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 16px;
+  }
+
+  /* Top Items */
+
+  .timerCrashContainer {
+    display: grid;
+
+    width: 260px;
+    height: auto;
+
+    grid-template-columns: 1fr;
+  }
+  .crashHistoryContainer {
+    width: 250px;
+    height: 60px;
+
+    margin: 0;
+  }
+  .timerContainer {
+    width: 260px;
+    height: 60px;
+
+    margin: 0;
+
+    margin-bottom: 10px;
+  }
+  .timerTitle {
+    margin-top: 12px;
+
+    font-size: 12px;
+  }
+  .displayTimer {
+    font-size: 20px;
+  }
+  .timerIconContainer {
+    width: 50px;
+    height: 50px;
+
+    min-width: 50px;
+    min-height: 50px;
+
+    margin-right: 5px;
+  }
+  .inputsContainer {
+    display: grid;
+
+    width: 260px;
+    height: auto;
+
+    grid-template-columns: 1fr;
+  }
+  .marginRight {
+    margin-bottom: 10px;
+  }
+  .crashContainer {
+    height: 35px;
+    width: 60px;
+
+    min-height: 35px;
+    min-width: 60px;
+
+    font-size: 16px;
+  }
+
+  /* Graph Container */
+
+  .graphContainer {
+    width: 260px;
+    height: 130px;
+  }
+  .button {
+    width: 260px;
+  }
+  .multiplierDisplay {
+    font-size: 18px;
+  }
+  .multiplierDisplayCrashed {
+    font-size: 18px;
+  }
+
+  /* Inputs */
+  .inputsContainer {
+    width: 260px;
+  }
+  .inputBox {
+    width: 260px;
+    height: 60px;
+  }
+  .icon {
+    font-size: 32px;
+  }
+  .inputTitle {
+    font-size: 10px;
+
+    margin-top: 5px;
+  }
+  .input {
+    width: 170px;
+    height: 22px;
+
+    font-size: 11px;
+  }
+  .lucroText {
+    font-size: 10px;
+  }
+  .lucroBold {
+    font-weight: 700;
+  }
+  .crashWithdraw {
+    font-size: 10px;
+    font-weight: 400;
+  
+    color: var(--corTextoBranco);
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -8,25 +8,39 @@ import MoneyFormatter from '../../Formatter/MoneyFormatter';
 
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { useContext } from 'react';
-import BalanceDisplay from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
+
+import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
+import DisplayDinheiroDolares from '../../components/DisplayDinheiroDolares/DisplayDinheiroDolares';
+import DisplayConversaoReais from '../../components/DisplayConversaoReais/DisplayConversaoReais';
+
 import { useEffect } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 
 import { FaMousePointer, FaMouse, FaClock, FaQuestion, FaTimes, FaLightbulb } from 'react-icons/fa';
-import { GiJusticeStar, GiCash, GiConcentrationOrb, GiTriorb } from 'react-icons/gi';
+import { GiJusticeStar, GiCash, GiConcentrationOrb, GiTriorb, GiMoneyStack } from 'react-icons/gi';
 
 import Nivel from '../../components/Nivel/Nivel';
 
 export default function Home() {
   const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost } = useContext(ValuesContext);
-  const { specialGpcBoost, specialGpsBoost, specialLevelBoost } = useContext(ValuesContext);
+  const { specialGpcBoost, specialGpsBoost, specialLevelBoost, dollarBalance } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost } = useContext(ValuesContext);
 
   function clickEvent() {
-    setBalance(prevBalance => prevBalance + ((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO
-    setClickAmount(clickAmount => clickAmount + ((xpAmountPerClick * ((levelBoost + specialLevelBoost) + levelRebirthBoost)) * levelMultiply)); // PARA O XP
+    if(specialGpcBoostStatus === 1) {
+      setBalance(prevBalance => prevBalance + ((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO COM REBIRTH BOOST
+    }else {
+      setBalance(prevBalance => prevBalance + ((gpcValue * (gpcBoost + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO
+    }
+
+    if(specialLevelBoostStatus === 1) {
+      setClickAmount(clickAmount => clickAmount + ((xpAmountPerClick * ((levelBoost + specialLevelBoost) + levelRebirthBoost)) * levelMultiply)); // PARA O XP COM REBIRTH BOOST
+    }else {
+      setClickAmount(clickAmount => clickAmount + ((xpAmountPerClick * (levelBoost + levelRebirthBoost)) * levelMultiply)); // PARA O XP
+    }
+    
     setTotalClickAmount(totalClickAmount => totalClickAmount + 1);
     if(gpcRebirth >= maxValueRebirth) {
       setGpcRebirth(maxValueRebirth);
@@ -100,7 +114,11 @@ export default function Home() {
           <p className={styles.topTitle}>{<GiCash/>}&nbsp;{businessName}&nbsp;{<GiCash/>}</p>
         </div>
         <Nivel/>
-        <BalanceDisplay/>
+        <div className={styles.moneyDisplay}>
+          <DisplayDinheiroDolares/>
+          <DisplayDinheiroReais/>
+          <DisplayConversaoReais/>
+        </div>
         <div className={styles.infoPanelGrid}>
           <div className={styles.hideShow}>
             <div className={styles.infoPanel}>
@@ -120,7 +138,7 @@ export default function Home() {
             <div className={styles.infoPanel}>
             <p className={styles.infoPanelText}>{<FaTimes/>}&nbsp;<span>PAINEL DE MULTIPLICADORES</span>&nbsp;{<FaTimes/>}</p>
               <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPS" tooltipIcon={<FaQuestion/>} icon={<FaMouse/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
+              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPS" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
               <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao XPC" tooltipIcon={<FaQuestion/>} icon={<GiTriorb/>} title="Multiplicador de " titleBold="XPC" value={parseFloat(levelMultiply).toFixed(2) + "x"} />
             </div>
           </div>
@@ -146,7 +164,7 @@ export default function Home() {
           <div className={styles.infoPanel}>
             <p className={styles.infoPanelText}>{<FaTimes/>}&nbsp;<span>PAINEL DE MULTIPLICADORES</span>&nbsp;{<FaTimes/>}</p>
             <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
-            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPS" tooltipIcon={<FaQuestion/>} icon={<FaMouse/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
+            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPS" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
             <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao XPC" tooltipIcon={<FaQuestion/>} icon={<GiTriorb/>} title="Multiplicador de " titleBold="XPC" value={parseFloat(levelMultiply).toFixed(2) + "x"} />
           </div>
         </div>

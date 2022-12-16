@@ -15,6 +15,54 @@
 
   width: 100%;
 }
+.convertContainer {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+}
+.boostMining {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 400px;
+  height: 70px;
+
+  min-height: 70px;
+
+  margin: 5px;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 20px;
+  font-weight: 400;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  transition: background 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+.boostMining:hover {
+  background: var(--corPrimariaHover);
+}
+.boostMining p {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+.manualMiningText {
+  font-size: 20px;
+}
+.manualMiningValue {
+  font-size: 14px;
+}
 .titleContainer {
   display: flex;
 
@@ -46,6 +94,34 @@
   justify-content: center;
 
   color: var(--corTextoBranco);
+}
+.convertBtn {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  right: 5px;
+  top: 5px;
+
+  width: 60px;
+  height: 60px;
+
+  font-size: 22px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  transition: background 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+.convertBtn:hover {
+  background: var(--corPrimariaHover);
 }
 
 /* Display Containers */
@@ -115,6 +191,8 @@
   font-weight: 300;
 }
 .valueDisplay {
+  display: flex;
+  
   margin-top: 3px;
 
   font-size: 22px;
@@ -312,12 +390,139 @@
   overflow-y: scroll;
 }
 
+/* Info Display */
+
+.infoDisplayContainer {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  width: 810px;
+  height: 80px;
+
+  border-radius: 10px;
+
+  margin-top: 10px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.infoDisplayBtn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 240px;
+  height: 40px;
+
+  border-radius: 10px;
+  border: none;
+
+  margin-top: 20px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  transition: background 0.3s ease-in-out;
+  cursor: pointer;
+}
+.arrowBtnIcon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+}
+.showInfoGrid {
+  display: grid;
+  position: absolute;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  place-items: center;
+
+  left: -1600px;
+  top: 80px;
+
+  opacity: 0;
+
+  width: 100%;
+  height: 260px;
+
+  transition: 0.3s ease-in-out;
+}
+
+/* Tooltip Info */
+
+.tooltip {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  top: 5px;
+  right: 5px;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 100%;
+
+  background: var(--corTooltip);
+  color: var(--corTexto);
+
+  font-size: 8px;
+
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.tooltip:hover {
+  background: var(--corTooltipHover);
+  color: var(--corTextoBranco);
+}
+
 @keyframes alertAnim {
   0% {
     color: var(--corTextoBranco);
   }
   100% {
     color: var(--corPrimaria);
+  }
+}
+
+/* Number Animation */
+
+.number {
+  font-size: 20px;
+
+  animation-name: number;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+
+  font-weight: 300;
+
+  color: white;
+}
+
+@keyframes number {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -260px;
   }
 }
 
@@ -334,9 +539,15 @@
     margin-top: 5px;
     border-radius: 10px;
   }
+  .convertContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
   /* Container Energia e Refrigeracao */
-
+  .infoDisplayContainer {
+    width: 400px;
+    height: 80px;
+  }
   .gridContainer {
     display: grid;
   
@@ -393,6 +604,9 @@
     font-size: 18px;
     font-weight: 700;
   }
+  .bold {
+    font-size: 12px;
+  }
 
   /* Temperature Container */
 
@@ -434,5 +648,46 @@
   }
   .innerContainer {
     height: 330px;
+  }
+  .convertContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .convertBtn {
+    width: 30px;
+    height: 50px;
+  
+    font-size: 16px;
+  }
+  .boostMining {
+    width: 260px;
+    height: 60px;
+
+    min-height: 60px;
+  }
+  .manualMiningText {
+    font-size: 16px;
+  }
+
+  /* Info Display Button */
+
+  .infoDisplayContainer {
+    width: 260px;
+    height: 80px;
+  }
+  .infoDisplayBtn {
+    width: 200px;
+    height: 40px;
+  
+    border-radius: 10px;
+    border: none;
+  
+    margin-top: 20px;
+    font-size: 11px;
+  
+    background: var(--corPrimaria);
+    color: var(--corTextoBtn);
+  
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
   }
 }

@@ -5,6 +5,7 @@ import { BsLightbulbFill } from 'react-icons/bs';
 import { IoClose } from 'react-icons/io5';
 import { GiHeartWings } from 'react-icons/gi';
 import { BiCodeAlt } from 'react-icons/bi';
+import { MdOutlineMultilineChart } from 'react-icons/md';
 
 import { motion } from 'framer-motion';
 
@@ -68,6 +69,12 @@ export default function NavBar() {
               </Link>
             </li>
             <li className={styles.itemContainer}>
+              <Link to="/cassino" className={router.pathname === "/cassino" ? styles.optionsItemSelected : styles.optionsItem}>
+                <MdOutlineMultilineChart className={styles.optionsIcon}/>
+                <p>Cassino</p>
+              </Link>
+            </li>
+            <li className={styles.itemContainer}>
               <Link to="/renascimento" className={router.pathname === "/renascimento" ? styles.optionsItemSelected : styles.optionsItem}>
                 <GiHeartWings className={styles.optionsIcon}/>
                 <p>Renascimento</p>
@@ -76,7 +83,7 @@ export default function NavBar() {
             <li className={styles.itemContainer}>
               <Link to="/customize" className={router.pathname === "/customize" ? styles.optionsItemSelected : styles.optionsItem}>
                 <FaEdit className={styles.optionsIcon}/>
-                <p>Customização</p>
+                <p>Customizações e Configurações</p>
               </Link>
             </li>
             <li className={styles.itemContainer}>

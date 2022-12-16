@@ -2,29 +2,109 @@ import styles from './Upgrade.module.css';
 
 import { motion } from 'framer-motion';
 
-import BalanceDisplay from "../../components/DisplayDinheiroReais/DisplayDinheiroReais";
+import DisplayDinheiroReais from "../../components/DisplayDinheiroReais/DisplayDinheiroReais";
 import UpgradeContainer from '../../components/UpgradeContainer/UpgradeContainer';
 import EarnPerClick from '../../components/CompUpgrades/GanhoPorClique/GanhoPorClique';
 import EarnPerSecond from '../../components/CompUpgrades/GanhoPorSegundo/GanhoPorSegundo';
 import SpecialUpgrades from '../../components/SpecialUpgrades/SpecialUpgrades';
 import SpecialUpgradeItem from '../../components/CompUpgrades/ItemMelhoriaEspecial/ItemMelhoriaEspecial';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { UpgradeContext } from '../../contexts/UpgradeContext/UpgradeContext';
 
+import { FaShoppingCart } from 'react-icons/fa';
 import { GiUpgrade } from 'react-icons/gi';
 import { IoMdClock } from 'react-icons/io';
 import { IoStorefront } from 'react-icons/io5';
 import { HiCursorClick } from 'react-icons/hi';
 import Nivel from '../../components/Nivel/Nivel';
+import { useEffect } from 'react';
 
 const SpecialUpgradesData = require('../../UpgradeObjects/SpecialUpgrade/SpecialUpgradesData');
 const SpecialUpgradesRebirthData = require('../../UpgradeObjects/SpecialUpgradeRebirth/SpecialUpgradesRebirthData');
 
 export default function Upgrade() {
 
-  const { generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
+  const { generalUpgrades, setGeneralUpgrades, windowSize, setWindowSize } = useContext(ValuesContext);
+
+  const [ previewGps, setPreviewGps ] = useState(1);
+  const [ previewGpc, setPreviewGpc ] = useState(1);
+
+  /* Função que define qual opção está ativa no Preview de GPS */
+  function setActiveGps(number) {
+    let amountGps1 = document.getElementById('amountGps1');
+    let amountGps2 = document.getElementById('amountGps2');
+    let amountGps3 = document.getElementById('amountGps3');
+
+    switch(number) {
+      case 1:
+        amountGps1.style.background = 'var(--corPrimaria)';
+        amountGps2.style.background = 'var(--corFundo)';
+        amountGps3.style.background = 'var(--corFundo)';
+        return;
+      case 2:
+        amountGps1.style.background = 'var(--corFundo)';
+        amountGps2.style.background = 'var(--corPrimaria)';
+        amountGps3.style.background = 'var(--corFundo)';
+        return;
+      case 3:
+        amountGps1.style.background = 'var(--corFundo)';
+        amountGps2.style.background = 'var(--corFundo)';
+        amountGps3.style.background = 'var(--corPrimaria)';
+        return;
+      default:
+        amountGps1.style.background = 'var(--corPrimaria)';
+        amountGps2.style.background = 'var(--corFundo)';
+        amountGps3.style.background = 'var(--corFundo)';
+        return;
+    }
+  }
+
+  /* Função que define qual opção está ativa no Preview de GPC */
+  function setActiveGpc(number) {
+    let amountGpc1 = document.getElementById('amountGpc1');
+    let amountGpc2 = document.getElementById('amountGpc2');
+    let amountGpc3 = document.getElementById('amountGpc3');
+
+    switch(number) {
+      case 1:
+        amountGpc1.style.background = 'var(--corPrimaria)';
+        amountGpc2.style.background = 'var(--corFundo)';
+        amountGpc3.style.background = 'var(--corFundo)';
+        return;
+      case 2:
+        amountGpc1.style.background = 'var(--corFundo)';
+        amountGpc2.style.background = 'var(--corPrimaria)';
+        amountGpc3.style.background = 'var(--corFundo)';
+        return;
+      case 3:
+        amountGpc1.style.background = 'var(--corFundo)';
+        amountGpc2.style.background = 'var(--corFundo)';
+        amountGpc3.style.background = 'var(--corPrimaria)';
+        return;
+      default:
+        amountGpc1.style.background = 'var(--corPrimaria)';
+        amountGpc2.style.background = 'var(--corFundo)';
+        amountGpc3.style.background = 'var(--corFundo)';
+        return;
+    }
+  }
+
+  useEffect(() => {
+    setActiveGps(1);
+    setActiveGpc(1);
+  }, []);
+
+  useEffect(() => {
+    let checkWindow = setInterval(() => {
+      setWindowSize(window.innerWidth);
+    }, 100);
+
+    return () => {
+      clearInterval(checkWindow);
+    }
+  }, [windowSize]);
 
   return (
     <motion.div
@@ -36,7 +116,7 @@ export default function Upgrade() {
             <p className={styles.title}>{<IoStorefront/>}&nbsp;<span>LOJA DE MELHORIAS</span>&nbsp;{<IoStorefront/>}</p>
           </div>
           <Nivel/>
-          <BalanceDisplay/>
+          <DisplayDinheiroReais/>
           <div className={styles.specialGridContainer}>
             <SpecialUpgrades title="MELHORIAS ESPECIAIS" icon={<GiUpgrade/>}>
               {generalUpgrades[2].map(item => {
@@ -53,22 +133,189 @@ export default function Upgrade() {
               })}
             </SpecialUpgrades>
           </div>
+          {windowSize >= 860 ? 
           <div className={styles.gridContainer}>
+            <div className={styles.amountContainer}>
+              <div className={styles.amountTitleContainer}>
+                <p className={styles.amountTitle}><FaShoppingCart/>&nbsp;QUANTIDADE DESEJADA GPS&nbsp;<FaShoppingCart/></p>
+              </div>
+              <div className={styles.amountButtonContainer}>
+                <motion.button
+                  id="amountGps1"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGps('1'), setActiveGps(1))}
+                >
+                  1
+                </motion.button>
+                <motion.button
+                  id="amountGps2"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGps('10'), setActiveGps(2))}
+                >
+                  10
+                </motion.button>
+                <motion.button
+                  id="amountGps3"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGps('100'), setActiveGps(3))}
+                >
+                  100
+                </motion.button>
+              </div>
+            </div>
+            <div className={styles.amountContainer}>
+              <div className={styles.amountTitleContainer}>
+                <p className={styles.amountTitle}><FaShoppingCart/>&nbsp;QUANTIDADE DESEJADA GPC&nbsp;<FaShoppingCart/></p>
+              </div>
+              <div className={styles.amountButtonContainer}>
+                <motion.button
+                  id="amountGpc1"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGpc('1'), setActiveGpc(1))}
+                >
+                  1
+                </motion.button>
+                <motion.button
+                  id="amountGpc2"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGpc('10'), setActiveGpc(2))}
+                >
+                  10
+                </motion.button>
+                <motion.button
+                  id="amountGpc3"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGpc('100'), setActiveGpc(3))}
+                >
+                  100
+                </motion.button>
+              </div>
+            </div>
             <UpgradeContainer title="GANHO POR SEGUNDO" icon={<IoMdClock/>} >
               {generalUpgrades[0].map(item => {
                 return (
-                  <EarnPerSecond key={item.id} list={0} item={item} maxLevel={300} />
+                  <EarnPerSecond key={item.id} list={0} item={item} maxLevel={300} preview={previewGps} />
                 );
               })}
             </UpgradeContainer>
             <UpgradeContainer title="GANHO POR CLIQUE" icon={<HiCursorClick/>} >
               {generalUpgrades[1].map(item => {
                 return (
-                  <EarnPerClick key={item.id} list={1} item={item} maxLevel={300} />
+                  <EarnPerClick key={item.id} list={1} item={item} maxLevel={300} preview={previewGpc} />
                 );
               })}
             </UpgradeContainer>
           </div>
+          : /* Caso o tamanho em largura da tela seja menor que 860px, garante a responsivilidade */
+          <div className={styles.gridContainer}>
+            <div className={styles.amountContainer}>
+              <div className={styles.amountTitleContainer}>
+                <p className={styles.amountTitle}><FaShoppingCart/>&nbsp;QUANTIDADE DESEJADA GPS&nbsp;<FaShoppingCart/></p>
+              </div>
+              <div className={styles.amountButtonContainer}>
+                <motion.button
+                  id="amountGps1"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGps('1'), setActiveGps(1))}
+                >
+                  1
+                </motion.button>
+                <motion.button
+                  id="amountGps2"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGps('10'), setActiveGps(2))}
+                >
+                  10
+                </motion.button>
+                <motion.button
+                  id="amountGps3"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGps('100'), setActiveGps(3))}
+                >
+                  100
+                </motion.button>
+              </div>
+            </div>
+            <UpgradeContainer title="GANHO POR SEGUNDO" icon={<IoMdClock/>} >
+              {generalUpgrades[0].map(item => {
+                return (
+                  <EarnPerSecond key={item.id} list={0} item={item} maxLevel={300} preview={previewGps} />
+                );
+              })}
+            </UpgradeContainer>
+            <div className={styles.amountContainer}>
+              <div className={styles.amountTitleContainer}>
+                <p className={styles.amountTitle}><FaShoppingCart/>&nbsp;QUANTIDADE DESEJADA GPC&nbsp;<FaShoppingCart/></p>
+              </div>
+              <div className={styles.amountButtonContainer}>
+                <motion.button
+                  id="amountGpc1"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGpc('1'), setActiveGpc(1))}
+                >
+                  1
+                </motion.button>
+                <motion.button
+                  id="amountGpc2"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGpc('10'), setActiveGpc(2))}
+                >
+                  10
+                </motion.button>
+                <motion.button
+                  id="amountGpc3"
+                  className={styles.amountButton}
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
+                  onClick={() => (setPreviewGpc('100'), setActiveGpc(3))}
+                >
+                  100
+                </motion.button>
+              </div>
+            </div>
+            <UpgradeContainer title="GANHO POR CLIQUE" icon={<HiCursorClick/>} >
+              {generalUpgrades[1].map(item => {
+                return (
+                  <EarnPerClick key={item.id} list={1} item={item} maxLevel={300} preview={previewGpc} />
+                );
+              })}
+            </UpgradeContainer>
+          </div>
+          }
         </div>
       </UpgradeContext.Provider>
     </motion.div>

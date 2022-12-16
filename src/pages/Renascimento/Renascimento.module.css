@@ -50,6 +50,8 @@
   align-items: center;
   justify-content: center;
 
+  flex-direction: column;
+
   width: 90%;
 
   margin-top: 0px;
@@ -57,10 +59,15 @@
 
   text-align: center;
 
-  color: var(--corTexto);
+  color: var(--corTextoBranco);
 }
 .valMinText {
-  font-weight: 200;
+  display: flex;
+  
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 400;
 }
 .valMinBold {
   font-weight: 700;
@@ -101,6 +108,7 @@
 
   font-size: 14px;
 
+  margin-top: -18px;
   text-align: center;
 
   padding-bottom: 10px;

@@ -1,15 +1,14 @@
 import { useContext } from 'react';
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
-import styles from './DisplayDinheiroReais.module.css';
+import styles from './DisplayDinheiroDolares.module.css';
 
 import { GiMoneyStack } from 'react-icons/gi';
 
 import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
-
-import MoneyFormatter from '../../Formatter/MoneyFormatter';
+import MoneyDollarFormatter from '../../Formatter/MoneyDollarFormatter';
 
 export default function DisplayDinheiroReais() {
-  const { balance } = useContext(ValuesContext);
+  const { dollarBalance } = useContext(ValuesContext);
   
   return (
     <div className={`${styles.infoContainer} ${styles.infoContainerMoney}`}>
@@ -17,11 +16,12 @@ export default function DisplayDinheiroReais() {
         {<GiMoneyStack/>}
       </div>
       <div className={styles.valuesContainer}>
-        <p className={styles.valueName}>DINHEIRO EM REAIS</p>
+        <p className={styles.valueName}>DINHEIRO EM DÓLARES</p>
         <p className={styles.valueDisplay}>
-          <AnimatedNumber 
-            value={balance}
-            formatValue={v => MoneyFormatter(v)}
+          <AnimatedNumber
+            value={dollarBalance}
+            formatValue={v => MoneyDollarFormatter(v)}
+            duration={200}
           />
         </p>
       </div>

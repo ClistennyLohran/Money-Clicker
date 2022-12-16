@@ -2,6 +2,8 @@ import MoneyDollarFormatter from '../../../Formatter/MoneyDollarFormatter';
 import styles from './MelhoriaRefrigeracao.module.css';
 
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { BsFillShieldLockFill } from 'react-icons/bs';
+
 import ValueFormatter from '../../../Formatter/ValueFormatter';
 
 import { motion } from 'framer-motion';
@@ -11,7 +13,7 @@ import { ValuesContext } from '../../../contexts/ValuesContext/ValuesContext';
 
 export default function MelhoriaRefrigeracao({ id, item, nome }) {
   
-  const { dollarBalance, setDollarBalance, generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
+  const { level, dollarBalance, setDollarBalance, generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
   const { setNotificationType } = useContext(ValuesContext);
 
   const increaseAmount = (array, index) => e => {
@@ -24,6 +26,7 @@ export default function MelhoriaRefrigeracao({ id, item, nome }) {
         reducaoTemperatura: array.reducaoTemperatura,
         quantidadeTotal: array.quantidadeTotal,
         quantidadeAtiva: array.quantidadeAtiva + 1,
+        minLevelUnlock: array.minLevelUnlock,
       }
 
       setGeneralUpgrades({...generalUpgrades, 6: newArr});
@@ -35,11 +38,12 @@ export default function MelhoriaRefrigeracao({ id, item, nome }) {
         let newArr = [...generalUpgrades[6]];
         newArr[index] = {
           id: array.id,
-          valor: array.valor * 1.068,
+          valor: array.valor * 1.14,
           consumoEnergia: array.consumoEnergia,
           reducaoTemperatura: array.reducaoTemperatura,
           quantidadeTotal: array.quantidadeTotal + 1,
           quantidadeAtiva: array.quantidadeAtiva + 1,
+          minLevelUnlock: array.minLevelUnlock,
         }
 
         setGeneralUpgrades({...generalUpgrades, 6: newArr});
@@ -59,6 +63,7 @@ export default function MelhoriaRefrigeracao({ id, item, nome }) {
         reducaoTemperatura: array.reducaoTemperatura,
         quantidadeTotal: array.quantidadeTotal,
         quantidadeAtiva: array.quantidadeAtiva - 1,
+        minLevelUnlock: array.minLevelUnlock,
       }
   
       setGeneralUpgrades({...generalUpgrades, 6: newArr});
@@ -75,6 +80,7 @@ export default function MelhoriaRefrigeracao({ id, item, nome }) {
         reducaoTemperatura: array.reducaoTemperatura,
         quantidadeTotal: array.quantidadeTotal,
         quantidadeAtiva: array.quantidadeAtiva - array.quantidadeAtiva,
+        minLevelUnlock: array.minLevelUnlock,
       }
   
       setGeneralUpgrades({...generalUpgrades, 6: newArr});
@@ -82,7 +88,11 @@ export default function MelhoriaRefrigeracao({ id, item, nome }) {
   }
   
   return (
-    <div className={styles.container}>
+    <div className={level >= item.minLevelUnlock ? styles.container : styles.containerLocked}>
+      <div className={styles.lockedContainer}>
+        <p className={styles.lockedText}>{<BsFillShieldLockFill/>}&nbsp;BLOQUEADO&nbsp;{<BsFillShieldLockFill/>}</p>
+        <p className={styles.lockedLevel}><span>NÍVEL NECESSÁRIO:</span> {item.minLevelUnlock}</p>
+      </div>
       <div className={styles.amountControl}>
         <p className={styles.titleQtd}>QUANTIDADE</p>
         <div className={styles.amountContainer}>

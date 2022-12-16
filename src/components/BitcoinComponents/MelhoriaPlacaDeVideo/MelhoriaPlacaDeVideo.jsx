@@ -5,7 +5,7 @@ import MoneyDollarFormatter from '../../../Formatter/MoneyDollarFormatter';
 import { motion } from 'framer-motion';
 
 import { FaPlus, FaMinus, FaTemperatureHigh, FaQuestion } from 'react-icons/fa';
-import { BsFillLightningChargeFill } from 'react-icons/bs';
+import { BsFillLightningChargeFill, BsFillShieldLockFill } from 'react-icons/bs';
 import { GiMining } from 'react-icons/gi';
 
 import { useContext } from 'react';
@@ -15,12 +15,14 @@ import ReactTooltip from 'react-tooltip';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { AdvancedMiningContext } from '../../../contexts/AdvancedMiningContext/AdvancedMiningContext';
 
 export default function MelhoriaPlacaDeVideo({ id, item }) {
   
   const { miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, memoryClock, setMemoryClock, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount } = useContext(ValuesContext);
   const { generalUpgrades, setGeneralUpgrades, dollarBalance, setDollarBalance, btcAmount, setBtcAmount } = useContext(ValuesContext);
-  const { setNotificationType } = useContext(ValuesContext);
+  const { setNotificationType, level, windowSize, setWindowSize } = useContext(ValuesContext);
+  const { miningPowerMultiply } = useContext(AdvancedMiningContext);
 
   const [ displayInfo, setDisplayInfo ] = useState(0);
   const [ selectedItem, setSelectedItem ] = useState(0);
@@ -41,6 +43,7 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
       poderMineracao: array.poderMineracao,
       overclockAtual: e.target.value,
       overclockMaximo: array.overclockMaximo,
+      minLevelUnlock: array.minLevelUnlock,
     }
 
     setGeneralUpgrades({...generalUpgrades, 4: newArr});
@@ -68,6 +71,7 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
         poderMineracao: array.poderMineracao,
         overclockAtual: array.overclockAtual,
         overclockMaximo: array.overclockMaximo,
+        minLevelUnlock: array.minLevelUnlock,
       }
 
       setGeneralUpgrades({...generalUpgrades, 4: newArr});
@@ -85,10 +89,11 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
           totalAtivo: array.totalAtivo + 1,
           usoEnergia: array.usoEnergia,
           aumentoTemperatura: array.aumentoTemperatura,
-          valor: array.valor * 1.068,
+          valor: array.valor * 1.12,
           poderMineracao: array.poderMineracao,
           overclockAtual: array.overclockAtual,
           overclockMaximo: array.overclockMaximo,
+          minLevelUnlock: array.minLevelUnlock,
         }
 
         setGeneralUpgrades({...generalUpgrades, 4: newArr});
@@ -112,6 +117,7 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
         poderMineracao: array.poderMineracao,
         overclockAtual: array.overclockAtual,
         overclockMaximo: array.overclockMaximo,
+        minLevelUnlock: array.minLevelUnlock,
       }
 
       setGeneralUpgrades({...generalUpgrades, 4: newArr});
@@ -132,6 +138,7 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
         poderMineracao: array.poderMineracao,
         overclockAtual: array.overclockAtual,
         overclockMaximo: array.overclockMaximo,
+        minLevelUnlock: array.minLevelUnlock,
       }
 
       setGeneralUpgrades({...generalUpgrades, 4: newArr});
@@ -154,14 +161,14 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
         return (
           <div>
             <p className={styles.valueText}>Energia Total: <span className={styles.bold}>{(item.usoEnergia * item.totalAtivo).toFixed(0) + " W"}</span></p>
-            <p className={styles.valueText}>Energia do Overclock: <span className={styles.bold}>{((item.overclockAtual * 0.01950) * item.totalAtivo).toFixed(2) + " W"}</span></p>
+            <p className={styles.valueText}>Energia do Overclock: <span className={styles.bold}>{((item.overclockAtual * 0.03950) * item.totalAtivo).toFixed(2) + " W"}</span></p>
           </div>
         )
       case 2:
         return (
           <div>
             <p className={styles.valueText}>Temperatura Total: <span className={styles.bold}>{(item.aumentoTemperatura * item.totalAtivo).toFixed(2) + " C°"}</span></p>
-            <p className={styles.valueText}>Temperatura total Overclock: <span className={styles.bold}>{((item.overclockAtual * 0.00118) * item.totalAtivo).toFixed(2) + " C°"}</span></p>
+            <p className={styles.valueText}>Temperatura total Overclock: <span className={styles.bold}>{((item.overclockAtual * 0.00108) * item.totalAtivo).toFixed(2) + " C°"}</span></p>
           </div>
         )
       case 3:
@@ -204,13 +211,11 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
     }
   }
 
-  const [ windowSize, setWindowSize ] = useState(window.innerWidth);
-
   useEffect(() => {
     let checkWindow = setInterval(() => {
       setWindowSize(window.innerWidth);
       detectWindowSize();
-    }, 200);
+    }, 300);
 
     return () => {
       clearInterval(checkWindow);
@@ -223,10 +228,14 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
      animate={detectWindowSize()}
     >
       <ReactTooltip 
-          place="top"
-          multiline={true}
-        />
-      <div className={styles.container}>
+        place="top"
+        multiline={true}
+      />
+      <div className={level >= item.minLevelUnlock ? styles.container : styles.containerLocked}>
+        <div className={styles.lockedContainer}>
+          <p className={styles.lockedText}>{<BsFillShieldLockFill/>}&nbsp;BLOQUEADO&nbsp;{<BsFillShieldLockFill/>}</p>
+          <p className={styles.lockedLevel}><span>NÍVEL NECESSÁRIO:</span> {item.minLevelUnlock}</p>
+        </div>
         <div className={styles.totalAmount}>
           <p>TOTAL: <span className={styles.bold}>{item.quantiaTotal}</span></p>
         </div>
@@ -251,7 +260,7 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
         </div>
         <p className={`${styles.valueText} ${styles.name}`}><span className={styles.bold}>{item.nome}</span></p>
         <p className={styles.valueText}>Valor: <span className={styles.bold}>{MoneyDollarFormatter(item.valor)}</span></p>
-        <p className={styles.valueText}>Poder de Mineração: <span className={styles.bold}>{item.poderMineracao} MP/s</span></p>
+        <p className={styles.valueText}>Poder de Mineração: <span className={styles.bold}>{item.poderMineracao * miningPowerMultiply} MP/s</span></p>
         <p className={styles.valueText}>Uso de Energia: <span className={styles.bold}>{item.usoEnergia} W</span></p>
         <p className={styles.valueText}>Aumento de Temperatura: <span className={styles.bold}>{item.aumentoTemperatura} C°</span></p>
         

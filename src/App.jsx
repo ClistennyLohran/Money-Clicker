@@ -26,6 +26,7 @@ import Renascimento from './pages/Renascimento/Renascimento';
 import { Buffer } from 'buffer';
 import CustomizeBusiness from './pages/CustomizeBusiness/CustomizeBusiness';
 import InvestimentoBitcoin from './pages/InvestimentoBitcoin/InvestimentoBitcoin';
+import Cassino from './pages/Cassino/Cassino';
 
 const varList = require('./VariblesObject/VariablesObject');
 
@@ -38,12 +39,20 @@ const GeradoresEnergia = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/Gerado
 const MaquinasRefrigeracao = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/MaquinasRefrigeracao/MaquinasRefrigeracao');
 
 function App() {
+
+  /* Grupo de objetos contendo todos os upgrades, utilizados para salvar os dados no localstorage */
+  const upgradesGroup = [ upgradesGps.gpsList, upgradesGpc.gpcList, specialUpgrades.specialUpgradesList, specialUpgradesRebirth.specialUpgradeRebirthList, PlacaDeVideo.PlacaDeVideoList, GeradoresEnergia.GeradoresEnergiaList, MaquinasRefrigeracao.MaquinasRefrigeracaoList ];
+
+  /* Inicialização das notificações geradas pelo jogo */
+  const [ notificationType, setNotificationType ] = useState(0);
+
+  /* Carregamento do save do jogo nas variáveis locais, pega os valores no localstorage e adiciona as suas devidas variáveis */
   const [ variables, setVariables ] = useState(() => {
     try { /* Se o jogo já estiver criptografado */
       const savedVariables = localStorage.getItem('MoneyClickerSave');
       const decodedVariables = Buffer.from(savedVariables, 'base64').toString('utf8');
       const newVariables = JSON.parse(decodedVariables);
-      if(newVariables != null) {
+      if(newVariables !== null) {
         if(Object.keys(newVariables[0]).length < Object.keys(varList.variablesList[0]).length) {
           newVariables[0] = Object.assign(varList.variablesList[0], newVariables[0]);
         }
@@ -51,21 +60,33 @@ function App() {
       return newVariables || varList.variablesList;
     } catch(err) { /* Caso ainda não esteja criptografado */
       const savedVariables = localStorage.getItem('MoneyClickerSave');
-      const newVariables = JSON.parse(savedVariables);
-      if(newVariables != null) {
-        if(Object.keys(newVariables[0]).length < Object.keys(varList.variablesList[0]).length) {
-          newVariables[0] = Object.assign(varList.variablesList[0], newVariables[0]);
+      if(savedVariables !== null && savedVariables !== "") {
+        const newVariables = JSON.parse(savedVariables);
+        if(newVariables !== null) {
+          if(Object.keys(newVariables[0]).length < Object.keys(varList.variablesList[0]).length) {
+            newVariables[0] = Object.assign(varList.variablesList[0], newVariables[0]);
+          }else if(Object.keys(varList.variablesList[0]).length < Object.keys(newVariables[0]).length) {
+            setNotificationType(15);
+            newVariables[0] = varList.variablesList;
+            setGeneralUpgrades(upgradesGroup);
+          }
         }
+        return newVariables || varList.variablesList;
       }
-      return newVariables || varList.variablesList;
+      return varList.variablesList;
     }
   });
 
+  /* Inicialização do verificador de largura de tela, usado para adaptabilidade do jogo */
+  const [ windowSize, setWindowSize ] = useState(window.innerWidth);
+  const [ crashHistory, setCrashHistory ] = useState([]);
+
   /* Currency */
-  const [ balance, setBalance ] = useState(() => parseFloat(variables[0].currency.balance) || 0);
-  const [ dollarBalance, setDollarBalance ] = useState(() => parseFloat(variables[0].currency.dollarBalance) || 1600);
+  const [ balance, setBalance ] = useState(() => parseFloat(variables[0].currency.balance) || 0.00);
+  const [ dollarBalance, setDollarBalance ] = useState(() => parseFloat(variables[0].currency.dollarBalance) || 800.00);
   const [ dollarAmountConvert, setDollarAmountConvert ] = useState(() => parseFloat(variables[0].currency.dollarAmountConvert) || 0.00);
-  const [ btcAmount, setBtcAmount ] = useState(() => parseFloat(variables[0].currency.btcAmount) || 0.000000);
+  const [ btcAmount, setBtcAmount ] = useState(() => parseFloat(variables[0].currency.btcAmount) || 0.00000000);
+  const [ minedAmount, setMinedAmount ] = useState(() => parseFloat(variables[0].currency.minedAmount) || 0.00000000);
 
   /* Advanced Mining */
   const [ miningPower, setMiningPower ] = useState(() => parseFloat(variables[0].advancedMining.miningPower) || 0.00);
@@ -74,11 +95,13 @@ function App() {
   const [ energyPowerUsed, setEnergyPowerUsed ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerUsed) || 0.00);
   const [ temperature, setTemperature ] = useState(() => parseFloat(variables[0].advancedMining.temperature) || 0.00);
   const [ temperatureDecrease, setTemperatureDecrease ] = useState(() => parseFloat(variables[0].advancedMining.temperatureDecrease) || 1.00);
+  const [ manualMiningBoost, setManualMiningBoost ] = useState(() => parseFloat(variables[0].advancedMining.manualMiningBoost) || 1.0);
   const [ miningPowerBoost, setMiningPowerBoost ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerBoost) || 1.0);
   const [ miningPowerMultiply, setMiningPowerMultiply ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerMultiply) || 1.0);
   const [ energyPowerBoost, setEnergyPowerBoost ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerBoost) || 1.0);
   const [ energyPowerMultiply, setEnergyPowerMultiply ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerMultiply) || 1.0);
-  const [ miningBusinessName, setMiningBusinessName ] = useState(() => parseFloat(variables[0].advancedMining.miningBusinessName) || 'Bitmine Farm');
+  const [ energyEconomy, setEnergyEconomy ] = useState(() => parseFloat(variables[0].advancedMining.energyEconomy) || 1.0);
+  const [ miningBusinessName, setMiningBusinessName ] = useState(() => parseFloat(variables[0].advancedMining.miningBusinessName) || 'Bitcoin Mine');
   const [ graphicsCardAmount, setGraphicsCardAmount ] = useState(() => parseFloat(variables[0].advancedMining.graphicsCardAmount) || 0);
   const [ energyGeneratorAmount, setEnergyGeneratorAmount ] = useState(() => parseFloat(variables[0].advancedMining.energyGeneratorAmount) || 0);
   const [ cardLevel, setCardLevel ] = useState(() => parseFloat(variables[0].advancedMining.cardLevel) || 1);
@@ -131,7 +154,6 @@ function App() {
   const [ specialGpcBoostStatus, setSpecialGpcBoostStatus ] = useState(() => parseFloat(variables[0].specialRebirthStatus.specialGpcBoostStatus) || 0);
   const [ specialLevelBoostStatus, setSpecialLevelBoostStatus ] = useState(() => parseFloat(variables[0].specialRebirthStatus.specialLevelBoostStatus) || 0);
 
-
   /* Tema ativo */
   const [ activeTheme, setActiveTheme ] = useState(() => variables[0].themes.activeTheme || 1);
   const [ activeColor, setActiveColor ] = useState(() => variables[0].themes.activeColor || 1);
@@ -139,8 +161,7 @@ function App() {
 
   /* END OF INITIAL VARIABLES */
 
-  const [ notificationType, setNotificationType ] = useState(0);
-
+  /* Define todas as notificações geradas no jogo */
   useEffect(() => {
     if (notificationType === 1) {
       setNotificationType(0);
@@ -172,10 +193,40 @@ function App() {
     } else if(notificationType === 10) {
       setNotificationType(0);
       return NotificationManager.info('Você deve comprar os temas para poder aplicá-los!', 'Compre os Temas', 3000);
-    } else if(notificationType === 11) { // ------------------------ Notificações da Mineração de Bitcoin ---------------------------
+    } else if(notificationType === 11) {
       setNotificationType(0);
-      return NotificationManager.info('', '', 3000);
-    } 
+      return NotificationManager.info('O valor mínimo para conversão é de $10,00 continue minerando!', 'Valor Mínimo', 3000);
+    } else if(notificationType === 12) {
+      setNotificationType(0);
+      return NotificationManager.info('O valor mínimo para conversão é de R$100,00!', 'Valor Mínimo', 3000);
+    } else if(notificationType === 13) {
+      setNotificationType(0);
+      return NotificationManager.info('Texto copiado para zona de transferência!', 'Texto Copiado', 3000);
+    } else if(notificationType === 14) {
+      setNotificationType(0);
+      return NotificationManager.info('Você deve colar o save antes de carregar!', 'Preencha o Campo', 3000);
+    } else if(notificationType === 15) {
+      setNotificationType(0);
+      return NotificationManager.info('Infelizmente não foi possível carregar o seu save anterior, isso pode ser causado por dados incompatível ou save anterior não compatível com a nova versão.', 'Sentimos Muito', 3000);
+    } else if(notificationType === 16) {
+      setNotificationType(0);
+      return NotificationManager.info('Valor minimo para envio da mineração manual é 0.00000500 continue minerando.', 'Valor Mínimo', 3000);
+    } else if(notificationType === 17) {
+      setNotificationType(0);
+      return NotificationManager.info('Tente diminuir a quantidade para compra, o nível máximo é 300.', 'Nível Minimo', 3000);
+    } else if(notificationType === 18) {
+      setNotificationType(0);
+      return NotificationManager.info('Você não tem dinheiro suficiente para esta aposta!', 'Dinheiro Insuficiente', 3000);
+    } else if(notificationType === 19) {
+      setNotificationType(0);
+      return NotificationManager.info('O Crash já está rodando, aguarde o término do crash atual!', 'Crash em Andamento', 3000);
+    } else if(notificationType === 20) {
+      setNotificationType(0);
+      return NotificationManager.info('O valor apostado deve ser maior que 0! Aposta alguma coisa ai...', 'Valor de Aposta', 3000);
+    } else if(notificationType === 21) {
+      setNotificationType(0);
+      return NotificationManager.info('Você não pode colocar um valor de Crash menor que 1.01!', 'Valor não Permitido', 3000);
+    }
   }, [notificationType]);
 
   useEffect(() => {
@@ -183,10 +234,11 @@ function App() {
       [
         { 
           currency: { 
-            balance: balance.toFixed(5), 
-            btcAmount: btcAmount.toFixed(6),
+            balance: balance.toFixed(2),
+            btcAmount: btcAmount.toFixed(8),
             dollarBalance: dollarBalance.toFixed(2),
             dollarAmountConvert: dollarAmountConvert.toFixed(2),
+            minedAmount: minedAmount.toFixed(8),
           },
           advancedMining: {
             miningPower: miningPower,
@@ -195,6 +247,7 @@ function App() {
             energyPowerUsed: energyPowerUsed,
             temperature: temperature,
             temperatureDecrease: temperatureDecrease,
+            manualMiningBoost: manualMiningBoost,
             miningPowerBoost: miningPowerBoost,
             miningPowerMultiply: miningPowerMultiply,
             energyPowerBoost: energyPowerBoost,
@@ -269,12 +322,12 @@ function App() {
 
   useEffect(() => {
     let updateValue = setInterval(() => {
-      if(specialGpsBoost === 1) {
+      if(specialGpsBoostStatus === 1) {
         setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
       }else {
-        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 50).toFixed(2)));
       }
-    }, 10);
+    }, 50);
 
     return () => {
       clearInterval(updateValue);
@@ -283,14 +336,14 @@ function App() {
 
   useEffect(() => {
     let btcAmountIncrease = setInterval(() => {
-      setBtcAmount(btcAmount => btcAmount + (((miningPower * 0.00000001266) * miningPowerDecrease) / 100));
-      setDollarAmountConvert(btcAmount * 500000);
-    }, 10);
+      setBtcAmount(btcAmount => btcAmount + parseFloat((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerDecrease) / 10).toFixed(8)));
+      setDollarAmountConvert(btcAmount * 3500000);
+    }, 100);
 
     return () => {
       clearInterval(btcAmountIncrease);
     }
-  }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerDecrease,]);
+  }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerDecrease]);
 
   const [ showHide, setShowHide ] = useState(false);
   const [ showHideRebirth, setShowHideRebirth ] = useState(false);
@@ -301,8 +354,6 @@ function App() {
   const [ buyIcon, setBuyIcon ] = useState('Um Icone');
   const [ buyId, setBuyId ] = useState(0);
   const [ upgradeType, setUpgradeType ] = useState(0);
-
-  const upgradesGroup = [ upgradesGps.gpsList, upgradesGpc.gpcList, specialUpgrades.specialUpgradesList, specialUpgradesRebirth.specialUpgradeRebirthList, PlacaDeVideo.PlacaDeVideoList, GeradoresEnergia.GeradoresEnergiaList, MaquinasRefrigeracao.MaquinasRefrigeracaoList ];
 
   function checkUpgradesList(newGeneralUpgrades) {
     if(newGeneralUpgrades[0].length < upgradesGps.gpsList.length) {
@@ -339,16 +390,18 @@ function App() {
       return newGeneralUpgrades || upgradesGroup;
     } catch(SyntaxError) {
       const savedGeneralUpgrades = localStorage.getItem('MoneyClickerData');
-      const newGeneralUpgrades = JSON.parse(savedGeneralUpgrades);
-      if(newGeneralUpgrades != null) {
-        checkUpgradesList(newGeneralUpgrades);
+      if(savedGeneralUpgrades !== null && savedGeneralUpgrades !== "") {
+        const newGeneralUpgrades = JSON.parse(savedGeneralUpgrades);
+        if(newGeneralUpgrades != null) {
+          checkUpgradesList(newGeneralUpgrades);
+        }
+        return newGeneralUpgrades || upgradesGroup;
       }
-      return newGeneralUpgrades || upgradesGroup;
+      return upgradesGroup;
     }
   });
 
   useEffect(() => {
-    console.log(generalUpgrades);
     const savedGeneralUpgrades = JSON.stringify(generalUpgrades);
     localStorage.setItem('MoneyClickerData', Buffer.from(savedGeneralUpgrades, 'binary').toString('base64'));
   }, [generalUpgrades]);
@@ -607,6 +660,8 @@ function App() {
         { 
           balance,
           setBalance,
+          minedAmount,
+          setMinedAmount,
           gpcValue,
           setGpcValue,
           dollarBalance,
@@ -699,6 +754,11 @@ function App() {
           setActiveColor,
           unlocked,
           setUnlocked,
+          /* Window Size */
+          windowSize,
+          setWindowSize,
+          crashHistory,
+          setCrashHistory,
         }
       }
     >
@@ -723,7 +783,7 @@ function App() {
           }
         }
       >
-        <AdvancedMiningContext.Provider value={{ btcAmount, setBtcAmount, dollarBalance, setDollarBalance, miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, miningPowerBoost, setMiningPowerBoost, miningPowerMultiply, setMiningPowerMultiply, energyPowerBoost, setEnergyPowerBoost, energyPowerMultiply, setEnergyPowerMultiply, miningBusinessName, setMiningBusinessName, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount, cardLevel, setCardLevel, temperatureDecrease, setTemperatureDecrease, miningPowerDecrease, setMiningPowerDecrease }}>
+        <AdvancedMiningContext.Provider value={{ btcAmount, setBtcAmount, dollarBalance, setDollarBalance, miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, miningPowerBoost, setMiningPowerBoost, miningPowerMultiply, setMiningPowerMultiply, energyPowerBoost, setEnergyPowerBoost, energyPowerMultiply, setEnergyPowerMultiply, miningBusinessName, setMiningBusinessName, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount, cardLevel, setCardLevel, temperatureDecrease, setTemperatureDecrease, miningPowerDecrease, setMiningPowerDecrease, energyEconomy, setEnergyEconomy, manualMiningBoost, setManualMiningBoost }}>
           <Router>
             <ShowUpgradeInfo/>
             <NavBar/>
@@ -733,6 +793,7 @@ function App() {
               <Route path="/upgrade" element={<Upgrade/>}></Route>
               <Route path="/investimento/bitcoin" element={<InvestimentoBitcoin/>}></Route>
               <Route path="/renascimento" element={<Renascimento/>}></Route>
+              <Route path="/cassino" element={<Cassino/>}></Route>
               <Route path="/customize" element={<CustomizeBusiness/>}></Route>
               <Route path="/updates" element={<Updates/>}></Route>
               <Route path="/howtoplay" element={<HowToPlay/>}></Route>

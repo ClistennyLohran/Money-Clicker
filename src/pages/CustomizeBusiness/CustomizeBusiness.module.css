@@ -194,10 +194,7 @@
 
   flex-direction: column;
 
-  margin-bottom: 20px;
   margin-top: 20px;
-
-  padding-bottom: 60px;
 
   width: 100%;
 }
@@ -226,6 +223,19 @@
   margin-bottom: 10px;
 
   color: var(--corTexto);
+}
+.saveGameContainer {
+  width: 100%;
+}
+.textContainerSave {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 100%;
 }
 .resetTitle {
   font-weight: 200;
@@ -694,6 +704,187 @@
   display: none;
 }
 
+/* Save & Backup */
+
+.saveGameContainer {
+  width: 100%;
+}
+.backupContainer {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 10px;
+
+  width: 810px;
+  height: 180px;
+
+  border-radius: 10px;
+
+  transition: 0.3s ease-in-out;
+
+  background: var(--corFundoNav);
+}
+.loadContainer {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 10px;
+  margin-bottom: 60px;
+
+  width: 810px;
+  height: 180px;
+
+  border-radius: 10px;
+
+  transition: 0.3s ease-in-out;
+
+  background: var(--corFundoNav);
+}
+.alertText {
+  font-size: 14px;
+  font-weight: 300;
+
+  text-align: center;
+
+  margin-bottom: 5px;
+
+  color: var(--corTextoBranco);
+}
+.saveText {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+}
+.saveCode {
+  width: 100%;
+  height: 25px;
+
+  border-radius: 10px;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 300;
+
+  text-align: center;
+
+  background: var(--corFundo);
+  color: var(--corTextoBranco);
+}
+.saveValueContainer {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 85%;
+  height: 25px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+  border-radius: 100px;
+
+  font-size: 14px;
+
+  background: var(--corFundo);
+  color: var(--corTextoBranco);
+
+  overflow: hidden;
+}
+.copyBtn {
+  position: absolute;
+  right: 0px;
+
+  width: 80px;
+  height: 25px;
+
+  border: none;
+
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  font-weight: 500;
+
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.copyBtn:hover {
+  background: var(--corPrimariaHover);
+}
+.dataBtn {
+  margin-top: 13px;
+
+  width: 300px;
+  height: 40px;
+
+  border: none;
+  border-radius: 100px;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  font-weight: 300;
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+@media (max-width: 880px) {
+  .backupContainer {
+    width: 400px;
+    height: 180px;
+  }
+  .loadContainer {
+    width: 400px;
+    height: 180px;
+  }
+  .saveValueContainer {
+    width: 70%;
+    height: 25px;
+  }
+  .saveCode::placeholder {
+    font-size: 12px;
+  }
+  .copyBtn {
+    width: 60px;
+    height: 25px;
+
+    font-size: 10px;
+  }
+  .alertText {
+    font-size: 12px;
+  }
+  .dataBtn {
+    margin-top: 20px;
+
+    width: 200px;
+    height: 30px;
+
+    font-weight: 300;
+    font-size: 14px;
+  }
+  .saveCode {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 480px) {
   .title {
     font-size: 16px;
@@ -902,5 +1093,28 @@
   
     cursor: pointer;
     transition: 0.3s ease-in-out;
+  }
+
+  /* Save e Load Container */
+
+  .backupContainer {
+    width: 260px;
+    height: 180px;
+  }
+  .loadContainer {
+    width: 260px;
+    height: 180px;
+  }
+  .copyBtn {
+    width: 40px;
+    height: 25px;
+
+    font-size: 10px;
+  }
+  .saveCode {
+    font-size: 10px;
+  }
+  .saveCode::placeholder {
+    font-size: 10px;
   }
 }

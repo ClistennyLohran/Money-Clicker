@@ -22,6 +22,35 @@ body {
 
   flex-direction: column;
 }
+.moneyDisplay {
+  display: grid;
+  width: 100%;
+
+  justify-content: center;
+
+  place-items: center;
+
+  grid-template-columns: repeat(3, 1fr);
+}
+.dollarConvertDisplay {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 400px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  margin-bottom: 10px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
 .gridContainer {
   display: grid;
 
@@ -69,6 +98,23 @@ body {
   font-weight: 700;
 
   text-transform: uppercase;
+}
+.convertTitle {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBranco);
+
+  font-weight: 700;
+  font-size: 16px;
+}
+.convertValue {
+  font-size: 22px;
+  font-weight: 700;
+
+  color: var(--corTextoBranco);
 }
 
 /* Info Panel */
@@ -176,6 +222,9 @@ body {
 
     grid-template-columns: repeat(1, 1fr);
   }
+  .moneyDisplay {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .hideShow {
     display: none;
   }
@@ -187,6 +236,11 @@ body {
     grid-template-columns: repeat(1, 1fr);
   
     width: 100%;
+  }
+  .moneyDisplay {
+    display: grid;
+  
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media (max-width: 480px) {
@@ -206,6 +260,10 @@ body {
   }
   .infoPanelText {
     font-size: 14px;
+  }
+  .dollarConvertDisplay {
+    width: 260px;
+    height: 60px;
   }
 
   /* Button */

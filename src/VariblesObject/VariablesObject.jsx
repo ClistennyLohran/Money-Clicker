@@ -1,10 +1,11 @@
 export const variablesList = [
   { 
     currency: { 
-      balance: 0, 
+      balance: 0.00, 
       btcAmount: 0.00000000,
-      dollarBalance: 1600,
+      dollarBalance: 800.00,
       dollarAmountConvert: 0.00,
+      minedAmount: 0.00000000,
     },
     advancedMining: {
       miningPower: 0.00,
@@ -17,7 +18,8 @@ export const variablesList = [
       miningPowerMultiply: 1.0,
       energyPowerBoost: 1.0,
       energyPowerMultiply: 1.0,
-      miningBusinessName: 'Bitmine Farm',
+      eneryEconomy: 1.0,
+      miningBusinessName: 'Bitcoin Mine',
       graphicsCardAmount: 0,
       energyGeneratorAmount: 0,
       cardLevel: 1,
