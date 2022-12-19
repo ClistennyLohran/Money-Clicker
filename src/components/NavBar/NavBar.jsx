@@ -6,11 +6,13 @@ import { IoClose } from 'react-icons/io5';
 import { GiHeartWings } from 'react-icons/gi';
 import { BiCodeAlt } from 'react-icons/bi';
 import { MdOutlineMultilineChart } from 'react-icons/md';
+import { SiBitcoinsv } from 'react-icons/si';
 
 import { motion } from 'framer-motion';
 
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 
 export default function NavBar() {
   const router = useLocation();
@@ -39,6 +41,11 @@ export default function NavBar() {
         id="optionsContainer"
         className={styles.optionsContainer}
       >
+        <ReactTooltip 
+          place="bottom"
+          multiline={true}
+          effect="solid"
+        />
         <button 
           className={styles.closeBtn}
           onClick={() => animateOpenMenu()}
@@ -60,6 +67,12 @@ export default function NavBar() {
               <Link to="/upgrade" className={router.pathname === "/upgrade" ? styles.optionsItemSelected : styles.optionsItem}>
                 <FaCashRegister className={styles.optionsIcon}/>
                 <p>Loja de Melhorias</p>
+              </Link>
+            </li>
+            <li className={styles.itemContainer}>
+              <Link to="/bitcoinstore" className={router.pathname === "/bitcoinstore" ? styles.optionsItemSelected : styles.optionsItem}>
+                <SiBitcoinsv className={styles.optionsIcon}/>
+                <p>Loja de Mineração</p>
               </Link>
             </li>
             <li className={styles.itemContainer}>
@@ -105,16 +118,19 @@ export default function NavBar() {
         </div>
       </motion.div>
       <ul>
-        <li className={router.pathname === "/" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/"><FaHome className={styles.icon}/></Link>
+        <li data-tip="Cassino" className={router.pathname === "/cassino" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/cassino"><MdOutlineMultilineChart className={styles.icon}/></Link>
         </li>
-        <li className={router.pathname === "/upgrade" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/upgrade"><FaCashRegister className={styles.icon}/></Link>
-        </li>
-        <li className={router.pathname === "/investimento/bitcoin" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li data-tip="Bitcoin" className={router.pathname === "/investimento/bitcoin" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/investimento/bitcoin"><FaBtc className={styles.icon}/></Link>
         </li>
-        <li className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li data-tip="Início" className={router.pathname === "/" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/"><FaHome className={styles.icon}/></Link>
+        </li>
+        <li data-tip="Melhorias" className={router.pathname === "/upgrade" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/upgrade"><FaCashRegister className={styles.icon}/></Link>
+        </li>
+        <li data-tip="Renascimento" className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/renascimento"><GiHeartWings className={styles.icon}/></Link>
         </li>
         <li 

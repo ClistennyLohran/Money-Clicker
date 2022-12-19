@@ -1,0 +1,257 @@
+.container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  flex-direction: column;
+  
+  width: 100%;
+  
+  margin-bottom: 10px;
+}
+
+/* Container de todos os elementos internos */
+
+.infosContainer {
+  display: flex;
+
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* Elementos Internos */
+
+.innerContainer {
+  display: flex;
+  position: relative;
+
+  justify-content: center;
+
+  transition: 0.3s ease-in-out;
+
+  z-index: 3;
+}
+.circularProgress {
+  display: grid;
+  position: relative;
+
+  place-items: center;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+.circularProgress:before {
+  content: '';
+  position: relative;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: var(--corFundo);
+
+  transition: 0.3s ease-in-out;
+}
+.levelDisplay {
+  position: absolute;
+
+  color: var(--corTextoBranco);
+
+  transition: 0.3s ease-in-out;
+}
+
+/* Barra de progresso customizada */
+
+.xpGroup {
+  position: absolute;
+  display: flex;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: var(--corTextoBranco);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+.progressContainer {
+  position: relative;
+
+  width: 400px;
+  
+  margin-top: 10px;
+
+  transition: 0.3s ease-in-out;
+}
+.levelText {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBranco);
+
+  font-weight: 500;
+  font-size: 14px;
+
+  margin-bottom: 5px;
+
+  transition: 0.3s ease-in-out;
+}
+.levelProgress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 20px;
+}
+.levelProgress[value]::-webkit-progress-bar {
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.levelProgress[value]::-webkit-progress-value {
+  border-radius: 5px;
+
+  background: var(--corPrimaria);
+}
+
+/* Display de Reais */
+
+.reaisContainer {
+  position: relative;
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 300px;
+  height: 70px;
+
+  right: -35px;
+
+  z-index: 2;
+}
+
+/* Display de Dolares */
+
+.dolaresContainer {
+  position: relative;
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 300px;
+  height: 70px;
+  
+  left: -35px;
+
+  z-index: 2;
+}
+
+/* CSS Gerais */
+
+.circleIcon {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+  border: 5px solid var(--corFundoNav);
+  box-sizing: border-box;
+
+  background: var(--corFundo);
+  color: var(--corIconeBranco);
+
+  font-size: 36px;
+
+  z-index: 2;
+}
+.textInfosContainerLeft {
+  position: absolute;
+  display: flex;
+
+  justify-content: flex-start;
+
+  right: -25px;
+
+  width: 265px;
+  height: 50px;
+
+  background: var(--corFundoNav);
+
+  z-index: 1;
+}
+.textInfosContainerRight {
+  position: absolute;
+  display: flex;
+
+  justify-content: flex-end;
+
+  left: -25px;
+
+  width: 265px;
+  height: 50px;
+
+  background: var(--corFundoNav);
+
+  z-index: 1;
+}
+.textGroupLeft {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  margin-left: 20px;
+}
+.textGroupRight {
+  display: flex;
+  
+  align-items: flex-end;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  margin-right: 20px;
+}
+.infoTitle {
+  font-size: 12px;
+  font-weight: 700;
+
+  color: var(--corTextoBranco);
+}
+.infoValue {
+  font-size: 18px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+}

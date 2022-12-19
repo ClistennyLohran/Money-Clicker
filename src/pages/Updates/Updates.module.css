@@ -54,7 +54,7 @@
   margin-bottom: 20px;
 }
 .version {
-  color: var(--corTexto);
+  color: var(--corTextoBranco);
 
   font-weight: 600;
   font-size: 18px;
@@ -88,7 +88,7 @@
 
   margin: 20px 0;
 
-  color: var(--corTexto);
+  color: var(--corTextoBranco);
 
   font-weight: 600;
 
@@ -135,13 +135,10 @@
 
   border-radius: 5px;
 
-  color: var(--corTexto);
+  color: var(--corTextoBranco);
 
   transition: 0.3s ease-in-out;
   cursor: pointer;
-}
-.atual:hover {
-  color: var(--corTextoBranco);
 }
 
 /* Texto Destaque */
@@ -160,8 +157,6 @@
   /* Version */
 
   .version {
-    color: var(--corTexto);
-  
     font-weight: 600;
     font-size: 13px;
   }
@@ -189,8 +184,6 @@
     align-items: center;
   
     margin: 15px 0;
-  
-    color: var(--corTexto);
   
     font-weight: 600;
     font-size: 13px;

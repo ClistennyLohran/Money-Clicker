@@ -1,0 +1,111 @@
+.container {
+  position: relative;
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-left: -40px;
+
+  width: 305px;
+  height: 70px;
+}
+.insideContainer {
+  position: relative;
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-left: -120px;
+
+  width: 305px;
+  height: 70px;
+}
+.iconContainer {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  box-sizing: border-box;
+
+  border: 5px solid var(--corFundoNav);
+  border-radius: 100px;
+
+  background: var(--corFundo);
+
+  cursor: pointer;
+
+  z-index: 1;
+}
+.icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corIconeBranco);
+
+  font-size: 30px;
+}
+.displayContent {
+  position: relative;
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 230px;
+  height: 50px;
+
+  margin-right: -35px;
+  padding-right: 40px;
+
+  background: var(--corFundoNav);
+
+  z-index: 0;
+}
+
+/* Titulo, Valor e Conversão */
+
+.title {
+  font-size: 12px;
+  font-weight: 400;
+
+  color: var(--corTextoBranco);
+}
+.value {
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+}
+.convertButton {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  left: 45px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 5px;
+  border: none;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  font-size: 24px;
+
+  cursor: pointer;
+}

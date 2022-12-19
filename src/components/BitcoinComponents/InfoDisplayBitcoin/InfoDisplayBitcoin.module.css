@@ -4,8 +4,8 @@
   position: relative;
   display: flex;
 
-  width: 360px;
-  height: 70px;
+  width: 260px;
+  height: 60px;
 
   margin: 5px;
 
@@ -19,8 +19,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 
   margin-top: 5px;
   margin-left: 5px;
@@ -43,7 +43,7 @@
 }
 .title {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
 
   margin-top: 3px;
 
@@ -51,7 +51,7 @@
 }
 .value {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
 
   margin-top: 4px;
 
@@ -86,31 +86,4 @@
 .tooltip:hover {
   background: var(--corTooltipHover);
   color: var(--corTextoBranco);
-}
-
-@media (max-width: 480px) {
-  .container {
-    width: 240px;
-    height: 60px;
-  }
-  .icon {
-    width: 50px;
-    height: 50px;
-
-    font-size: 24px;
-  }
-  .title {
-    font-weight: 500;
-    font-size: 12px;
-  
-    color: var(--corTextoBranco);
-  }
-  .value {
-    font-weight: 700;
-    font-size: 16px;
-  
-    margin-top: 4px;
-  
-    color: var(--corTextoBranco);
-  }
 }

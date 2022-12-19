@@ -1,4 +1,3 @@
-import Nivel from '../../components/Nivel/Nivel';
 import styles from './Cassino.module.css';
 
 import { MdOutlineMultilineChart } from 'react-icons/md';
@@ -9,11 +8,17 @@ import ReactTooltip from 'react-tooltip';
 
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler } from 'chart.js';
+
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
-import { useContext, useState } from 'react';
-import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
+
+import { useContext, useState, useEffect } from 'react';
+
 import MoneyFormatter from '../../Formatter/MoneyFormatter';
-import { useEffect } from 'react';
+
+import { motion } from 'framer-motion';
+import NomePagina from '../../components/NomePagina/NomePagina';
+import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
+
 ChartJS.register(
   Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler
 );
@@ -74,6 +79,11 @@ export default function Cassino() {
   };
 
   const options = {
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
     scales: {
       y: {
         grid: {
@@ -350,15 +360,13 @@ export default function Cassino() {
   }
   
   return (
-    <div className={styles.container}>
+    <motion.div className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip 
         place="top"
         multiline={true}
       />
-      <div className={styles.titleContainer}>
-        <p className={styles.title}>{<MdOutlineMultilineChart/>}&nbsp;<span>CASSINO</span>&nbsp;{<MdOutlineMultilineChart/>}</p>
-      </div>
-      <DisplayDinheiroReais/>
+      <NomePagina icon={<MdOutlineMultilineChart/>} name="CASSINO"/>
+      <DisplayDinheiroXP/>
       <div className={styles.timerCrashContainer}>
         <div className={styles.timerContainer}>
           <div className={styles.timerIconContainer}>
@@ -410,6 +418,6 @@ export default function Cassino() {
         {!crashIsRunning ? !countTimerStatus ? betButton : cancelButton : !withdrawStatus ? whitdrawButton : <></>}
         {withdrawStatus ? skipButton : <></>}
       </div>
-    </div>
+    </motion.div>
   )
 }

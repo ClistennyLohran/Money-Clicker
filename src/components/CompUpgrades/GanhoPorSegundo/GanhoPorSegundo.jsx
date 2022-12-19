@@ -7,8 +7,6 @@ import { BsFillShieldLockFill } from 'react-icons/bs';
 import MoneyFormatter from '../../../Formatter/MoneyFormatter';
 import ValueFormatter from '../../../Formatter/ValueFormatter';
 
-import ReactTooltip from 'react-tooltip';
-
 import styles from './GanhoPorSegundo.module.css';
 import { UpgradeContext } from '../../../contexts/UpgradeContext/UpgradeContext';
 
@@ -84,10 +82,6 @@ export default function EarnPerSecond({ item, list, maxLevel, preview }) {
 
   return (
     <div className={level >= item.minLevelUnlock ? styles.container : styles.containerLocked}>
-      <ReactTooltip 
-        place="top"
-        multiline={true}
-      />
       <div className={styles.lockedContainer}>
         <p className={styles.lockedText}>{<BsFillShieldLockFill/>}&nbsp;BLOQUEADO&nbsp;{<BsFillShieldLockFill/>}</p>
         <p className={styles.lockedLevel}><span>NÍVEL NECESSÁRIO:</span> {item.minLevelUnlock}</p>

@@ -3,7 +3,10 @@ import styles from './HowToPlay.module.css';
 import { motion } from 'framer-motion';
 
 import { FaShoppingCart, FaBtc } from 'react-icons/fa';
-import { GiBookPile } from 'react-icons/gi';
+import { BsChatTextFill } from 'react-icons/bs';
+import { GiBookPile, GiReceiveMoney, GiHeartburn, GiGoldMine, GiStairsGoal, GiPokerHand } from 'react-icons/gi';
+import { RiTimerFill } from 'react-icons/ri';
+import NomePagina from '../../components/NomePagina/NomePagina';
 
 export default function HowToPlay() {
   return (
@@ -11,18 +14,16 @@ export default function HowToPlay() {
       className={styles.container}
       animate={{ opacity: [0, 1], x: [-600, 0] }}
     >
-      <div className={styles.titleContainer}>
-        <p className={styles.text}>{<GiBookPile/>}&nbsp;TUTORIAL&nbsp;{<GiBookPile/>}</p>
-      </div>
+      <NomePagina icon={<GiBookPile/>} name="TUTORIAL"/>
 
       <div className={styles.tutorialContainer}>
         <div className={styles.section}>
-          <p className={styles.title}>O JOGO CONVERSA!</p>
-          <p className={styles.dialogText}>Olá, se você chegou aqui talvez signifique que esteja um pouco confuso sobre como eu <span className={styles.textBold}>(o jogo)</span> funciono <span className={styles.textBold}>(sim eu converso com você)</span>, ou você só estava explorando o jogo mesmo, enfim caso tenha interesse em continuar para entender como eu funciono fica por aqui que vou te explicar como eu funciono.</p>
+          <p className={styles.title}><BsChatTextFill/>&nbsp;O JOGO CONVERSA!&nbsp;<BsChatTextFill/></p>
+          <p className={styles.dialogText}>Como eu posso explicar isso?... Já ouviu falar em quarta parede? Digamos que eu tento quebrar ela conversando com você ou comentando algumas coisas durante o jogo, e é simplesmente isso, eu não vou literalmente conversar com você sabe? Pelo menos não ainda... Eu sei que tem muita gente que não gosta de ler então em breve vou fazer um canal no Youtube explicando tudo em vídeo, até lá recomendo que pegue um óculos e boa leitura ^^</p>
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>COMO GERAR DINHEIRO?</p>
+          <p className={styles.title}><GiReceiveMoney/>&nbsp;COMO GERAR DINHEIRO?&nbsp;<GiReceiveMoney/></p>
           <p className={styles.dialogText}>Ok vamos começar, sabe aquele botão azul escrito <span className={styles.textBold}>INVESTIR</span> lá na página Inicial?</p>
           <motion.button 
             className={styles.btnInvest}
@@ -36,7 +37,7 @@ export default function HowToPlay() {
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>O QUE É GPC, GPS e XPC?</p>
+          <p className={styles.title}><RiTimerFill/>&nbsp;O QUE É GPC, GPS e XPC?&nbsp;<RiTimerFill/></p>
           <p className={styles.dialogText}><span className={styles.textBold}>O GPC é o Ganho por Clique:</span> ele é o valor que você vai ganhar toda vez que clicar no botão azul Investir.</p>
           <br></br>
           <p className={styles.dialogText}><span className={styles.textBold}>O GPS é o Ganho por Segundo:</span> a cada 1 segundo o valor do seu GPS será adicionado ao seu dinheiro.</p>
@@ -45,7 +46,7 @@ export default function HowToPlay() {
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>QUAL O OBJETIVO?</p>
+          <p className={styles.title}><GiStairsGoal/>&nbsp;QUAL O OBJETIVO?&nbsp;<GiStairsGoal/></p>
           <p className={styles.dialogText}>Boa pergunta, vamos lá, se você reparar ali encima ou no menu lateral existe um carrinho.</p>
           <div className={styles.topIcon}>
             {<FaShoppingCart/>}
@@ -54,7 +55,7 @@ export default function HowToPlay() {
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>O QUE É MINERAR BITCOIN?</p>
+          <p className={styles.title}><GiGoldMine/>&nbsp;O QUE É MINERAR BITCOIN?&nbsp;<GiGoldMine/></p>
           <p className={styles.dialogText}>O sistema de mineração de bitcoin é uma forma alternativa de ganhar dinheiro, eu diria que é até divertido.</p>
           <div className={styles.topIcon}>
             {<FaBtc/>}
@@ -63,10 +64,18 @@ export default function HowToPlay() {
         </div>
 
         <div className={styles.section}>
-          <p className={styles.title}>COMO FUNCIONA O RENASCIMENTO?</p>
+          <p className={styles.title}><GiHeartburn/>&nbsp;COMO FUNCIONA O RENASCIMENTO?&nbsp;<GiHeartburn/></p>
           <p className={styles.dialogText}>A central de renascimento é bem simples, você irá perder todo o progresso do jogo porém o bônus adquirido será aplicado, caso queira renascer novamente o bônus anterior será somado ao atual, ou seja você pode renascer quantas vezes quiser e ir acumulando todos os seus bônus, eu pessoalmente recomendo você esperar conseguir uma boa quantia de bônus antes de renascer.</p>
           <br></br>
           <p className={styles.dialogText}><span className={styles.textBold}>Atenção:</span> Os upgrades comprados com RN (Abreviação dos pontos de Renascimento) nunca serão perdidos ao renascer, porém não poderão ser comprados mais de uma vez!</p>
+        </div>
+
+        <div className={styles.section}>
+          <p className={styles.title}><GiPokerHand/>&nbsp;O QUE É O CASSINO?&nbsp;<GiPokerHand/></p>
+          <p className={styles.dialogText}>Bom basicamente é uma forma de você ganhar dinheiro apostando, afinal, qual empreendedor não gosta de correr riscos? Por enquanto o cassino só tem um único jogo, o Tudo ou Nada, como ele funciona? Calma ai que vou explicar.</p>
+          <br></br>
+          <p className={styles.title}>TUDO OU NADA</p>
+          <p className={styles.dialogText}>Você começa apostando um valor, qualquer valor que você desejar, após digitar o valor que deseja apostar você clica em iniciar e espera um contador de 10 segundos terminar para o início do Tudo ou Nada, a partir do momento que você inicia, um multiplicador 1.00x começa a subir, o valor apostado vai ser multiplicado por esse carinha que vai subindo aos poucos, e é ai que mora o risco, você nunca sabe quando ele vai parar, pode parar em 2.00x, 3.34x, 220.00x ou pode parar no 1.00x e você perder tudo instantaneamente... Caso você queira apostar de forma automática você pode preencher o outro campo com o valor que você deseja que o saque automático seja realizado, por exemplo 1.20x se o multiplicador chegar em 1.20x ele retira automaticamente.</p>
         </div>
         
       </div>

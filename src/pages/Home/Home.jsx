@@ -1,30 +1,28 @@
 import styles from './Home.module.css';
 import { motion } from 'framer-motion';
 
-import InfoDisplay from '../../components/InfoDisplay/InfoDisplay';
-import InfoDisplayBonus from '../../components/InfoDisplay/InfoDisplayBonus';
-
 import MoneyFormatter from '../../Formatter/MoneyFormatter';
 
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { useContext } from 'react';
 
-import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
-import DisplayDinheiroDolares from '../../components/DisplayDinheiroDolares/DisplayDinheiroDolares';
-import DisplayConversaoReais from '../../components/DisplayConversaoReais/DisplayConversaoReais';
-
 import { useEffect } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 
-import { FaMousePointer, FaMouse, FaClock, FaQuestion, FaTimes, FaLightbulb } from 'react-icons/fa';
-import { GiJusticeStar, GiCash, GiConcentrationOrb, GiTriorb, GiMoneyStack } from 'react-icons/gi';
+import { GiCash, GiDoubleRingedOrb, GiArrowCursor, GiHeartWings, GiStarFormation } from 'react-icons/gi';
+import { AiFillBulb, AiFillClockCircle } from 'react-icons/ai';
+import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 
-import Nivel from '../../components/Nivel/Nivel';
+import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
+import NomePagina from '../../components/NomePagina/NomePagina';
+import HomeInfoDisplay from '../../components/HomeInfoDisplay/HomeInfoDisplay';
+import HomeInfoPorcentagem from '../../components/HomeInfoPorcentagem/HomeInfoPorcentagem';
+import HomeInfoPorcentagemRenascimento from '../../components/HomeInfoPorcentagemRenascimento/HomeInfoPorcentagemRenascimento';
 
 export default function Home() {
   const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost } = useContext(ValuesContext);
-  const { specialGpcBoost, specialGpsBoost, specialLevelBoost, dollarBalance } = useContext(ValuesContext);
+  const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost } = useContext(ValuesContext);
 
@@ -95,80 +93,83 @@ export default function Home() {
       number.style.left = `${e.pageX - 35}px`;
       number.style.top = `${e.pageY - 30}px`;
       container.appendChild(number);
-      await sleep(2000);
+      await sleep(1500);
       container.removeChild(number);
     }
   }, []);
 
-  return (
-    <div id="container" className={styles.container}>
-      <ReactTooltip 
-        place="top"
-        multiline={true}
-      />
-      <motion.div
-        className={styles.center}
-        animate={{ opacity: [0, 1], x: [-600, 0] }}
-      >
-        <div className={styles.titleContainer}>
-          <p className={styles.topTitle}>{<GiCash/>}&nbsp;{businessName}&nbsp;{<GiCash/>}</p>
-        </div>
-        <Nivel/>
-        <div className={styles.moneyDisplay}>
-          <DisplayDinheiroDolares/>
-          <DisplayDinheiroReais/>
-          <DisplayConversaoReais/>
-        </div>
-        <div className={styles.infoPanelGrid}>
-          <div className={styles.hideShow}>
-            <div className={styles.infoPanel}>
-              <p className={styles.infoPanelText}>{<GiJusticeStar/>}&nbsp;<span>PAINEL DE BÔNUS</span>&nbsp;{<GiJusticeStar/>}</p>
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Bônus de " titleBold="GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPS<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Bônus de " titleBold="GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
-              <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao XPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<GiConcentrationOrb/>} title="Bônus de " titleBold="XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
-            </div>
-          </div>
-          <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>{<FaLightbulb/>}&nbsp;<span>PAINEL DE INFORMAÇÕES</span>&nbsp;{<FaLightbulb/>}</p>
-            <InfoDisplay datatip="GPC - Ganho por Clique<br><br>Este é o valor que você vai ganhar a cada clique.<br>Os bônus acima estão aplicados." tooltipIcon={<FaQuestion/>} title="Ganho por" titleBold="Clique - GPC" value={MoneyFormatter(((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply))} />
-            <InfoDisplay datatip="GPS - Ganho por Segundo<br><br>Este é o valor que você ganha por segundo!<br>Os bônus acima estão aplicados." tooltipIcon={<FaQuestion/>} title="Ganho por" titleBold="Segundo - GPS" value={MoneyFormatter(((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply))} />
-            <InfoDisplay datatip="XPC - XP por Clique<br><br>Este é o valor de XP que você ganha por clique!<br>Os bônus acima estão aplicados." tooltipIcon={<FaQuestion/>} title="XP por" titleBold="Clique - XPC" value={"XP " +((xpAmountPerClick * ((levelBoost + specialLevelBoost) + levelRebirthBoost)) * levelMultiply).toFixed(2)} />
-          </div>
-          <div className={styles.hideShow}>
-            <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>{<FaTimes/>}&nbsp;<span>PAINEL DE MULTIPLICADORES</span>&nbsp;{<FaTimes/>}</p>
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao GPS" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
-              <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao XPC" tooltipIcon={<FaQuestion/>} icon={<GiTriorb/>} title="Multiplicador de " titleBold="XPC" value={parseFloat(levelMultiply).toFixed(2) + "x"} />
-            </div>
-          </div>
-        </div>
-        <motion.button
-          id="btnInvest"
-          className={styles.btnInvest}
-          transition={{ type: "spring", stiffness: 700, damping: 30 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
-          onClick={() => clickEvent()}
-        >
-          INVESTIR
-        </motion.button>
-        <div className={styles.gridContainer}>
-          <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>{<GiJusticeStar/>}&nbsp;<span>PAINEL DE BÔNUS</span>&nbsp;{<GiJusticeStar/>}</p>
-            <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Bônus de " titleBold="GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
-            <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao GPS<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Bônus de " titleBold="GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
-            <InfoDisplayBonus datatip="Este bônus será aplicado a todos os seus<br>upgrades relacionados ao XPC<br><br>O valor após o + é o Bônus do Rebirth" tooltipIcon={<FaQuestion/>} icon={<GiConcentrationOrb/>} title="Bônus de " titleBold="XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "% + " + parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
-          </div>
+  const openCloseL = () => {
+    setOpenCloseLeftState(!openCloseLeftState);
+  }
 
-          <div className={styles.infoPanel}>
-            <p className={styles.infoPanelText}>{<FaTimes/>}&nbsp;<span>PAINEL DE MULTIPLICADORES</span>&nbsp;{<FaTimes/>}</p>
-            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPC" tooltipIcon={<FaQuestion/>} icon={<FaMousePointer/>} title="Mutiplicador de " titleBold="GPC" value={parseFloat(gpcMultiply).toFixed(2) + "x"} />
-            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados a GPS" tooltipIcon={<FaQuestion/>} icon={<FaClock/>} title="Multiplicador de " titleBold="GPS" value={parseFloat(gpsMultiply).toFixed(2) + "x"} />
-            <InfoDisplayBonus datatip="Este multiplicador será aplicado a todos os seus<br>upgrades relacionados ao XPC" tooltipIcon={<FaQuestion/>} icon={<GiTriorb/>} title="Multiplicador de " titleBold="XPC" value={parseFloat(levelMultiply).toFixed(2) + "x"} />
+  const openCloseR = () => {
+    setOpenCloseRightState(!openCloseRightState);
+  }
+
+  useEffect(() => {
+    let leftPanel = document.getElementById('leftPanel');
+    let rotateLeft = document.getElementById('rotateLeft');
+
+    if(!openCloseLeftState) {
+      leftPanel.style.right = "0px";
+      rotateLeft.style.transform = "rotate(180deg)";
+      return;
+    }
+    leftPanel.style.right = "-320px";
+    rotateLeft.style.transform = "rotate(0deg)";
+    return;
+  }, [openCloseLeftState]);
+
+  useEffect(() => {
+    let rightPanel = document.getElementById('rightPanel');
+    let rotateRight = document.getElementById('rotateRight');
+
+    if(!openCloseRightState) {
+      rightPanel.style.left = "0px";
+      rotateRight.style.transform = "rotate(180deg)";
+      return;
+    }
+    rightPanel.style.left = "-320px";
+    rotateRight.style.transform = "rotate(0deg)";
+    return;
+  }, [openCloseRightState]);
+
+  return (
+    <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
+      <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <NomePagina icon={<GiCash/>} name={businessName}/>
+      <DisplayDinheiroXP/>
+      <div className={styles.infoPanelContainer}>
+        <div id="leftPanel" className={styles.leftPanel}>
+          <div className={styles.innerTitle}>
+            <p><GiStarFormation/>&nbsp;PAINEL DE BÔNUS&nbsp;<GiStarFormation/></p>
+          </div>
+          <HomeInfoPorcentagem icon={<GiArrowCursor/>} title="BÔNUS DE GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagem icon={<AiFillClockCircle/>} title="BÔNUS DE GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagem icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "%"} />
+          <button id="openCloseLeft" className={`${styles.openCloseLeft} ${styles.openCloseButton}`} onClick={() => openCloseL()} ><span id="rotateLeft"><RiArrowLeftSLine/></span></button>
+        </div>
+        <div id="middle" className={styles.middle}>
+          <div className={styles.innerTitle}>
+            <p><AiFillBulb/>&nbsp;PAINEL DE INFORMAÇÕES&nbsp;<AiFillBulb/></p>
+          </div>
+          <div className={styles.innerInfosContainer}>
+            <HomeInfoDisplay dataTip="Ganho por clique é o valor que você vai ganhar a<br>cada clique que der no botão de investir, o GPC será multiplicado<br>pelo Multiplicador sendo GPC x Multiplicador de GPC." icon={<GiArrowCursor/>} titleLeft="GANHO POR CLIQUE - GPC" formatter={1} valueLeft={((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)} titleRight="MULTIPLICADOR DE GPC" valueRight={parseFloat(gpcMultiply).toFixed(2)} />
+            <HomeInfoDisplay dataTip="Ganho por segundo é o valor que você vai ganhar a<br>cada segundo, o GPS será multiplicado<br>pelo Multiplicador sendo GPS x Multiplicador de GPS." icon={<AiFillClockCircle/>} titleLeft="GANHO POR SEGUNDO - GPS" formatter={1} valueLeft={((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply)} titleRight="MULTIPLICADOR DE GPS" valueRight={parseFloat(gpsMultiply).toFixed(2)} />
+            <HomeInfoDisplay dataTip="XP por clique é o valor que você vai ganhar em XP<br>cada clique que der no botão de investir, o XPC será multiplicado<br>pelo Multiplicador sendo XPC x Multiplicador de XPC." icon={<GiDoubleRingedOrb/>} titleLeft="XP POR CLIQUE - XPC" formatter={2} valueLeft={((xpAmountPerClick * ((levelBoost + specialLevelBoost) + levelRebirthBoost)) * levelMultiply).toFixed(2)} titleRight="MULTIPLICADOR DE XPC" valueRight={parseFloat(levelMultiply).toFixed(2)} />
           </div>
         </div>
-      </motion.div>
-    </div>
+        <div id="rightPanel" className={styles.rightPanel}>
+          <div className={styles.innerTitle}>
+            <p><GiHeartWings/>&nbsp;PAINEL DE BÔNUS RENASCIMENTO&nbsp;<GiHeartWings/></p>
+          </div>
+          <HomeInfoPorcentagemRenascimento icon={<GiArrowCursor/>} title="BÔNUS DE GPC DO RENASCIMENTO" value={specialGpcBoostStatus === 1 ? parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagemRenascimento icon={<AiFillClockCircle/>} title="BÔNUS DE GPS DO RENASCIMENTO" value={specialGpsBoostStatus === 1 ? parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagemRenascimento icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC DO RENASCIMENTO" value={specialLevelBoostStatus === 1 ? parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
+          <button id="openCloseRight" className={`${styles.openCloseRight} ${styles.openCloseButton}`} onClick={() => openCloseR()} ><span id="rotateRight"><RiArrowRightSLine/></span></button>
+        </div>
+      </div>
+      <motion.button id="btnInvest" className={styles.btnInvest} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => clickEvent()}>INVESTIR</motion.button>
+    </motion.div>
   );
 }

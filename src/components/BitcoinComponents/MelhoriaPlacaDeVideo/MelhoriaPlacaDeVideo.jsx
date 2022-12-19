@@ -11,17 +11,13 @@ import { GiMining } from 'react-icons/gi';
 import { useContext } from 'react';
 import { ValuesContext } from '../../../contexts/ValuesContext/ValuesContext';
 
-import ReactTooltip from 'react-tooltip';
-
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { AdvancedMiningContext } from '../../../contexts/AdvancedMiningContext/AdvancedMiningContext';
 
 export default function MelhoriaPlacaDeVideo({ id, item }) {
-  
-  const { miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, memoryClock, setMemoryClock, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount } = useContext(ValuesContext);
   const { generalUpgrades, setGeneralUpgrades, dollarBalance, setDollarBalance, btcAmount, setBtcAmount } = useContext(ValuesContext);
-  const { setNotificationType, level, windowSize, setWindowSize } = useContext(ValuesContext);
+  const { setNotificationType, level } = useContext(ValuesContext);
   const { miningPowerMultiply } = useContext(AdvancedMiningContext);
 
   const [ displayInfo, setDisplayInfo ] = useState(0);
@@ -211,26 +207,11 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
     }
   }
 
-  useEffect(() => {
-    let checkWindow = setInterval(() => {
-      setWindowSize(window.innerWidth);
-      detectWindowSize();
-    }, 300);
-
-    return () => {
-      clearInterval(checkWindow);
-    }
-  }, [windowSize]);
-
   return (
     <motion.div
      className={styles.generalContainer}
      animate={detectWindowSize()}
     >
-      <ReactTooltip 
-        place="top"
-        multiline={true}
-      />
       <div className={level >= item.minLevelUnlock ? styles.container : styles.containerLocked}>
         <div className={styles.lockedContainer}>
           <p className={styles.lockedText}>{<BsFillShieldLockFill/>}&nbsp;BLOQUEADO&nbsp;{<BsFillShieldLockFill/>}</p>

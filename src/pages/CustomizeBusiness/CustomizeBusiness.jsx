@@ -12,7 +12,9 @@ import { RiRestartFill } from 'react-icons/ri';
 import { MdBackup, MdCloudDownload } from 'react-icons/md';
 
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
-import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
+import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
+import ReactTooltip from 'react-tooltip';
+import NomePagina from '../../components/NomePagina/NomePagina';
 
 export default function CustomizeBusiness() {
   
@@ -121,12 +123,13 @@ export default function CustomizeBusiness() {
         className={styles.container}
         animate={{ opacity: [0, 1], x: [-600, 0] }}
     >
-      <div className={styles.titleContainer}>
-        <p className={styles.title}>{<GiPaintBucket/>}&nbsp;<span className={styles.titleBold}>CUSTOMIZAÇÃO DA LOJA</span>&nbsp;{<GiPaintBucket/>}</p>
-      </div>
-      <div className={styles.center}>
-        <DisplayDinheiroReais/>
-      </div>
+      <ReactTooltip 
+        place="top"
+        multiline={true}
+        effect="solid"
+      />
+      <NomePagina icon={<GiPaintBucket/>} name="CUSTOMIZAÇÃO DA LOJA"/>
+      <DisplayDinheiroXP/>
 
       <div className={styles.separator}></div>
 

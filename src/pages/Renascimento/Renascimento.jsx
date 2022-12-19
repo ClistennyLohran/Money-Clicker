@@ -2,19 +2,18 @@ import styles from './Renascimento.module.css';
 
 import { motion } from 'framer-motion';
 
-import { FaQuestion, FaMousePointer, FaClock, FaLightbulb } from 'react-icons/fa';
-import { GiDragonOrb, GiDoubleRingedOrb, GiMoneyStack } from 'react-icons/gi';
+import { FaLightbulb } from 'react-icons/fa';
+import { GiDragonOrb, GiMoneyStack } from 'react-icons/gi';
 
 import ReactTooltip from 'react-tooltip';
-
-import DisplayDinheiroReais from '../../components/DisplayDinheiroReais/DisplayDinheiroReais';
-import InfoDisplayBonus from '../../components/InfoDisplay/InfoDisplayBonus';
 
 import { useContext } from 'react';
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
+import NomePagina from '../../components/NomePagina/NomePagina';
 
 const upgradesGps = require('../../UpgradeObjects/UpgradesGPS/UpgradesGPS');
 const upgradesGpc = require('../../UpgradeObjects/UpgradesGPC/UpgradesGPC');
@@ -150,11 +149,10 @@ export default function Renascimento() {
       <ReactTooltip 
         place="top"
         multiline={true}
+        effect="solid"
       />
-      <div className={styles.titleContainer}>
-        <p className={styles.text}>{<GiDragonOrb/>}&nbsp;<span className={styles.textBold}>BÔNUS DE RENASCIMENTO</span>&nbsp;{<GiDragonOrb/>}</p>
-      </div>
-      <DisplayDinheiroReais/>
+      <NomePagina icon={<GiDragonOrb/>} name="BÔNUS DE RENASCIMENTO"/>
+      <DisplayDinheiroXP/>
       <div className={styles.minValContainer}>
         <p className={styles.valMinText}>{<GiMoneyStack/>}&nbsp;Valor mínimo para renascimento!</p>
         <p className={styles.valMinBold}>R$20 Bilhões</p>
@@ -165,9 +163,9 @@ export default function Renascimento() {
       </div>
       <div className={styles.infoPanel}>
         <p className={styles.infoPanelText}>{<FaLightbulb/>}&nbsp;<span>PAINEL DE INFORMAÇÕES</span>&nbsp;{<FaLightbulb/>}</p>
-        <InfoDisplayBonus icon={<FaMousePointer/>} datatip="Bônus GPC - Bônus de Ganho por Clique<br><br>Este bônus será aplicado<br>ao seu GPC quando você renascer!" tooltipIcon={<FaQuestion/>} title="Bônus de " titleBold="GPC" value={gpcRebirth.toFixed(2) + "%"} />
-        <InfoDisplayBonus icon={<FaClock/>} datatip="Bônus GPS - Bônus de Ganho por Segundo<br><br>Este bônus será aplicado<br>ao seu GPS quando você renascer!" tooltipIcon={<FaQuestion/>} title="Bônus de " titleBold="GPS" value={gpsRebirth.toFixed(2) + "%"} />
-        <InfoDisplayBonus icon={<GiDoubleRingedOrb/>} datatip="Bônus NPC - Bônus de Nível por Clique<br><br>Este bônus será aplicado<br>ao seu NPC quando você renascer!" tooltipIcon={<FaQuestion/>} title="Bônus de " titleBold="NPC" value={levelRebirth.toFixed(2) + "%"} />
+        <p>GPC Rebirth{gpcRebirth.toFixed(2) + "%"}</p>
+        <p>GPC Rebirth{gpsRebirth.toFixed(2) + "%"}</p>
+        <p>GPC Rebirth{levelRebirth.toFixed(2) + "%"}</p>
         <p className={styles.limitInfo}>Limite de {maxValueRebirth}% de bônus por renascimento!</p>
       </div>
       <div className={styles.termsContainer}>

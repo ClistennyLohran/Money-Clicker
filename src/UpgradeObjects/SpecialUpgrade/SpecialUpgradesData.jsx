@@ -18,7 +18,7 @@ export const icons = [
     id: 1,
     title: 'Amigo do Prefeito',
     icon: <FaHandshake/>,
-    description: 'Você ganha um desconto de 10% na conta de energia, como eu faço pra ser amigo do prefeito também?',
+    description: 'Você ganhou uma redução de 10% no consumo de energia, alguém me explica como o prefeito conseguiu fazer isso? Quero ser amigo dele também...',
   }, {
     id: 2,
     title: 'Relógio Prateado',

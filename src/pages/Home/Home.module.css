@@ -15,144 +15,112 @@ body {
   align-items: center;
   justify-content: center;
 
+  flex-direction: column;
+
   -ms-user-select: none;
   -moz-user-select: none;
   user-select: none;
   -webkit-user-select: none;
-
-  flex-direction: column;
 }
-.moneyDisplay {
-  display: grid;
-  width: 100%;
-
-  justify-content: center;
-
-  place-items: center;
-
-  grid-template-columns: repeat(3, 1fr);
+.infoPanelContainer {
+  display: flex;
 }
-.dollarConvertDisplay {
+
+/* Painel da Esquerda */
+
+.leftPanel {
+  position: relative;
   display: flex;
 
   align-items: center;
-  justify-content: center;
 
   flex-direction: column;
 
-  width: 400px;
-  height: 70px;
+  width: 320px;
+  height: 220px;
 
-  border-radius: 10px;
+  right: -300px;
 
-  margin-bottom: 10px;
+  border-right: 4px solid var(--corPrimaria);
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   background: var(--corFundoNav);
 
   transition: 0.3s ease-in-out;
-}
-.gridContainer {
-  display: grid;
 
-  opacity: 0;
-  pointer-events: none;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  width: 100%;
-}
-.infoPanelGrid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-}
-.center {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
+  z-index: 0;
 }
 
-/* Title */
+/* Painel do Meio */
 
-.titleContainer {
-  display: flex;
+.middle {
+  position: relative;
 
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 60px;
-
-  color: var(--corTextoBranco);
-}
-.topTitle {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 18px;
-  font-weight: 700;
-
-  text-transform: uppercase;
-}
-.convertTitle {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  color: var(--corTextoBranco);
-
-  font-weight: 700;
-  font-size: 16px;
-}
-.convertValue {
-  font-size: 22px;
-  font-weight: 700;
-
-  color: var(--corTextoBranco);
-}
-
-/* Info Panel */
-
-.infoPanel {
-  display: flex;
-
-  align-items: center;
-
-  flex-direction: column;
-
-  width: 400px;
-
-  border-radius: 10px;
-
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 10px;
+  width: 480px;
+  height: 220px;
 
   background: var(--corFundoNav);
-  color: var(--corTexto);
+
+  z-index: 1;
 }
-.infoPanelText {
+.innerTitle {
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  width: 100%;
+  height: 50px;
+}
+.innerTitle p {
+  display: flex;
 
-  font-weight: 200;
+  align-items: center;
+  justify-content: center;
+
   font-size: 16px;
+  font-weight: 700;
 
   color: var(--corTextoBranco);
 }
-.infoPanelText span {
-  font-weight: 700;
+.innerInfosContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 100%;
+}
+
+/* Painel da Direita */
+
+.rightPanel {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  width: 320px;
+  height: 220px;
+
+  left: -300px;
+
+  border-left: 4px solid var(--corPrimaria);
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+
+  z-index: 0;
 }
 
 /* Button */
@@ -162,7 +130,7 @@ body {
   height: 45px;
 
   border: none;
-  border-radius: 100px;
+  border-radius: 5px;
 
   -ms-user-select: none;
   -moz-user-select: none;
@@ -170,9 +138,9 @@ body {
   -webkit-user-select: none;
 
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
 
-  margin-top: 5px;
+  margin-top: 20px;
   margin-bottom: 15px;
 
   background: var(--corPrimaria);
@@ -180,10 +148,75 @@ body {
 
   cursor: pointer;
 }
+.openCloseButton {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 50px;
+
+  border: none;
+
+  font-size: 20px;
+
+  color: var(--corIconeBranco);
+  background: var(--corPrimaria);
+
+  cursor: pointer;
+
+  transition: 0.3s ease-in-out;
+}
+.openCloseButton:hover {
+  background: var(--corPrimariaHover);
+}
+.openCloseButton span {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.3s ease-in-out;
+}
+.openCloseLeft {
+  top: 50%;
+  left: -25px;
+
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+
+  transform: translateY(-50%);
+}
+.openCloseRight {
+  top: 50%;
+  right: -25px;
+
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+
+  transform: translateY(-50%);
+}
+
+/* Ajuste de Setinhas dos botões */
+
+.openCloseLeft span {
+  position: relative;
+
+  right: -2px;
+}
+.openCloseRight span {
+  position: relative;
+
+  left: -2px;
+}
 
 /* Number Animation */
 
 .number {
+  position: relative;
+
   font-size: 20px;
 
   animation-name: number;
@@ -195,6 +228,8 @@ body {
   font-weight: 300;
 
   color: white;
+
+  z-index: 3;
 }
 
 @keyframes number {
@@ -207,100 +242,5 @@ body {
   100% {
     opacity: 0;
     margin-top: -260px;
-  }
-}
-
-/* Adaptabilidade */
-
-@media (max-width: 1235px) {
-  .gridContainer {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .infoPanelGrid {
-    display: grid;
-
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .moneyDisplay {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .hideShow {
-    display: none;
-  }
-}
-@media (max-width: 880px) {
-  .gridContainer {
-    display: grid;
-  
-    grid-template-columns: repeat(1, 1fr);
-  
-    width: 100%;
-  }
-  .moneyDisplay {
-    display: grid;
-  
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  .topTitle {
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .subtitle {
-    font-weight: 200;
-    font-size: 16px;
-  }
-
-  /* Info Display */
-
-  .infoPanel {
-    width: 260px;
-  }
-  .infoPanelText {
-    font-size: 14px;
-  }
-  .dollarConvertDisplay {
-    width: 260px;
-    height: 60px;
-  }
-
-  /* Button */
-
-  .btnInvest {
-    width: 260px;
-    height: 40px;
-
-    font-size: 16px;
-    font-weight: 300;
-  }
-
-  /* Number Animation */
-
-  .number {
-    font-size: 16px;
-  
-    animation-name: number;
-    animation-duration: 1.2s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  
-    font-weight: 300;
-  
-    color: white;
-  }
-
-  @keyframes number {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 0;
-      margin-top: -160px;
-    }
   }
 }

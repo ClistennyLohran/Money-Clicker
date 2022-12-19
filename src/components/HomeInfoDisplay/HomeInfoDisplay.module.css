@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+}
+.iconInnerContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 5px;
+
+  background: var(--corFundo);
+}
+.icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corTextoBranco);
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+.title {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+}
+.value {
+  font-size: 16px;
+  font-weight: 600;
+
+  color: var(--corTextoBranco);
+}
+
+/* Infos Container */
+
+.showInfoLeft {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 180px;
+  
+  padding-right: 10px;
+  margin-right: 10px;
+
+  height: 45px;
+
+  border-right: 4px solid var(--corPrimaria);
+  border-radius: 5px;
+
+  background: var(--corFundo);
+}
+.showInfoRight {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 180px;
+  
+  padding-left: 10px;
+  margin-left: 10px;
+
+  height: 45px;
+
+  border-left: 4px solid var(--corPrimaria);
+  border-radius: 5px;
+
+  background: var(--corFundo);
+}

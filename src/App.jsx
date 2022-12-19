@@ -27,6 +27,7 @@ import { Buffer } from 'buffer';
 import CustomizeBusiness from './pages/CustomizeBusiness/CustomizeBusiness';
 import InvestimentoBitcoin from './pages/InvestimentoBitcoin/InvestimentoBitcoin';
 import Cassino from './pages/Cassino/Cassino';
+import LojaBitcoin from './pages/LojaBitcoin/LojaBitcoin';
 
 const varList = require('./VariblesObject/VariablesObject');
 
@@ -76,10 +77,6 @@ function App() {
       return varList.variablesList;
     }
   });
-
-  /* Inicialização do verificador de largura de tela, usado para adaptabilidade do jogo */
-  const [ windowSize, setWindowSize ] = useState(window.innerWidth);
-  const [ crashHistory, setCrashHistory ] = useState([]);
 
   /* Currency */
   const [ balance, setBalance ] = useState(() => parseFloat(variables[0].currency.balance) || 0.00);
@@ -160,6 +157,11 @@ function App() {
   const [ unlocked, setUnlocked ] = useState(() => variables[0].themes.unlocked || 0);
 
   /* END OF INITIAL VARIABLES */
+
+  /* Variáveis de Estado */
+  const [ openCloseLeftState, setOpenCloseLeftState ] = useState(true);
+  const [ openCloseRightState, setOpenCloseRightState ] = useState(true);
+  const [ crashHistory, setCrashHistory ] = useState([]);
 
   /* Define todas as notificações geradas no jogo */
   useEffect(() => {
@@ -754,11 +756,14 @@ function App() {
           setActiveColor,
           unlocked,
           setUnlocked,
-          /* Window Size */
-          windowSize,
-          setWindowSize,
+          /* States Save */
           crashHistory,
           setCrashHistory,
+          openCloseLeftState,
+          setOpenCloseLeftState,
+          openCloseRightState,
+          setOpenCloseRightState,
+
         }
       }
     >
@@ -791,6 +796,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home/>}></Route>
               <Route path="/upgrade" element={<Upgrade/>}></Route>
+              <Route path="/bitcoinstore" element={<LojaBitcoin/>}></Route>
               <Route path="/investimento/bitcoin" element={<InvestimentoBitcoin/>}></Route>
               <Route path="/renascimento" element={<Renascimento/>}></Route>
               <Route path="/cassino" element={<Cassino/>}></Route>
