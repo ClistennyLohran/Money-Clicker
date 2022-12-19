@@ -12,7 +12,7 @@
   width: 70px;
   height: 70px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-left: 10px;
   margin-bottom: 10px;
@@ -40,7 +40,7 @@
   width: 70px;
   height: 70px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-left: 10px;
   margin-bottom: 10px;
@@ -65,7 +65,7 @@
   width: 70px;
   height: 70px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-left: 10px;
   margin-bottom: 10px;
@@ -96,7 +96,7 @@
   width: 70px;
   height: 70px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-left: 10px;
   margin-bottom: 10px;
@@ -124,7 +124,7 @@
   width: 70px;
   height: 70px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin-left: 10px;
   margin-bottom: 10px;
@@ -133,50 +133,4 @@
   color: var(--corIconeBranco);
 
   transition: 0.3s ease-in-out;
-}
-
-@media (max-width: 480px) {
-  .container {
-    font-size: 24px;
-  
-    width: 60px;
-    height: 60px;
-  }
-  .containerDisabled {
-    font-size: 24px;
-  
-    width: 60px;
-    height: 60px;
-  }
-
-  /* Rebirth Container */
-
-  .rebirthContainer {
-    font-size: 24px;
-
-    width: 60px;
-    height: 60px;
-  }
-  .rebirthContainerDisabled {
-    font-size: 24px;
-
-    width: 60px;
-    height: 60px;
-  }
-
-  /* Golden Container */
-
-  .goldenContainer {
-    font-size: 24px;
-
-    width: 60px;
-    height: 60px;
-  }
-  .goldenContainerDisabled {
-    font-size: 24px;
-
-    width: 60px;
-    height: 60px;
-
-  }
 }

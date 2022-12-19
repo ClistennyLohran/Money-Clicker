@@ -14,7 +14,7 @@
   margin-right: 5px;
   margin-bottom: 10px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   background: var(--corFundoNav);
 
@@ -51,27 +51,4 @@
   height: 360px;
 
   overflow-y: scroll;
-}
-
-@media (max-width: 480px) {
-  .container {
-    width: 260px;
-    height: 390px;
-  }
-  .title {
-    font-size: 12px;
-  }
-
-  /* RollDown */
-
-  .rollDown {
-    display: flex;
-
-    flex-direction: column;
-
-    width: 92%;
-    height: 311px;
-
-    overflow-y: scroll;
-  }
 }

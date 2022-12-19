@@ -24,31 +24,30 @@ export default function Updates() {
 
         <div className={styles.versionContainer}>
           <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
-            <p className={styles.version}>v1.7.0 - 19/12/2022</p>
-          </div>
-          <ul className={styles.newsContainer}>
-            <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização visa facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no jogo.</li>
-            <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
-            <li>• Nenhum bug reportado ou identificado.</li>
-          </ul>
+          <p className={styles.version}>v1.7.0 - 19/12/2022</p>
+        </div>
+        <ul className={styles.newsContainer}>
+          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização visa facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no jogo.</li>
+          <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+          <li>• Nenhum bug reportado ou identificado.</li>
+        </ul>
         <div className={styles.updateSeparator}></div>
 
         {/* v1.6.2 */}
 
         <div className={styles.versionContainer}>
-          <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
-            <p className={styles.version}>v1.6.2 - 16/12/2022</p>
-          </div>
-          <ul className={styles.newsContainer}>
-            <li>• Melhor balanceamento do jogo.</li>
-            <li>• Escolher quantidade de melhorias compradas na loja, opções 1, 10 e 100.</li>
-            <li>• Nova forma de ganhar dinheiro com os mini jogos do Cassino!</li>
-            <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
-            <li>• Problema relacionado a conversão de Bitcoins.</li>
-            <li>• O multiplicador de poder de mineração agora também é aplicado no cálculo de mineração manual.</li>
-            <li>• Melhoria no balanço do sistema de Bitcoin.</li>
-            <li>• Correção de bug na descrição de melhoria especial.</li>
-          </ul>
+          <p className={styles.version}>v1.6.2 - 16/12/2022</p>
+        </div>
+        <ul className={styles.newsContainer}>
+          <li>• Melhor balanceamento do jogo.</li>
+          <li>• Escolher quantidade de melhorias compradas na loja, opções 1, 10 e 100.</li>
+          <li>• Nova forma de ganhar dinheiro com os mini jogos do Cassino!</li>
+          <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+          <li>• Problema relacionado a conversão de Bitcoins.</li>
+          <li>• O multiplicador de poder de mineração agora também é aplicado no cálculo de mineração manual.</li>
+          <li>• Melhoria no balanço do sistema de Bitcoin.</li>
+          <li>• Correção de bug na descrição de melhoria especial.</li>
+        </ul>
         <div className={styles.updateSeparator}></div>
         
         {/* v1.6.1 */}

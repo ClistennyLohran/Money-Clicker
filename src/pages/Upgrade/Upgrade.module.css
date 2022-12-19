@@ -66,7 +66,7 @@
 
   background: var(--corFundoNav);
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   margin: 0 5px;
   margin-bottom: 10px;
@@ -111,47 +111,4 @@
   font-size: 16px;
 
   color: var(--corTextoBranco);
-}
-
-@media (max-width: 1220px) {
-  .gridContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 860px) {
-  .gridContainer {
-    grid-template-columns: 1fr;
-  }
-
-  /* Special Upgrades Container */
-
-  .specialGridContainer {
-    display: grid;
-
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  .title {
-    font-size: 16px;
-  }
-  
-  /* Amount Container */
-
-  .amountContainer {
-    width: 260px;
-    height: 80px;
-  }
-  .amountButton {
-    width: 30px;
-    height: 30px;
-
-    font-size: 10px;
-  }
-  .amountTitleContainer {
-    height: 40px;
-
-    font-size: 12px;
-  }
-
 }
