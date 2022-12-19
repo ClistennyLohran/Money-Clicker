@@ -2,8 +2,8 @@ import styles from './Renascimento.module.css';
 
 import { motion } from 'framer-motion';
 
-import { FaLightbulb } from 'react-icons/fa';
-import { GiDragonOrb, GiMoneyStack } from 'react-icons/gi';
+import { GiDragonOrb, GiHeartWings, GiCurlyWing, GiTakeMyMoney, GiArrowCursor, GiDoubleRingedOrb } from 'react-icons/gi';
+import { AiFillClockCircle } from 'react-icons/ai';
 
 import ReactTooltip from 'react-tooltip';
 
@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
 import NomePagina from '../../components/NomePagina/NomePagina';
+import DisplayBonus from '../../components/Renascimento/DisplayBonus/DisplayBonus';
 
 const upgradesGps = require('../../UpgradeObjects/UpgradesGPS/UpgradesGPS');
 const upgradesGpc = require('../../UpgradeObjects/UpgradesGPC/UpgradesGPC');
@@ -153,25 +154,46 @@ export default function Renascimento() {
       />
       <NomePagina icon={<GiDragonOrb/>} name="BÔNUS DE RENASCIMENTO"/>
       <DisplayDinheiroXP/>
-      <div className={styles.minValContainer}>
-        <p className={styles.valMinText}>{<GiMoneyStack/>}&nbsp;Valor mínimo para renascimento!</p>
-        <p className={styles.valMinBold}>R$20 Bilhões</p>
+      <div className={styles.displayContainer}>
+        <div className={styles.topInfo}>
+          <div className={styles.displayLeft}>
+            <div data-tip="Este é o valor mínimo necessário para<br>o renascimento! Por enquanto é um valor fixo." className={styles.iconContainer}>
+              <p className={styles.iconLeft}>{<GiCurlyWing/>}</p>
+              <p className={styles.icon}>{<GiTakeMyMoney/>}</p>
+              <p className={styles.iconRight}>{<GiCurlyWing/>}</p>
+            </div>
+            <div className={styles.textContainer}>
+              <p className={styles.text}>VALOR PARA RENASCIMENTO</p>
+            </div>
+          </div>
+          <div className={styles.displayRight}>
+            <div data-tip="Com estes pontos de renascimento você pode<br>comprar melhorias únicas e permanentes que ajudam<br>a evoluir mais rápido ao renascer." className={styles.iconContainer}>
+              <p className={styles.iconHeart}>{<GiHeartWings/>}</p>
+            </div>
+            <div className={styles.textContainer}>
+              <p className={styles.text}>PONTOS DE RENASCIMENTO</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.bottomInfo}>
+          <div className={styles.dataContainer}>
+            <p className={styles.textValue}>20 BILHÕES</p>
+          </div>
+          <div className={`${styles.dataContainer} ${styles.marginLeft}`}>
+            <p className={styles.textValue}>{rebirthPoints + " RN"}</p>
+          </div>
+        </div>
       </div>
-      <div className={styles.rebirthPointsContainer}>
-        <p className={styles.rebirthPointsTitle}>Pontos de Renascimento</p>
-        <p className={styles.rebirthPointsText}>{rebirthPoints + " RN"}</p>
+      <div className={styles.titleContainer}>
+        <p className={styles.innerText}><GiDragonOrb/>&nbsp;RENASCIMENTO&nbsp;<GiDragonOrb/></p>
       </div>
-      <div className={styles.infoPanel}>
-        <p className={styles.infoPanelText}>{<FaLightbulb/>}&nbsp;<span>PAINEL DE INFORMAÇÕES</span>&nbsp;{<FaLightbulb/>}</p>
-        <p>GPC Rebirth{gpcRebirth.toFixed(2) + "%"}</p>
-        <p>GPC Rebirth{gpsRebirth.toFixed(2) + "%"}</p>
-        <p>GPC Rebirth{levelRebirth.toFixed(2) + "%"}</p>
-        <p className={styles.limitInfo}>Limite de {maxValueRebirth}% de bônus por renascimento!</p>
-      </div>
-      <div className={styles.termsContainer}>
-        <p className={styles.alert}><span className={styles.alertBold}>Antes de clicar em renascer leia:</span> ao clicar em renascer todo o seu progresso atual será perdido incluindo melhorias especiais, dinheiro, melhorias comuns, bitcoins, em troca você ganhará os bônus acima, caso você já tenha renascido antes o bônus atual será somado ao bônus anterior!</p>
+      <div className={styles.containerBonus}>
+        <DisplayBonus dataTip="Este bônus será aplicado ao seu GPC quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<GiArrowCursor/>} title="BÔNUS DE GPC" middle={false} value={gpcRebirth.toFixed(2)} />
+        <DisplayBonus dataTip="Este bônus será aplicado ao seu GPS quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<AiFillClockCircle/>} title="BÔNUS DE GPS" middle={true} value={gpsRebirth.toFixed(2)} />
+        <DisplayBonus dataTip="Este bônus será aplicado ao seu XPC quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC" middle={false} value={levelRebirth.toFixed(2)} />
       </div>
       <motion.button
+        data-tip="Ao clicar em renascer todo o seu progresso atual será perdido incluindo<br>melhorias especiais, dinheiro, melhorias comuns, bitcoins, em troca<br>você ganhará tdoos os bônus listados acima, caso você já tenha renascido<br>antes o bônus atual será somado ao bônus anterior!"
         className={styles.rebirthButton}
         transition={{ type: "spring", stiffness: 700, damping: 30 }}
         whileHover={{ scale: 1.05 }}
@@ -180,12 +202,14 @@ export default function Renascimento() {
       >
         RENASCER
       </motion.button>
-      <div className={styles.customCheckboxContainer}>
-        <label className={styles.containerCb}>
-          <input type="checkbox" name="translateRadio" onChange={() => setChecked(!checked)} />
-          <span className={styles.checkmark}></span>
-        </label>
-        <p className={styles.checkBoxText}>Li e estou ciente!</p>
+      <div className={styles.generalCheckboxContainer}>
+        <div className={styles.checkboxContainer}>
+          <label className={styles.containerCb}>
+            <input type="checkbox" name="translateRadio" onChange={() => setChecked(!checked)} />
+            <span className={styles.checkmark}></span>
+          </label>
+          <p className={styles.checkBoxText}>Li e estou ciente!</p>
+        </div>
       </div>
     </motion.div>
   );

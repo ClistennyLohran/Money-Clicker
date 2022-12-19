@@ -1,0 +1,86 @@
+.container {
+  width: 125px;
+  height: 90px;
+
+  border: 5px solid var(--corFundoNav);
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+  background: var(--corFundo);
+}
+.containerMiddle {
+  width: 125px;
+  height: 90px;
+
+  border: 5px solid var(--corFundoNav);
+  border-radius: 5px;
+
+  margin: 0px 13px;
+
+  box-sizing: border-box;
+
+  background: var(--corFundo);
+}
+.iconContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 60px;
+
+  cursor: pointer;
+}
+.icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 40px;
+
+  color: var(--corIconeBranco);
+}
+.textContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  font-size: 12px;
+  font-weight: 700;
+
+  color: var(--corTextoBranco);
+}
+.generalContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+}
+.displayValue {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+
+  width: 125px;
+  height: 30px;
+
+  border-radius: 5px;
+
+  background: var(--corPrimaria);
+}
+.value {
+  font-size: 14px;
+  font-weight: 700;
+
+  color: var(--corTextoBranco);
+}
