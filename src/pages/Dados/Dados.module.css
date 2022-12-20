@@ -1,0 +1,283 @@
+.container {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.saveGameContainer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+}
+.textContainerSave {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+}
+.backupContainer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  width: 420px;
+  height: 200px;
+
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.loadContainer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  width: 420px;
+  height: 200px;
+
+  margin-top: 10px;
+
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.saveText {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  margin: 15px 0px;
+
+  color: var(--corTextoBranco);
+}
+.alertText {
+  font-size: 12px;
+  font-weight: 400;
+
+  width: 80%;
+
+  color: var(--corTextoBranco);
+}
+.saveValueContainer {
+  position: relative;
+
+  width: 90%;
+  height: 30px;
+
+  margin-top: 10px;
+}
+.saveCode {
+  width: calc(100% - 70px);
+  height: 100%;
+
+  padding-right: 60px;
+  padding-left: 10px;
+
+  text-align: center;
+
+  border: none;
+  border-radius: 5px;
+
+  background: var(--corInputClaro);
+  color: var(--corTextoBranco);
+}
+.saveCode::placeholder {
+  color: var(--corTextoPlaceHolder);
+}
+.removePadding {
+  width: calc(100% - 20px);
+  height: 100%;
+
+  padding-right: 10px;
+  padding-left: 10px;
+
+  text-align: center;
+
+  border: none;
+  border-radius: 5px;
+
+  background: var(--corInputClaro);
+  color: var(--corTextoBranco);
+}
+.removePadding::placeholder {
+  color: var(--corTextoPlaceHolder);
+}
+.copyBtn {
+  position: absolute;
+
+  right: 0px;
+
+  width: 60px;
+  height: 30px;
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  border: none;
+
+  color: var(--corTextoBranco);
+  background: var(--corPrimaria);
+
+  transition: background 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+.copyBtn:hover {
+  background: var(--corPrimariaHover);
+}
+
+.dataBtn {
+  width: 220px;
+  height: 35px;
+
+  border: none;
+  border-radius: 5px;
+
+  margin-top: 20px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--corTextoBtn);
+  background: var(--corPrimaria);
+
+  transition: background 0.3s ease-in-out;
+  
+  cursor: pointer;
+}
+.dataBtn:hover {
+  background: var(--corPrimaria);
+}
+
+/* Botão Resetar Progresso */
+
+.resetProgressBtn {
+  width: 420px;
+  height: 45px;
+
+  border: none;
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--corTextoBtn);
+  background: var(--corPrimaria);
+
+  transition: background 0.3s ease-in-out;
+  
+  cursor: pointer;
+}
+
+/* Custom Checkbox */
+
+.customCheckboxContainer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: row;
+
+  margin-bottom: 60px;
+  margin-left: 20px;
+}
+
+.containerCb {
+  position: relative;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  margin-top: 18px;
+  margin-right: 3px;
+
+  transition: 0.3s ease-in-out;
+}
+.containerCb input {
+  position: absolute;
+
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+
+  transition: 0.3s ease-in-out;
+}
+.checkmark {
+  position: absolute;
+
+  box-sizing: border-box;
+
+  bottom: 0;
+  right: 0;
+
+  height: 20px;
+  width: 20px;
+
+  border-radius: 5px;
+  border: 2px solid var(--corPrimaria);
+
+  background: transparent;
+
+  transition: 0.3s ease-in-out;
+}
+.containerCb:hover input ~ .checkmark {
+  background: var(--corFundoInput);
+}
+.containerCb input:checked ~ .checkmark {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--corPrimaria);
+}
+.checkmark:after {
+  content: "";
+
+  position: absolute;
+  display: none;
+}
+.containerCb input:checked ~ .checkmark:after {
+  display: block;
+}
+.containerCb .checkmark:after {
+  width: 10px;
+  height: 10px;
+
+  background: var(--corValor);
+
+  border-radius: 3px;
+}
+.checkBoxText {
+  color: var(--corTextoBranco);
+
+  font-size: 14px;
+}

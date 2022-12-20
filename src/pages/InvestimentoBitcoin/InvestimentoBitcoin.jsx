@@ -155,7 +155,7 @@ export default function AdvancedMining() {
   return (
     <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
-      <Link to="/bitcoinstore"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias Bitcoin!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
+      <Link to="/lojabitcoin"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias Bitcoin!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
       <NomePagina icon={<SiBitcoinsv/>} name={miningBusinessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.middleInfosContainer}>

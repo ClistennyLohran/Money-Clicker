@@ -143,16 +143,9 @@ export default function Renascimento() {
   }
 
   return (
-    <motion.div 
-      className={styles.container}
-      animate={{ opacity: [0, 1], x: [-600, 0] }}
-    >
-      <ReactTooltip 
-        place="top"
-        multiline={true}
-        effect="solid"
-      />
-      <NomePagina icon={<GiDragonOrb/>} name="BÔNUS DE RENASCIMENTO"/>
+    <motion.div  className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
+      <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <NomePagina icon={<GiDragonOrb/>} name="RENASCIMENTO"/>
       <DisplayDinheiroXP/>
       <div className={styles.displayContainer}>
         <div className={styles.topInfo}>
@@ -185,7 +178,7 @@ export default function Renascimento() {
         </div>
       </div>
       <div className={styles.titleContainer}>
-        <p className={styles.innerText}><GiDragonOrb/>&nbsp;RENASCIMENTO&nbsp;<GiDragonOrb/></p>
+        <p className={styles.innerText}><GiDragonOrb/>&nbsp;BÔNUS DE RENASCIMENTO&nbsp;<GiDragonOrb/></p>
       </div>
       <div className={styles.containerBonus}>
         <DisplayBonus dataTip="Este bônus será aplicado ao seu GPC quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<GiArrowCursor/>} title="BÔNUS DE GPC" middle={false} value={gpcRebirth.toFixed(2)} />

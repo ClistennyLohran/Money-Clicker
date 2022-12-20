@@ -111,11 +111,9 @@
   width: 320px;
   height: 100vh;
 
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
 
   z-index: 20;
-
-  background: red;
 }
 .openCloseDiv {
   position: relative;
@@ -148,7 +146,7 @@
 
   border-radius: 5px;
 
-  background: var(--corFundoNav);
+  background: var(--corPrimaria);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
   transition: background 0.3s ease-in-out;
@@ -156,7 +154,7 @@
   cursor: pointer;
 }
 .openCloseButton:hover {
-  background: var(--corFundoNavHover);
+  background: var(--corPrimariaHover);
 }
 .top {
   position: relative;

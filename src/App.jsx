@@ -28,6 +28,7 @@ import CustomizeBusiness from './pages/CustomizeBusiness/CustomizeBusiness';
 import InvestimentoBitcoin from './pages/InvestimentoBitcoin/InvestimentoBitcoin';
 import Cassino from './pages/Cassino/Cassino';
 import LojaBitcoin from './pages/LojaBitcoin/LojaBitcoin';
+import Dados from './pages/Dados/Dados';
 
 const varList = require('./VariblesObject/VariablesObject');
 
@@ -801,6 +802,7 @@ function App() {
               <Route path="/renascimento" element={<Renascimento/>}></Route>
               <Route path="/cassino" element={<Cassino/>}></Route>
               <Route path="/customizar" element={<CustomizeBusiness/>}></Route>
+              <Route path="/dados" element={<Dados/>}></Route>
               <Route path="/atualizacoes" element={<Updates/>}></Route>
               <Route path="/comojogar" element={<HowToPlay/>}></Route>
             </Routes>

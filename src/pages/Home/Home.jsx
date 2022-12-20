@@ -151,7 +151,7 @@ export default function Home() {
   return (
     <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
-      <Link to="/upgrade"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
+      <Link to="/melhorias"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
       <NomePagina icon={<GiCash/>} name={businessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.infoPanelContainer}>

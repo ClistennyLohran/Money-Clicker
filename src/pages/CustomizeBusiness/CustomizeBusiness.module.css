@@ -13,355 +13,8 @@
   -webkit-user-select: none;
 }
 
-.titleContainer {
+.displayContainer {
   display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 60px;
-  
-  margin-bottom: 10px;
-
-  text-align: center;
-
-  color: var(--corTexto);
-}
-.title {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 18px;
-  font-weight: 200;
-
-  color: var(--corTextoBranco);
-
-  text-align: center;
-
-  transition: 0.3s ease-in-out;
-}
-.titleBold {
-  font-weight: 700;
-}
-
-/* Text */
-
-.textContainer {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-
-  text-align: center;
-
-  margin-bottom: 10px;
-
-  color: var(--corTexto);
-}
-.text {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 18px;
-
-  color: var(--corTextoBranco);
-
-  text-align: center;
-
-  transition: 0.3s ease-in-out;
-}
-.buyText {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 16px;
-
-  color: var(--corTextoBranco);
-
-  text-align: center;
-
-  transition: 0.3s ease-in-out;
-}
-.textBold {
-  font-weight: 700;
-}
-.actualName {
-  margin-top: 20px;
-  margin-bottom: 3px;
-
-  font-size: 14px;
-
-  color: var(--corTextoBranco);
-}
-.newName {
-
-  margin-bottom: 10px;
-
-  font-size: 14px;
-
-  color: var(--corTextoBranco);
-}
-.bold {
-  font-weight: 700;
-}
-.separator {
-  width: 90%;
-  height: 3px;
-
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  border-radius: 10px;
-
-  background: var(--corFundoNav);
-
-  transition: 0.3s ease-in-out;
-}
-
-/* Customize Name */
-
-.center {
-  display: flex;
-
-  align-items: center;
-
-  flex-direction: column;
-}
-.containerName {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  width: 100%;
-}
-.inputName {
-  width: 400px;
-  height: 35px;
-  
-  text-align: center;
-
-  border: none;
-  border-radius: 100px;
-
-  margin-bottom: 20px;
-
-  background: var(--corFundoNav);
-  color: var(--corTexto);
-
-  transition: 0.3s ease-in-out;
-}
-.inputName::placeholder {
-  color: var(--corTextoPlaceHolder);
-}
-.changeNameBtn {
-  width: 400px;
-  height: 45px;
-
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  border-radius: 100px;
-  border: none;
-
-  font-size: 18px;
-  font-weight: 300;
-
-  background: var(--corPrimaria);
-  color: var(--corTextoBtn);
-
-  cursor: pointer;
-}
-
-/* Reset Progress */
-
-.resetContainer {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  margin-top: 20px;
-
-  width: 100%;
-}
-
-/* Text Container */
-
-.textContainer {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-}
-.textContainerReset {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  width: 100%;
-  height: 40px;
-
-  margin-bottom: 10px;
-
-  color: var(--corTexto);
-}
-.saveGameContainer {
-  width: 100%;
-}
-.textContainerSave {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  width: 100%;
-}
-.resetTitle {
-  font-weight: 200;
-  font-size: 20px;
-
-  color: var(--corTexto);
-}
-.resetTitle span {
-  font-weight: 700;
-}
-.resetText {
-  width: 85%;
-  text-align: center;
-
-  margin-top: 15px;
-  font-weight: 300;
-
-  color: var(--corTextoBranco);
-}
-
-/* Reset Progress Button */
-
-.resetProgressBtn {
-  width: 400px;
-  height: 45px;
-
-  border: none;
-  border-radius: 100px;
-
-  font-size: 18px;
-  font-weight: 300;
-
-  margin-top: 20px;
-  margin-bottom: 10px;
-
-  background: var(--corPrimaria);
-  color: var(--corTextoBtn);
-
-  cursor: pointer;
-}
-
-/* Custom Checkbox */
-
-.customCheckboxContainer {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: row;
-}
-
-.containerCb {
-  position: relative;
-
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  margin-top: 20px;
-  margin-right: 3px;
-  
-  transition: 0.3s ease-in-out;
-}
-.containerCb input {
-  position: absolute;
-
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-
-  transition: 0.3s ease-in-out;
-}
-.checkmark {
-  position: absolute;
-  
-  box-sizing: border-box;
-
-  bottom: 0;
-  right: 0;
-
-  height: 20px;
-  width: 20px;
-
-  border-radius: 5px;
-  border: 2px solid var(--corPrimaria);
-
-  background: transparent;
-
-  transition: 0.3s ease-in-out;
-}
-.containerCb:hover input ~ .checkmark {
-  background: var(--corFundoInput);
-}
-.containerCb input:checked ~ .checkmark {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background: var(--corPrimaria);
-}
-.checkmark:after {
-  content: "";
-
-  position: absolute;
-  display: none;
-}
-.containerCb input:checked ~ .checkmark:after {
-  display: block;
-}
-.containerCb .checkmark:after {
-  width: 10px;
-  height: 10px;
-
-  background: var(--corValor);
-  
-  border-radius: 3px;
-}
-.checkBoxText {
-  color: var(--corTextoBranco);
-
-  font-size: 14px;
 }
 
 /* Temas e Cores */
@@ -369,24 +22,21 @@
 .containerTemas {
   display: flex;
 
-  align-items: center;
-  justify-content: center;
-
-  flex-wrap: wrap;
-
-  width: 100%;
-
-  margin-bottom: 10px;
+  height: 60px;
+}
+.marginTop {
+  margin-top: 10px;
 }
 .theme {
   display: flex;
 
-  width: 80px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
 
-  margin: 10px 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 
-  border-radius: 15px;
+  border-radius: 7px;
 
   border: 4px solid var(--corFundoNav);
 
@@ -396,12 +46,13 @@
 .themeSelected {
   display: flex;
 
-  width: 80px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
 
-  margin: 10px 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 
-  border-radius: 15px;
+  border-radius: 7px;
 
   border: 4px solid var(--corPrimaria);
 
@@ -411,13 +62,12 @@
 .theme:hover {
   border: 4px solid var(--corFundoNavHover);
 }
-
 .theme01Left {
   width: 50%;
   height: 100%;
 
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 
   background: #222133;
 }
@@ -425,18 +75,17 @@
   width: 50%;
   height: 100%;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   background: #2C2A42;
 }
-
 .theme02Left {
   width: 50%;
   height: 100%;
 
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px5px;
+  border-bottom-left-radius: 5px5px;
 
   background: #0F0F0F;
 }
@@ -444,18 +93,17 @@
   width: 50%;
   height: 100%;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px5px;
+  border-bottom-right-radius: 5px5px;
 
   background: #141414;
 }
-
 .theme03Left {
   width: 50%;
   height: 100%;
 
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   background: #212A33;
 }
@@ -463,18 +111,17 @@
   width: 50%;
   height: 100%;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   background: #2A3642;
 }
-
 .theme04Left {
   width: 50%;
   height: 100%;
 
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   background: #33212C;
 }
@@ -482,18 +129,17 @@
   width: 50%;
   height: 100%;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   background: #422A38;
 }
-
 .theme05Left {
   width: 50%;
   height: 100%;
 
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   background: #332121;
 }
@@ -501,18 +147,17 @@
   width: 50%;
   height: 100%;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   background: #422A2A;
 }
-
 .theme06Left {
   width: 50%;
   height: 100%;
 
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 
   background: #213329;
 }
@@ -520,8 +165,8 @@
   width: 50%;
   height: 100%;
 
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   background: #2A4236;
 }
@@ -537,15 +182,13 @@
   flex-wrap: wrap;
 
   width: 100%;
-
-  margin-bottom: 10px;
 }
 
 .cor {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
 
-  border-radius: 100%;
+  border-radius: 7px;
 
   margin: 2px 4px;
 
@@ -561,10 +204,10 @@
 .corSelected {
   position: relative;
 
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
 
-  border-radius: 100%;
+  border-radius: 7px;
 
   margin: 2px 4px;
 
@@ -587,534 +230,148 @@
 
   background: var(--corFundoNavHover);
 
-  border-radius: 100%;
+  border-radius: 5px;
 }
 
 .cor01 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #0a84ff;
 }
-
 .cor02 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #ff9f0a;
 }
-
 .cor03 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #ffd60a;
 }
-
 .cor04 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #30d158;
 }
-
 .cor05 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #66d4cf;
 }
-
 .cor06 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;border-radius: 5px;
 
   background: #40c8e0;
 }
-
 .cor07 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;border-radius: 5px;
 
   background: #64d2ff;
 }
-
 .cor08 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;border-radius: 5px;
 
   background: #ff453a;
 }
-
 .cor09 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;border-radius: 5px;
 
   background: #5e5ce6;
 }
-
 .cor10 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;border-radius: 5px;
 
   background: #bf5af2;
 }
-
 .cor11 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #ff375f;
 }
-
 .cor12 {
   width: 100%;
   height: 100%;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: #ac8e68;
 }
 
-/* Buy Themes and Colors */
+/* Value Container */ 
 
-.buyThemesAndColorsContainerUnlocked {
-  display: none;
-}
-
-/* Save & Backup */
-
-.saveGameContainer {
-  width: 100%;
-}
-.backupContainer {
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-
-  margin-top: 10px;
-
-  width: 810px;
-  height: 180px;
-
-  border-radius: 10px;
-
-  transition: 0.3s ease-in-out;
-
-  background: var(--corFundoNav);
-}
-.loadContainer {
-  display: flex;
-
-  align-items: center;
-  flex-direction: column;
-
-  margin-top: 10px;
-  margin-bottom: 60px;
-
-  width: 810px;
-  height: 180px;
-
-  border-radius: 10px;
-
-  transition: 0.3s ease-in-out;
-
-  background: var(--corFundoNav);
-}
-.alertText {
-  font-size: 14px;
-  font-weight: 300;
-
-  text-align: center;
-
-  margin-bottom: 5px;
-
-  color: var(--corTextoBranco);
-}
-.saveText {
+.valueContainer {
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  margin-top: 20px;
+  width: 420px;
+  height: 35px;
+
+  margin-top: 10px;
   margin-bottom: 10px;
 
+  border: none;
+  border-radius: 5px;
+
   font-size: 16px;
   font-weight: 500;
 
   color: var(--corTextoBranco);
-}
-.saveCode {
-  width: 100%;
-  height: 25px;
-
-  border-radius: 10px;
-  border: none;
-
-  font-size: 14px;
-  font-weight: 300;
-
-  text-align: center;
-
-  background: var(--corFundo);
-  color: var(--corTextoBranco);
-}
-.saveValueContainer {
-  position: relative;
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 85%;
-  height: 25px;
-
-  padding-left: 20px;
-  padding-right: 20px;
-
-  border-radius: 100px;
-
-  font-size: 14px;
-
-  background: var(--corFundo);
-  color: var(--corTextoBranco);
-
-  overflow: hidden;
-}
-.copyBtn {
-  position: absolute;
-  right: 0px;
-
-  width: 80px;
-  height: 25px;
-
-  border: none;
-
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-
   background: var(--corPrimaria);
-  color: var(--corTextoBtn);
+}
+.changeNameBtn {
+  width: 420px;
+  height: 45px;
 
-  font-weight: 500;
+  border: none;
+  border-radius: 5px;
 
-  transition: 0.3s ease-in-out;
+  font-size: 18px;
+  font-weight: 400;
+
+  margin-bottom: 60px;
+
+  color: var(--corTextoBranco);
+  background: var(--corPrimaria);
+
+  transition: background 0.3s ease-in-out;
+
   cursor: pointer;
 }
-.copyBtn:hover {
+.changeNameBtn:hover {
   background: var(--corPrimariaHover);
-}
-.dataBtn {
-  margin-top: 13px;
-
-  width: 300px;
-  height: 40px;
-
-  border: none;
-  border-radius: 100px;
-
-  background: var(--corPrimaria);
-  color: var(--corTextoBtn);
-
-  font-weight: 300;
-  font-size: 16px;
-
-  cursor: pointer;
-}
-
-@media (max-width: 880px) {
-  .backupContainer {
-    width: 400px;
-    height: 180px;
-  }
-  .loadContainer {
-    width: 400px;
-    height: 180px;
-  }
-  .saveValueContainer {
-    width: 70%;
-    height: 25px;
-  }
-  .saveCode::placeholder {
-    font-size: 12px;
-  }
-  .copyBtn {
-    width: 60px;
-    height: 25px;
-
-    font-size: 10px;
-  }
-  .alertText {
-    font-size: 12px;
-  }
-  .dataBtn {
-    margin-top: 20px;
-
-    width: 200px;
-    height: 30px;
-
-    font-weight: 300;
-    font-size: 14px;
-  }
-  .saveCode {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 16px;
-
-    text-align: center;
-  }
-  .inputName {
-    width: 260px;
-    height: 35px;
-    
-    text-align: center;
-  
-    border: none;
-    border-radius: 100px;
-  
-    margin-bottom: 20px;
-  
-    background: var(--corFundoNav);
-    color: var(--corTexto);
-  
-    transition: 0.3s ease-in-out;
-  }
-  .inputName::placeholder {
-    color: var(--corTextoPlaceHolder);
-  }
-  .changeNameBtn {
-    width: 260px;
-    height: 40px;
-  
-    margin-bottom: 10px;
-  
-    border-radius: 100px;
-    border: none;
-  
-    font-size: 20px;
-    font-weight: 300;
-  
-    background: var(--corPrimaria);
-    color: var(--corTextoBtn);
-  
-    cursor: pointer;
-  }
-
-  /* Reset Progress */
-
-  .resetTitle {
-    font-size: 18px;
-  }
-  .resetText {
-    font-size: 14px;
-  }
-
-  /* Reset Progress Button */
-
-  .resetProgressBtn {
-    width: 260px;
-    height: 40px;
-
-    margin-top: 40px;
-
-    font-size: 16px;
-  }
-
-  /* Text Titles */
-
-  .textContainerReset {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-direction: column;
-
-    width: 100%;
-    height: 40px;
-
-    margin-bottom: 10px;
-
-    color: var(--corTexto);
-  }
-  .buyText {
-    font-size: 12px;
-  }
-  .text {
-    font-size: 16px;
-  }
-
-  /* Custom Checkbox */
-
-  .customCheckboxContainer {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-direction: row;
-
-    width: 100%;
-  }
-
-  .containerCb {
-    position: relative;
-
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    margin-top: 20px;
-    margin-right: 3px;
-    
-    transition: 0.3s ease-in-out;
-  }
-  .containerCb input {
-    position: absolute;
-
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-
-    transition: 0.3s ease-in-out;
-  }
-  .checkmark {
-    position: absolute;
-    
-    box-sizing: border-box;
-
-    bottom: 0;
-    right: 0;
-
-    height: 20px;
-    width: 20px;
-
-    border-radius: 5px;
-    border: 2px solid var(--corPrimaria);
-
-    background: transparent;
-
-    transition: 0.3s ease-in-out;
-  }
-  .containerCb:hover input ~ .checkmark {
-    background: var(--corFundoInput);
-  }
-  .containerCb input:checked ~ .checkmark {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: var(--corPrimaria);
-  }
-  .checkmark:after {
-    content: "";
-
-    position: absolute;
-    display: none;
-  }
-  .containerCb input:checked ~ .checkmark:after {
-    display: block;
-  }
-  .containerCb .checkmark:after {
-    width: 10px;
-    height: 10px;
-
-    background: var(--corValor);
-    
-    border-radius: 3px;
-  }
-  .checkBoxText {
-    font-size: 14px;
-  }
-
-  /* Select Theme */
-
-  .theme {
-    display: flex;
-  
-    width: 60px;
-    height: 30px;
-  
-    margin: 10px 10px;
-  
-    border-radius: 12px;
-  
-    border: 3px solid var(--corFundoNav);
-  
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-  .theme:hover {
-    border: 3px solid var(--corFundoNavHover);
-  }
-  .themeSelected {
-    display: flex;
-  
-    width: 60px;
-    height: 30px;
-  
-    margin: 10px 10px;
-  
-    border-radius: 12px;
-  
-    border: 3px solid var(--corPrimaria);
-  
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-
-  /* Save e Load Container */
-
-  .backupContainer {
-    width: 260px;
-    height: 180px;
-  }
-  .loadContainer {
-    width: 260px;
-    height: 180px;
-  }
-  .copyBtn {
-    width: 40px;
-    height: 25px;
-
-    font-size: 10px;
-  }
-  .saveCode {
-    font-size: 10px;
-  }
-  .saveCode::placeholder {
-    font-size: 10px;
-  }
 }

@@ -1,6 +1,6 @@
 import styles from './NavBar.module.css';
 
-import { FaHome, FaBtc, FaEdit, FaCashRegister } from 'react-icons/fa';
+import { FaHome, FaBtc, FaSave, FaCashRegister } from 'react-icons/fa';
 import { GiHeartWings } from 'react-icons/gi';
 import { MdOutlineMultilineChart } from 'react-icons/md';
 import { GoGear } from 'react-icons/go';
@@ -55,7 +55,7 @@ export default function NavBar() {
   return (
     <div className={styles.navbar}>
       <motion.div id="optionsContainer" className={styles.optionsContainer}>
-        <ReactTooltip place="bottom" multiline={true} effect="solid"/>
+        <ReactTooltip place="top" multiline={true} effect="solid"/>
         <div id="menuItems" className={styles.menuItems}>
           <div className={styles.openCloseDiv}>
             <div className={styles.openCloseButton} onClick={() => openMenu()} >
@@ -75,7 +75,7 @@ export default function NavBar() {
             <NavBarLinkDisplay icon={<FaBtc/>} title="LOJA BITCOIN" path="/lojabitcoin" />
             <NavBarLinkDisplay icon={<GiHeartWings/>} title="RENASCIMENTO" path="/renascimento" />
             <NavBarLinkDisplay icon={<AiFillFormatPainter/>} title="CUSTOMIZAÇÃO" path="/customizar" />
-            {/* <NavBarLinkDisplay icon={<FaHome/>} title="DADOS DO JOGO" path="/dados" /> */}
+            <NavBarLinkDisplay icon={<FaSave/>} title="DADOS DO JOGO" path="/dados" />
             <NavBarLinkDisplay icon={<HiNewspaper/>} title="NOVIDADES E ATUALIZAÇÕES" path="/atualizacoes" />
             <NavBarLinkDisplay icon={<BsFillPatchQuestionFill/>} title="TUTORIAL" path="/comojogar" />
             {/* <NavBarLinkDisplay icon={<FaHome/>} title="APOIAR O MONEY CLICKER" path="/apoiar" /> */}
@@ -92,8 +92,8 @@ export default function NavBar() {
         <li data-tip="Início" className={router.pathname === "/" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/"><FaHome className={styles.icon}/></Link>
         </li>
-        <li data-tip="Customização e Configuração" className={router.pathname === "/customizar" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/customizar"><FaEdit className={styles.icon}/></Link>
+        <li data-tip="Customização" className={router.pathname === "/customizar" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/customizar"><AiFillFormatPainter className={styles.icon}/></Link>
         </li>
         <li data-tip="Renascimento" className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/renascimento"><GiHeartWings className={styles.icon}/></Link>
