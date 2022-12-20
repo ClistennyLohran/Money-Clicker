@@ -185,6 +185,8 @@
 
   font-size: 36px;
 
+  cursor: pointer;
+
   z-index: 2;
 }
 .textInfosContainerLeft {
@@ -254,4 +256,33 @@
   font-weight: 500;
 
   color: var(--corTextoBranco);
+}
+.convertToReais {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 5px;
+
+  left: 45px;
+
+  font-size: 20px;
+
+  background: var(--corPrimaria);
+  color: var(--corIconeBranco);
+
+  cursor: pointer;
+
+  transition: background 0.3s ease-in-out;
+
+  z-index: 3;
+}
+.convertToReais:hover {
+  background: var(--corPrimariaHover);
 }

@@ -18,6 +18,8 @@
   border-radius: 5px;
 
   background: var(--corFundo);
+
+  cursor: pointer;
 }
 .icon {
   display: flex;
@@ -28,8 +30,6 @@
   color: var(--corTextoBranco);
 
   font-size: 24px;
-
-  cursor: pointer;
 }
 .title {
   font-size: 13px;

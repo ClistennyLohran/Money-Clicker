@@ -1,22 +1,39 @@
 .container {
   display: flex;
-
+  
   align-items: center;
   justify-content: center;
-
+  
   flex-direction: column;
-
+  
   -ms-user-select: none;
   -moz-user-select: none;
   user-select: none;
   -webkit-user-select: none;
 }
+
+/* Display do Topo */
+
+.displayInfoContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 1130px;
+
+  border-radius: 5px;
+}
+
 /* Container Energia e Refrigeracao */
 
 .gridContainer {
-  display: grid;
+  display: flex;
 
-  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
 }
 .containerEnergia {
   display: flex;
@@ -25,13 +42,12 @@
 
   flex-direction: column;
 
-  width: 400px;
-  height: 400px;
+  width: 370px;
+  height: 480px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
-  margin: 0 5px;
-  margin-bottom: 20px;
+  margin-right: 10px;
 
   background: var(--corFundoNav);
 
@@ -44,13 +60,12 @@
 
   flex-direction: column;
 
-  width: 400px;
-  height: 400px;
+  width: 370px;
+  height: 480px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
-  margin: 0 5px;
-  margin-bottom: 20px;
+  margin-left: 10px;
 
   background: var(--corFundoNav);
 
@@ -75,7 +90,7 @@
   flex-direction: column;
 
   width: 95%;
-  height: 300px;
+  height: 400px;
 
   overflow-y: scroll;
 }

@@ -95,8 +95,8 @@ export default function MelhoriaGerador({ id, item, nome }) {
           <p>{item.quantidadeAtiva}</p>
         </div>
         <div className={styles.amountControlGrid}>
-          <button className={`${styles.button} ${styles.plus}`} onClick={increaseAmount(item, item.id)}>{<FaPlus/>}</button>
-          <button className={`${styles.button} ${styles.minus}`} onClick={decreaseAmount(item, item.id)}>{<FaMinus/>}</button>
+          <motion.button className={`${styles.button} ${styles.plus}`} onClick={increaseAmount(item, item.id)} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} >{<FaPlus/>}</motion.button>
+          <motion.button className={`${styles.button} ${styles.minus}`} onClick={decreaseAmount(item, item.id)} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} >{<FaMinus/>}</motion.button>
         </div>
         <motion.button 
           className={styles.stopProduction}

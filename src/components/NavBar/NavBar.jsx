@@ -1,119 +1,84 @@
 import styles from './NavBar.module.css';
 
-import { FaHome, FaBtc, FaBars, FaQuestionCircle, FaEdit, FaCashRegister } from 'react-icons/fa';
-import { BsLightbulbFill } from 'react-icons/bs';
-import { IoClose } from 'react-icons/io5';
+import { FaHome, FaBtc, FaEdit, FaCashRegister } from 'react-icons/fa';
 import { GiHeartWings } from 'react-icons/gi';
-import { BiCodeAlt } from 'react-icons/bi';
 import { MdOutlineMultilineChart } from 'react-icons/md';
-import { SiBitcoinsv } from 'react-icons/si';
+import { GoGear } from 'react-icons/go';
+import { BiChip } from 'react-icons/bi';
+import { AiFillFormatPainter } from 'react-icons/ai';
+import { HiNewspaper } from 'react-icons/hi';
+import { BsFillPatchQuestionFill } from 'react-icons/bs';
 
 import { motion } from 'framer-motion';
 
 import { Link, useLocation } from 'react-router-dom';
+
 import { useState } from 'react';
+
 import ReactTooltip from 'react-tooltip';
+import NavBarLinkDisplay from '../NavBarLinkDisplay/NavBarLinkDisplay';
 
 export default function NavBar() {
   const router = useLocation();
 
-  const [ optionsState, setOptionsState ] = useState(false);
+  const [ menuState, setMenuState ] = useState(false);
 
-  function animateOpenMenu() {
-    let optionsContainer = document.getElementById('optionsContainer');
+  const openMenu = () => {
+    let top = document.getElementById('top');
+    let middle = document.getElementById('middle');
+    let bottom = document.getElementById('bottom');
+
+    let menuItems = document.getElementById('menuItems');
     
-    if(!optionsState) {
-      optionsContainer.style.opacity = '1';
-      optionsContainer.style.pointerEvents = 'all';
-      optionsContainer.style.right = '0';
-      setOptionsState(!optionsState);
+    if(!menuState) {
+      top.style.top = "2px";
+      top.style.transform = "rotate(45deg)";
+      middle.style.opacity = "0";
+      middle.style.left = "-30px";
+      bottom.style.bottom = "2px";
+      bottom.style.transform = "rotate(-45deg)";
+      menuItems.style.right = "0";
+      setMenuState(!menuState);
       return;
     }
-    optionsContainer.style.opacity = '0';
-    optionsContainer.style.pointerEvents = 'none';
-    optionsContainer.style.right = '-400px';
-    setOptionsState(!optionsState);
+    top.style.top = "-5px";
+    top.style.transform = "rotate(0deg)";
+    middle.style.opacity = "1";
+    middle.style.left = "0px";
+    bottom.style.bottom = "-5px";
+    bottom.style.transform = "rotate(0deg)";
+    menuItems.style.right = "-320px";
+    setMenuState(!menuState);
+    return;
   }
 
   return (
     <div className={styles.navbar}>
-      <motion.div 
-        id="optionsContainer"
-        className={styles.optionsContainer}
-      >
-        <ReactTooltip 
-          place="bottom"
-          multiline={true}
-          effect="solid"
-        />
-        <button 
-          className={styles.closeBtn}
-          onClick={() => animateOpenMenu()}
-        >
-          {<IoClose/>}
-        </button>
-        <div className={styles.optionsTextContainer}>
-          <p className={styles.textOptions}>Menu de <span className={styles.textBoldOptions}>Opções</span></p>
-        </div>
-        <div className={styles.menuItems}>
-          <ul className={styles.listItemsContainer} onClick={() => animateOpenMenu()}>
-            <li className={styles.itemContainer}>
-              <Link to="/" className={router.pathname === "/" ? styles.optionsItemSelected : styles.optionsItem}>
-                <FaHome className={styles.optionsIcon}/>
-                <p>Início</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/upgrade" className={router.pathname === "/upgrade" ? styles.optionsItemSelected : styles.optionsItem}>
-                <FaCashRegister className={styles.optionsIcon}/>
-                <p>Loja de Melhorias</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/bitcoinstore" className={router.pathname === "/bitcoinstore" ? styles.optionsItemSelected : styles.optionsItem}>
-                <SiBitcoinsv className={styles.optionsIcon}/>
-                <p>Loja de Mineração</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/investimento/bitcoin" className={router.pathname === "/investimento/bitcoin" ? styles.optionsItemSelected : styles.optionsItem}>
-                <FaBtc className={styles.optionsIcon}/>
-                <p>Mineração de Bitcoin</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/cassino" className={router.pathname === "/cassino" ? styles.optionsItemSelected : styles.optionsItem}>
-                <MdOutlineMultilineChart className={styles.optionsIcon}/>
-                <p>Cassino</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/renascimento" className={router.pathname === "/renascimento" ? styles.optionsItemSelected : styles.optionsItem}>
-                <GiHeartWings className={styles.optionsIcon}/>
-                <p>Renascimento</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/customize" className={router.pathname === "/customize" ? styles.optionsItemSelected : styles.optionsItem}>
-                <FaEdit className={styles.optionsIcon}/>
-                <p>Customizações e Configurações</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/updates" className={router.pathname === "/updates" ? styles.optionsItemSelected : styles.optionsItem}>
-                <BsLightbulbFill className={styles.optionsIcon}/>
-                <p>Novidades e Atualizações</p>
-              </Link>
-            </li>
-            <li className={styles.itemContainer}>
-              <Link to="/howtoplay" className={router.pathname === "/howtoplay" ? styles.optionsItemSelected : styles.optionsItem}>
-                <FaQuestionCircle className={styles.optionsIcon}/>
-                <p>Tutorial</p>
-              </Link>
-            </li>
-          </ul>
-          <div className={styles.developedContainer}>
-            <p className={styles.developed}><BiCodeAlt/>&nbsp;Coded By: Lohran</p>
+      <motion.div id="optionsContainer" className={styles.optionsContainer}>
+        <ReactTooltip place="bottom" multiline={true} effect="solid"/>
+        <div id="menuItems" className={styles.menuItems}>
+          <div className={styles.openCloseDiv}>
+            <div className={styles.openCloseButton} onClick={() => openMenu()} >
+              <div id="top" className={styles.top}></div>
+              <div id="middle" className={styles.middle}></div>
+              <div id="bottom" className={styles.bottom}></div>
+            </div>
+          </div>
+          <div className={styles.itemsContainer}>
+            <div className={styles.titleContainer}>
+              <p className={styles.title}><GoGear/>&nbsp;MENU DE OPÇÕES&nbsp;<GoGear/></p>
+            </div>
+            <NavBarLinkDisplay icon={<FaHome/>} title="INÍCIO" path="/" />
+            <NavBarLinkDisplay icon={<BiChip/>} title="MINERAÇÃO DE BITCOIN" path="/investimento/bitcoin" />
+            <NavBarLinkDisplay icon={<MdOutlineMultilineChart/>} title="CASSINO" path="/cassino" />
+            <NavBarLinkDisplay icon={<FaCashRegister/>} title="LOJA COMUM" path="/melhorias" />
+            <NavBarLinkDisplay icon={<FaBtc/>} title="LOJA BITCOIN" path="/lojabitcoin" />
+            <NavBarLinkDisplay icon={<GiHeartWings/>} title="RENASCIMENTO" path="/renascimento" />
+            <NavBarLinkDisplay icon={<AiFillFormatPainter/>} title="CUSTOMIZAÇÃO" path="/customizar" />
+            {/* <NavBarLinkDisplay icon={<FaHome/>} title="DADOS DO JOGO" path="/dados" /> */}
+            <NavBarLinkDisplay icon={<HiNewspaper/>} title="NOVIDADES E ATUALIZAÇÕES" path="/atualizacoes" />
+            <NavBarLinkDisplay icon={<BsFillPatchQuestionFill/>} title="TUTORIAL" path="/comojogar" />
+            {/* <NavBarLinkDisplay icon={<FaHome/>} title="APOIAR O MONEY CLICKER" path="/apoiar" /> */}
           </div>
         </div>
       </motion.div>
@@ -127,17 +92,11 @@ export default function NavBar() {
         <li data-tip="Início" className={router.pathname === "/" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/"><FaHome className={styles.icon}/></Link>
         </li>
-        <li data-tip="Melhorias" className={router.pathname === "/upgrade" ? styles.navbarItemSelected : styles.navbarItem}>
-          <Link to="/upgrade"><FaCashRegister className={styles.icon}/></Link>
+        <li data-tip="Customização e Configuração" className={router.pathname === "/customizar" ? styles.navbarItemSelected : styles.navbarItem}>
+          <Link to="/customizar"><FaEdit className={styles.icon}/></Link>
         </li>
         <li data-tip="Renascimento" className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/renascimento"><GiHeartWings className={styles.icon}/></Link>
-        </li>
-        <li 
-          className={styles.optionsMenu}
-          onClick={() => animateOpenMenu()}
-        >
-          <FaBars/>
         </li>
       </ul>
     </div>

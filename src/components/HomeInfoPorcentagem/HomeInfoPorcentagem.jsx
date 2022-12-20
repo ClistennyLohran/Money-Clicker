@@ -1,9 +1,9 @@
 import styles from './HomeInfoPorcentagem.module.css';
 
-export default function HomeInfoPorcentagem({ icon, title, value }) {
+export default function HomeInfoPorcentagem({ icon, title, value, dataTip }) {
   return (
     <div className={styles.container}>
-      <div className={styles.iconContainer}>
+      <div data-tip={dataTip} className={styles.iconContainer}>
         <p className={styles.icon}>{icon}</p>
       </div>
       <div className={styles.infoContainer}>

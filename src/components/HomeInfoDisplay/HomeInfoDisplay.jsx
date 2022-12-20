@@ -18,8 +18,8 @@ export default function HomeInfoDisplay({ icon, valueLeft, titleLeft, valueRight
         <p className={styles.title}>{titleLeft}</p>
         <p className={styles.value}>{valueFormatterLeft(valueLeft)}</p>
       </div>
-      <div className={styles.iconInnerContainer}>
-        <p data-tip={dataTip} className={styles.icon}>{icon}</p>
+      <div data-tip={dataTip} className={styles.iconInnerContainer}>
+        <p className={styles.icon}>{icon}</p>
       </div>
       <div className={styles.showInfoRight}>
         <p className={styles.title}>{titleRight}</p>

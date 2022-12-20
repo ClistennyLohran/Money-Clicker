@@ -27,7 +27,8 @@ export default function Updates() {
           <p className={styles.version}>v1.7.0 - 19/12/2022</p>
         </div>
         <ul className={styles.newsContainer}>
-          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização visa facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no jogo.</li>
+          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização é facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no mesmo.</li>
+          <li>• Botão de acesso rápido para as lojas de melhorias, comuns e bitcoin, sujerido pelo Beta Tester <span className={styles.betaTester}>Nyox</span></li>
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
           <li>• Nenhum bug reportado ou identificado.</li>
         </ul>

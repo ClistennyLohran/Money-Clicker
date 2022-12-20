@@ -2,22 +2,19 @@
 
 .generalContainer {
   position: relative;
-  width: 365px;
-
-  margin-bottom: 10px;
+  width: 330px;
 }
 .container {
   position: relative;
 
-  width: 365px;
+  width: 325px;
 
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border-left: 4px solid var(--corPrimaria);
 
-  margin: auto;
   margin-bottom: 10px;
   
   background: var(--corFundo);
@@ -33,12 +30,12 @@
 .containerLocked {
   position: relative;
 
-  width: 365px;
+  width: 325px;
 
   padding-top: 1px;
   padding-bottom: 1px;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border-left: 4px solid var(--corPrimaria);
 
   margin: auto;
@@ -63,7 +60,7 @@
   width: 100%;
   height: 100%;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border-left: 4px solid var(--corPrimaria);
 
   background: var(--corFundo);
@@ -102,8 +99,8 @@
   width: 100px;
   height: 20px;
 
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   align-items: center;
   justify-content: center;
@@ -133,7 +130,7 @@
   font-weight: 700;
 }
 .spacing {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 /* Amount Control */
@@ -164,7 +161,7 @@
   height: 20px;
 
   margin-top: 5px;
-  border-radius: 50px;
+  border-radius: 5px;
 
   font-size: 12px;
 
@@ -177,10 +174,13 @@
   margin-top: 10px;
 
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
 
   background: var(--corPrimaria);
   color: var(--corTextoBtn);
+
+  font-size: 14px;
+  font-weight: 500;
 
   cursor: pointer;
   transition: background 0.3s ease-in-out;
@@ -196,6 +196,9 @@
   margin-top: 5px;
   width: 76px;
 }
+.plus {
+  margin-right: 15px;
+}
 .button {
   display: flex;
 
@@ -205,19 +208,19 @@
   width: 30px;
   height: 30px;
 
-  margin: auto;
+  margin-top: 5px;
 
-  border-radius: 100%;
+  border-radius: 5px;
   border: none;
 
   color: var(--corTextoBranco);  
-  background: var(--corFundoNav);
+  background: var(--corPrimaria);
 
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
 }
 .button:hover {
-  background: var(--corFundoNavHover);
+  background: var(--corPrimariaHover);
 }
 
 /* Overclock Range */
@@ -228,18 +231,18 @@
   margin-left: 6px;
   margin-bottom: 10px;
   width: 95%;
-  height: 15px;
+  height: 20px;
 
-  border-radius: 50px;
+  border-radius: 5px;
   background: var(--corFundoNav);
 }
 .overclockRange::-webkit-slider-thumb {
   -webkit-appearance: none;
 
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
 
-  border-radius: 100%;
+  border-radius: 5px;
 
   background: var(--corPrimaria);
 
@@ -248,86 +251,4 @@
 }
 .overclockRange::-webkit-slider-thumb:hover {
   background: var(--corPrimariaHover);
-}
-.buttonInfoGrid {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-
-  margin-bottom: 10px;
-}
-.buttonInfo {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 60px;
-  height: 35px;
-
-  border-radius: 10px;
-  border: none;
-
-  margin: 0 5px;
-
-  background: var(--corPrimaria);
-  color: var(--corTextoBtn);
-  font-size: 20px;
-
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-}
-.buttonInfo:hover {
-  background: var(--corPrimariaHover);
-}
-
-/* Extra Info Container */
-.extraInfoContainer {
-  position: relative;
-  display: flex;
-
-  justify-content: center;
-
-  flex-direction: column;
-
-  width: 365px;
-  height: 50px;
-
-  top: -80px;
-
-  border-radius: 10px;
-  border-left: 4px solid var(--corPrimaria);
-
-  background: var(--corFundo);
-
-  z-index: 0;
-}
-.infoDiv {
-  position: absolute;
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 16px;
-  height: 16px;
-
-  font-size: 8px;
-
-  top: 5px;
-  right: 5px;
-
-  border-radius: 100%;
-
-  background: var(--corTooltip);
-  color: var(--corTexto);
-
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-}
-.infoDiv:hover {
-  background: var(--corTooltipHover);
 }

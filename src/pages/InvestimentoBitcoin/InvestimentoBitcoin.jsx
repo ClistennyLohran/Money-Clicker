@@ -14,7 +14,7 @@ import { SiBitcoinsv, SiConvertio } from 'react-icons/si';
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
 import { AiFillThunderbolt } from 'react-icons/ai';
 import { TiArrowRepeat } from 'react-icons/ti';
-import { FaArrowUp } from 'react-icons/fa';
+import { FaArrowUp, FaTemperatureHigh, FaCashRegister } from 'react-icons/fa';
 
 /* Tooltip */
 import ReactTooltip from 'react-tooltip';
@@ -23,6 +23,10 @@ import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheir
 import NomePagina from '../../components/NomePagina/NomePagina';
 import DisplayLeft from '../../components/BitcoinComponents/DisplayLeft/DisplayLeft';
 import DisplayRight from '../../components/BitcoinComponents/DisplayRight/DisplayRight';
+import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
+
+/* Rotas */
+import { Link } from 'react-router-dom';
 
 export default function AdvancedMining() {
   
@@ -36,17 +40,6 @@ export default function AdvancedMining() {
 
   const [ arrowIcon, setArrowIcon ] = useState(<RiArrowDownSFill/>);
   const [ infoStatus, setInfoStatus ] = useState(0);
-  const [ windowSize, setWindowSize ] = useState(window.innerWidth);
-
-  useEffect(() => {
-    let checkSize = setInterval(() => {
-      setWindowSize(window.innerWidth);
-    }, 200);
-
-    return () => {
-      clearInterval(checkSize);
-    }
-  }, [windowSize]);
 
   const changeInfoStatus = () => {
     if(infoStatus === 0) {
@@ -81,7 +74,7 @@ export default function AdvancedMining() {
       showInfoGrid.style.top = "-220px";
     }
     
-  }, [infoStatus, windowSize]);
+  }, [infoStatus]);
 
   useEffect(() => {
     if(((temperature + 26) - temperatureDecrease) >= 50 && ((temperature + 26) - temperatureDecrease) < 90) {
@@ -115,11 +108,20 @@ export default function AdvancedMining() {
     }
   }, [temperatureDecrease, temperature, miningPowerDecrease, energyPowerUsed, energyPower]);
 
-  
-
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  useEffect(() => {
+    let awakeBtn = document.getElementById('awakeBtn');
+
+    const awakeStore = async () => {
+      await sleep(1000);
+      awakeBtn.style.opacity = "1";
+    }
+
+    awakeStore();
+  }, []);
 
   const convertDolar = () => {
     if(dollarAmountConvert >= 10) {
@@ -151,16 +153,9 @@ export default function AdvancedMining() {
   const infoDisplayButton = <motion.button  className={styles.infoDisplayBtn} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => changeInfoStatus()}> <p className={styles.arrowBtnIcon}>{arrowIcon}</p>&nbsp;PAINEL DE INFORMAÇÕES&nbsp;<p className={styles.arrowBtnIcon}>{arrowIcon}</p></motion.button>
 
   return (
-    <motion.div
-      id="container"
-      className={styles.container}
-      animate={{ opacity: [0, 1], x: [-600, 0] }}
-    >
-      <ReactTooltip 
-        place="top"
-        multiline={true}
-        effect="solid"
-      />
+    <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
+      <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <Link to="/bitcoinstore"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias Bitcoin!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
       <NomePagina icon={<SiBitcoinsv/>} name={miningBusinessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.middleInfosContainer}>
@@ -176,6 +171,13 @@ export default function AdvancedMining() {
           <DisplayRight dataTip="Poder de mineração total de todas as placas<br>de vídeo somadas." converterStatus={false} icon={<GiMiner/>} title="PODER DE MINERAÇÃO" value={((miningPower * miningPowerBoost) * miningPowerMultiply) * miningPowerDecrease} formatter={1} position={1} />
           <DisplayRight dataTip="Quanta energia suas placas estão utilizando no total." converterStatus={false} icon={<AiFillThunderbolt/>} title="ENERGIA UTILIZADA" value={energyPowerUsed * energyEconomy} formatter={2} position={2} />
           <DisplayRight dataTip="Seus Bitcoins minerados manualmente." converterStatus={true} buttonFunction={sendMinedValue} convertIcon={<FaArrowUp/>} icon={<GiMineWagon/>} title="MINERAÇÃO MANUAL" value={minedAmount} formatter={3} position={1} />
+        </div>
+      </div>
+      <div className={styles.temperatureContainer}>
+        <p className={styles.title}><FaTemperatureHigh/>&nbsp;TEMPERATURA DO AMBIENTE&nbsp;<FaTemperatureHigh/></p>
+        <div className={styles.progressContainer}>
+          <p className={styles.progressValue}><AnimatedNumber value={(temperature + 26) - temperatureDecrease} formatValue={v => v.toFixed(1) + " C°"} duration={300}/></p>
+          <progress className={((temperature + 26) - temperatureDecrease) > 50 ? styles.temperatureCritical : styles.temperatureProgress} value={(temperature + 26) - temperatureDecrease} max={50}></progress>
         </div>
       </div>
       <div className={styles.mineracaoManualContainer}>

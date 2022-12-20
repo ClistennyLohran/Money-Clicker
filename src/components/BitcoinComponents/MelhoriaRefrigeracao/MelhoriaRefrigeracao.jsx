@@ -99,8 +99,8 @@ export default function MelhoriaRefrigeracao({ id, item, nome }) {
           <p>{item.quantidadeAtiva}</p>
         </div>
         <div className={styles.amountControlGrid}>
-          <button onClick={increaseAmount(item, item.id)} className={`${styles.button} ${styles.plus}`}>{<FaPlus/>}</button>
-          <button onClick={decreaseAmount(item, item.id)} className={`${styles.button} ${styles.minus}`}>{<FaMinus/>}</button>
+          <motion.button onClick={increaseAmount(item, item.id)} className={`${styles.button} ${styles.plus}`} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} >{<FaPlus/>}</motion.button>
+          <motion.button onClick={decreaseAmount(item, item.id)} className={`${styles.button} ${styles.minus}`} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} >{<FaMinus/>}</motion.button>
         </div>
         <motion.button 
           className={styles.stopProduction}

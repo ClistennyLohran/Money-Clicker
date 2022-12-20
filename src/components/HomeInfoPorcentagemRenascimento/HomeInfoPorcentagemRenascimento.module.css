@@ -23,6 +23,8 @@
   font-size: 24px;
 
   background: var(--corFundo);
+
+  cursor: pointer;
 }
 .icon {
   display: flex;

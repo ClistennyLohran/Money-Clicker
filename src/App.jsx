@@ -80,7 +80,7 @@ function App() {
 
   /* Currency */
   const [ balance, setBalance ] = useState(() => parseFloat(variables[0].currency.balance) || 0.00);
-  const [ dollarBalance, setDollarBalance ] = useState(() => parseFloat(variables[0].currency.dollarBalance) || 800.00);
+  const [ dollarBalance, setDollarBalance ] = useState(() => parseFloat(variables[0].currency.dollarBalance) || 0.00);
   const [ dollarAmountConvert, setDollarAmountConvert ] = useState(() => parseFloat(variables[0].currency.dollarAmountConvert) || 0.00);
   const [ btcAmount, setBtcAmount ] = useState(() => parseFloat(variables[0].currency.btcAmount) || 0.00000000);
   const [ minedAmount, setMinedAmount ] = useState(() => parseFloat(variables[0].currency.minedAmount) || 0.00000000);
@@ -795,14 +795,14 @@ function App() {
             <NotificationContainer/>
             <Routes>
               <Route exact path="/" element={<Home/>}></Route>
-              <Route path="/upgrade" element={<Upgrade/>}></Route>
-              <Route path="/bitcoinstore" element={<LojaBitcoin/>}></Route>
+              <Route path="/melhorias" element={<Upgrade/>}></Route>
+              <Route path="/lojabitcoin" element={<LojaBitcoin/>}></Route>
               <Route path="/investimento/bitcoin" element={<InvestimentoBitcoin/>}></Route>
               <Route path="/renascimento" element={<Renascimento/>}></Route>
               <Route path="/cassino" element={<Cassino/>}></Route>
-              <Route path="/customize" element={<CustomizeBusiness/>}></Route>
-              <Route path="/updates" element={<Updates/>}></Route>
-              <Route path="/howtoplay" element={<HowToPlay/>}></Route>
+              <Route path="/customizar" element={<CustomizeBusiness/>}></Route>
+              <Route path="/atualizacoes" element={<Updates/>}></Route>
+              <Route path="/comojogar" element={<HowToPlay/>}></Route>
             </Routes>
           </Router>
         </AdvancedMiningContext.Provider>

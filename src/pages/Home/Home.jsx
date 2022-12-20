@@ -13,12 +13,15 @@ import ReactTooltip from 'react-tooltip';
 import { GiCash, GiDoubleRingedOrb, GiArrowCursor, GiHeartWings, GiStarFormation } from 'react-icons/gi';
 import { AiFillBulb, AiFillClockCircle } from 'react-icons/ai';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
+import { FaCashRegister } from 'react-icons/fa';
 
 import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
 import NomePagina from '../../components/NomePagina/NomePagina';
 import HomeInfoDisplay from '../../components/HomeInfoDisplay/HomeInfoDisplay';
 import HomeInfoPorcentagem from '../../components/HomeInfoPorcentagem/HomeInfoPorcentagem';
 import HomeInfoPorcentagemRenascimento from '../../components/HomeInfoPorcentagemRenascimento/HomeInfoPorcentagemRenascimento';
+
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost } = useContext(ValuesContext);
@@ -134,9 +137,21 @@ export default function Home() {
     return;
   }, [openCloseRightState]);
 
+  useEffect(() => {
+    let awakeBtn = document.getElementById('awakeBtn');
+
+    const awakeStore = async () => {
+      await sleep(1000);
+      awakeBtn.style.opacity = "1";
+    }
+
+    awakeStore();
+  }, []);
+
   return (
     <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <Link to="/upgrade"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
       <NomePagina icon={<GiCash/>} name={businessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.infoPanelContainer}>
@@ -144,9 +159,9 @@ export default function Home() {
           <div className={styles.innerTitle}>
             <p><GiStarFormation/>&nbsp;PAINEL DE BÔNUS&nbsp;<GiStarFormation/></p>
           </div>
-          <HomeInfoPorcentagem icon={<GiArrowCursor/>} title="BÔNUS DE GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "%"} />
-          <HomeInfoPorcentagem icon={<AiFillClockCircle/>} title="BÔNUS DE GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "%"} />
-          <HomeInfoPorcentagem icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagem dataTip="Este bônus pode ser comprado na loja comum!" icon={<GiArrowCursor/>} title="BÔNUS DE GPC" value={specialGpcBoostStatus === 1 ? parseFloat(((gpcBoost + specialGpcBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((gpcBoost * 100) - 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagem dataTip="Este bônus pode ser comprado na loja comum!" icon={<AiFillClockCircle/>} title="BÔNUS DE GPS" value={specialGpsBoostStatus === 1 ? parseFloat(((gpsBoost + specialGpsBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((gpsBoost * 100) - 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagem dataTip="Este bônus pode ser comprado na loja comum!" icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC" value={specialLevelBoostStatus === 1 ? parseFloat(((levelBoost + specialLevelBoost) * 100) - 100).toFixed(2) + "%" : parseFloat((levelBoost * 100) - 100).toFixed(2) + "%"} />
           <button id="openCloseLeft" className={`${styles.openCloseLeft} ${styles.openCloseButton}`} onClick={() => openCloseL()} ><span id="rotateLeft"><RiArrowLeftSLine/></span></button>
         </div>
         <div id="middle" className={styles.middle}>
@@ -163,9 +178,9 @@ export default function Home() {
           <div className={styles.innerTitle}>
             <p><GiHeartWings/>&nbsp;PAINEL DE BÔNUS RENASCIMENTO&nbsp;<GiHeartWings/></p>
           </div>
-          <HomeInfoPorcentagemRenascimento icon={<GiArrowCursor/>} title="BÔNUS DE GPC DO RENASCIMENTO" value={specialGpcBoostStatus === 1 ? parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
-          <HomeInfoPorcentagemRenascimento icon={<AiFillClockCircle/>} title="BÔNUS DE GPS DO RENASCIMENTO" value={specialGpsBoostStatus === 1 ? parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
-          <HomeInfoPorcentagemRenascimento icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC DO RENASCIMENTO" value={specialLevelBoostStatus === 1 ? parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagemRenascimento dataTip="Este bônus só pode ser adquirido através do<br>renascimento, o mesmo é permanente e não é perdido ao renascer." icon={<GiArrowCursor/>} title="BÔNUS DE GPC DO RENASCIMENTO" value={specialGpcBoostStatus === 1 ? parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpcRebirthBoost * 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagemRenascimento dataTip="Este bônus só pode ser adquirido através do<br>renascimento, o mesmo é permanente e não é perdido ao renascer." icon={<AiFillClockCircle/>} title="BÔNUS DE GPS DO RENASCIMENTO" value={specialGpsBoostStatus === 1 ? parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
+          <HomeInfoPorcentagemRenascimento dataTip="Este bônus só pode ser adquirido através do<br>renascimento, o mesmo é permanente e não é perdido ao renascer." icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC DO RENASCIMENTO" value={specialLevelBoostStatus === 1 ? parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
           <button id="openCloseRight" className={`${styles.openCloseRight} ${styles.openCloseButton}`} onClick={() => openCloseR()} ><span id="rotateRight"><RiArrowRightSLine/></span></button>
         </div>
       </div>
