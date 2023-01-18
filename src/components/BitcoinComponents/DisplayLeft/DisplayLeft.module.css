@@ -79,15 +79,39 @@
 
 .title {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
 
   color: var(--corTextoBranco);
+}
+.titleAlert {
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--alert);
+}
+.titleCritic {
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--critic);
 }
 .value {
   font-size: 16px;
   font-weight: 500;
 
   color: var(--corTextoBranco);
+}
+.valueAlert {
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--alert);
+}
+.valueCritic {
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--critic);
 }
 .convertButton {
   position: absolute;

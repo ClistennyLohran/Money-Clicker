@@ -7,30 +7,32 @@ import { MdVerified, MdTipsAndUpdates } from 'react-icons/md';
 
 import ReactTooltip from 'react-tooltip';
 import NomePagina from '../../components/NomePagina/NomePagina';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
 
 export default function Updates() {
   return (
     <motion.div
       animate={{ opacity: [0, 1], x: [-600, 0] }}
     >
+      <AbrirMenuEfeito/>
       <div className={styles.container}>
-        <ReactTooltip 
-          place="top"
-          multiline={true}
-        />
+        <ReactTooltip place="top" multiline={true} effect="solid"/>
         <NomePagina icon={<MdTipsAndUpdates/>} name="ATUALIZAÇÕES"/>
 
         {/* v1.7.0 */}
 
         <div className={styles.versionContainer}>
           <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
-          <p className={styles.version}>v1.7.0 - 19/12/2022</p>
+          <p className={styles.version}>v1.7.0 - Repaginação - 18/01/2023</p>
         </div>
         <ul className={styles.newsContainer}>
-          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização é facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no mesmo.</li>
+          <li>• Olá clickers, obrigado a todos que aguardaram pela atualização 1.7.0 e obrigado aos que a tornaram possível, sei que levou um tempo considerável para que a mesma fosse disponibilizada, porém as próximas atualizações irão demandar mais tempo e esforço, mas garanto que farei meu melhor para valer a espera! Tenha um bom jogo.</li>
+          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização é facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no mesmo, sugerido pelo Beta Tester <span className={styles.betaTester}>ArthurVihOficial</span>.</li>
           <li>• Botão de acesso rápido para as lojas de melhorias, comuns e bitcoin, sujerido pelo Beta Tester <span className={styles.betaTester}>Nyox</span></li>
+          <li>• Sugestões para aprimoramento da barra lateral, pelo Beta Tester <span className={styles.betaTester}>Vinícius</span></li>
+          <li>• Sistema de som e trilha sonora para o jogo, criado pelo Audio Designer <span className={styles.betaTester}>Leonardo</span></li>
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
-          <li>• Nenhum bug reportado ou identificado.</li>
+          <li>• Ajustado o problema no qual algumas partes do savegame não eram atualizadas.</li>
         </ul>
         <div className={styles.updateSeparator}></div>
 

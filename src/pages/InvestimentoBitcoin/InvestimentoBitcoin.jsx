@@ -28,18 +28,34 @@ import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
 /* Rotas */
 import { Link } from 'react-router-dom';
 
+/* Song Import */
+import Click01 from '../../songs/Click01.mp3';
+import Click02 from '../../songs/Click02.mp3';
+import Click03 from '../../songs/Click03.mp3';
+import Click04 from '../../songs/Click04.mp3';
+import Click05 from '../../songs/Click05.mp3';
+import Click06 from '../../songs/Click06.mp3';
+import Click07 from '../../songs/Click07.mp3';
+import Click08 from '../../songs/Click08.mp3';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
+
+import SwitchEffect from '../../songs/MenuSwitchClick.mp3';
+
 export default function AdvancedMining() {
   
-  const { minedAmount, setMinedAmount, dollarAmountConvert, setDollarAmountConvert, btcAmount, setBtcAmount, dollarBalance, setDollarBalance, setNotificationType } = useContext(ValuesContext);
-  const { generalUpgrades, specialLevelBoostStatus, setClickAmount, clickAmount, xpAmountPerClick, levelBoost, specialLevelBoost, levelRebirthBoost, levelMultiply } = useContext(ValuesContext);
-  const { miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, temperatureDecrease, setTemperatureDecrease, miningBusinessName, miningPowerDecrease, setMiningPowerDecrease } = useContext(AdvancedMiningContext);
-  const { energyEconomy, setEnergyEconomy, miningPowerBoost, setMiningPowerBoost, miningPowerMultiply, setMiningPowerMultiply, energyPowerBoost, setEnergyPowerBoost, energyPowerMultiply, setEnergyPowerMultiply, manualMiningBoost } = useContext(AdvancedMiningContext);
-
-  const [ temperatureAlert, setTemperatureAlert ] = useState('Temperatura agradável!');
-  const [ sendAlert, setSendAlert ] = useState(0);
+  const { minedAmount, setMinedAmount, dollarAmountConvert, setDollarAmountConvert, btcAmount, setBtcAmount, setDollarBalance, setNotificationType } = useContext(ValuesContext);
+  const { specialLevelBoostStatus, setClickAmount, xpAmountPerClick, levelBoost, specialLevelBoost, levelRebirthBoost, levelMultiply, setTempAlert, tempAlert, setEnergyAlert, energyAlert } = useContext(ValuesContext);
+  const { miningPower, energyPower, energyPowerUsed, temperature, temperatureDecrease, miningBusinessName } = useContext(AdvancedMiningContext);
+  const { energyEconomy, miningPowerBoost, miningPowerMultiply, energyPowerBoost, energyPowerMultiply, manualMiningBoost, miningPowerEnergyDecrease, miningPowerTempDecrease } = useContext(AdvancedMiningContext);
 
   const [ arrowIcon, setArrowIcon ] = useState(<RiArrowDownSFill/>);
   const [ infoStatus, setInfoStatus ] = useState(0);
+
+  const playSong = () => {
+    let MenuSwitch = new Audio(SwitchEffect);
+
+    MenuSwitch.play();
+  }
 
   const changeInfoStatus = () => {
     if(infoStatus === 0) {
@@ -76,38 +92,6 @@ export default function AdvancedMining() {
     
   }, [infoStatus]);
 
-  useEffect(() => {
-    if(((temperature + 26) - temperatureDecrease) >= 50 && ((temperature + 26) - temperatureDecrease) < 90) {
-      setTemperatureAlert('Alerta de Temperatura: Esta temperatura é prejudicial, compre mais melhorias de refrigeramento, seu poder de mineração foi reduzido em 50%!');
-      setMiningPowerDecrease(0.50);
-      setSendAlert(1);
-    } else if(((temperature + 26) - temperatureDecrease) >= 90) {
-      setTemperatureAlert('Alerta de Temperatura: Temperatura extremamente prejudicial, toda as placas foram desligadas por segurança.');
-      setMiningPowerDecrease(0);
-      setSendAlert(1);
-    } else if(((temperature + 26) - temperatureDecrease) <= -20) {
-      setTemperatureAlert('Alerta de Temperatura: Está frio demais, as placas de vídeo não conseguem mais trabalhar, todas as placas foram desligadas por segurança.');
-      setMiningPowerDecrease(0);
-      setSendAlert(1);
-    } else if(energyPower === 0) {
-      setTemperatureAlert('Alerta de Energia: Você não está gerando energia, compre um gerador para começar a minerar Bitcoins.');
-      setMiningPowerDecrease(0);
-      setSendAlert(1);
-    } else if((energyPowerUsed * energyEconomy) > ((energyPower * energyPowerBoost) * energyPowerMultiply) && (energyPowerUsed * energyEconomy) <= (((energyPower * energyPowerBoost) * energyPowerMultiply) + 200)) {
-      setTemperatureAlert('Alerta de Energia: Você está gerando uma leve sobrecarga na energia, seu poder de mineração foi reduzido em 50%!');
-      setMiningPowerDecrease(0.50);
-      setSendAlert(1);
-    } else if((energyPowerUsed * energyEconomy) > (((energyPower * energyPowerBoost) * energyPowerMultiply) + 200)) {
-      setTemperatureAlert('Alerta de Energia: Você está gerando uma sobrecarga grave de energia, toda a sua produção foi desligada por segurança.');
-      setMiningPowerDecrease(0);
-      setSendAlert(1);
-    } else {
-      setTemperatureAlert('Temperatura agradável!');
-      setMiningPowerDecrease(1);
-      setSendAlert(0);
-    }
-  }, [temperatureDecrease, temperature, miningPowerDecrease, energyPowerUsed, energyPower]);
-
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -128,6 +112,46 @@ export default function AdvancedMining() {
       setDollarBalance(dollarBalance => dollarBalance + dollarAmountConvert);
       setBtcAmount(0.00000000);
       setDollarAmountConvert(0);
+    } else {
+      setNotificationType(11);
+    }
+  }
+
+  const playAudio = () => {
+    /* Audio Play */
+    switch(Math.floor(Math.random() * 7)) {
+      case 0:
+        let click01 = new Audio(Click01);
+        click01.play();
+        return;
+      case 1:
+        let click02 = new Audio(Click02);
+        click02.play();
+        return;
+      case 2:
+        let click03 = new Audio(Click03);
+        click03.play();
+        return;
+      case 3:
+        let click04 = new Audio(Click04);
+        click04.play();
+        return;
+      case 4:
+        let click05 = new Audio(Click05);
+        click05.play();
+        return;
+      case 5:
+        let click06 = new Audio(Click06);
+        click06.play();
+        return;
+      case 6:
+        let click07 = new Audio(Click07);
+        click07.play();
+        return;
+      case 7:
+        let click08 = new Audio(Click08);
+        click08.play();
+        return;
     }
   }
 
@@ -149,27 +173,28 @@ export default function AdvancedMining() {
     }
   }
 
-  const mineracaoManualButton = <motion.button className={styles.manualMiningButton} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => minerar()}>{<GiMineWagon/>}&nbsp;MINERAÇÃO MANUAL&nbsp;{<GiMineWagon/>}</motion.button>
+  const mineracaoManualButton = <motion.button className={styles.manualMiningButton} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => (minerar(), playAudio())}>{<GiMineWagon/>}&nbsp;MINERAÇÃO MANUAL&nbsp;{<GiMineWagon/>}</motion.button>
   const infoDisplayButton = <motion.button  className={styles.infoDisplayBtn} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => changeInfoStatus()}> <p className={styles.arrowBtnIcon}>{arrowIcon}</p>&nbsp;PAINEL DE INFORMAÇÕES&nbsp;<p className={styles.arrowBtnIcon}>{arrowIcon}</p></motion.button>
 
   return (
     <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
-      <Link to="/lojabitcoin"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias Bitcoin!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
+      <AbrirMenuEfeito/>
+      <Link onClick={() => playSong()} to="/lojabitcoin"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias Bitcoin!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
       <NomePagina icon={<SiBitcoinsv/>} name={miningBusinessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.middleInfosContainer}>
         <div className={styles.leftItems}>
           <DisplayLeft dataTip="Seu valor total em Bitcoins." converterStatus={false} icon={<BsCurrencyBitcoin/>} title="BITCOIN" value={btcAmount} formatter={1} position={1} />
-          <DisplayLeft dataTip="A quantidade de energia sendo gerada atualmente." converterStatus={false} icon={<AiFillThunderbolt/>} title="ENERGIA GERADA" value={(energyPower * energyPowerBoost) * energyPowerMultiply} formatter={2} position={2} />
+          <DisplayLeft dataTip="A quantidade de energia sendo gerada atualmente." energyAlert={energyAlert} converterStatus={false} icon={<AiFillThunderbolt/>} title="ENERGIA GERADA" value={(energyPower * energyPowerBoost) * energyPowerMultiply} formatter={2} position={2} />
           <DisplayLeft dataTip="Quanto seus bitcoins valem em dólares." converterStatus={true} buttonFunction={convertDolar} convertIcon={<SiConvertio/>} icon={<TiArrowRepeat/>} title="BITCOIN EM DÓLARES" value={dollarAmountConvert} formatter={3} position={1} />
         </div>
         <div className={styles.giantBitcoin}>
           <p className={styles.icon}><BsCurrencyBitcoin/></p>
         </div>
         <div className={styles.leftItems}>
-          <DisplayRight dataTip="Poder de mineração total de todas as placas<br>de vídeo somadas." converterStatus={false} icon={<GiMiner/>} title="PODER DE MINERAÇÃO" value={((miningPower * miningPowerBoost) * miningPowerMultiply) * miningPowerDecrease} formatter={1} position={1} />
-          <DisplayRight dataTip="Quanta energia suas placas estão utilizando no total." converterStatus={false} icon={<AiFillThunderbolt/>} title="ENERGIA UTILIZADA" value={energyPowerUsed * energyEconomy} formatter={2} position={2} />
+          <DisplayRight dataTip="Poder de mineração total de todas as placas<br>de vídeo somadas." converterStatus={false} icon={<GiMiner/>} title="PODER DE MINERAÇÃO" value={(((miningPower * miningPowerBoost) * miningPowerMultiply) * miningPowerEnergyDecrease) * miningPowerTempDecrease} formatter={1} position={1} />
+          <DisplayRight dataTip="Quanta energia suas placas estão utilizando no total." energyAlert={energyAlert} converterStatus={false} icon={<AiFillThunderbolt/>} title="ENERGIA UTILIZADA" value={energyPowerUsed * energyEconomy} formatter={2} position={2} />
           <DisplayRight dataTip="Seus Bitcoins minerados manualmente." converterStatus={true} buttonFunction={sendMinedValue} convertIcon={<FaArrowUp/>} icon={<GiMineWagon/>} title="MINERAÇÃO MANUAL" value={minedAmount} formatter={3} position={1} />
         </div>
       </div>
@@ -177,7 +202,7 @@ export default function AdvancedMining() {
         <p className={styles.title}><FaTemperatureHigh/>&nbsp;TEMPERATURA DO AMBIENTE&nbsp;<FaTemperatureHigh/></p>
         <div className={styles.progressContainer}>
           <p className={styles.progressValue}><AnimatedNumber value={(temperature + 26) - temperatureDecrease} formatValue={v => v.toFixed(1) + " C°"} duration={300}/></p>
-          <progress className={((temperature + 26) - temperatureDecrease) > 50 ? styles.temperatureCritical : styles.temperatureProgress} value={(temperature + 26) - temperatureDecrease} max={50}></progress>
+          <progress className={((temperature + 26) - temperatureDecrease) > 50 && ((temperature + 26) - temperatureDecrease) <= 90 ? styles.temperatureAlert : ((temperature + 26) - temperatureDecrease) > 90 ? styles.temperatureCritical : styles.temperatureProgress} value={(temperature + 26) - temperatureDecrease} max={50}></progress>
         </div>
       </div>
       <div className={styles.mineracaoManualContainer}>

@@ -14,6 +14,9 @@ import { useState } from 'react';
 
 import { AdvancedMiningContext } from '../../../contexts/AdvancedMiningContext/AdvancedMiningContext';
 
+/* Audio Play */
+import upgradeSong from '../../../songs/Melhoria.mp3';
+
 export default function MelhoriaPlacaDeVideo({ id, item }) {
   const { generalUpgrades, setGeneralUpgrades, dollarBalance, setDollarBalance, btcAmount, setBtcAmount } = useContext(ValuesContext);
   const { setNotificationType, level } = useContext(ValuesContext);
@@ -63,6 +66,8 @@ export default function MelhoriaPlacaDeVideo({ id, item }) {
     // Ao comprar mais uma placa de vídeo do grupo.
     if(item.totalAtivo >= item.quantiaTotal) {
       if(item.valor <= dollarBalance) {
+        let audio = new Audio(upgradeSong);
+        audio.play();
         setDollarBalance(dollarBalance - item.valor);
         let newArr = [...generalUpgrades[4]];
         newArr[index] = {

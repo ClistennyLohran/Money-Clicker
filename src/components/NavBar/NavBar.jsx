@@ -1,6 +1,6 @@
 import styles from './NavBar.module.css';
 
-import { FaHome, FaBtc, FaSave, FaCashRegister } from 'react-icons/fa';
+import { FaHome, FaBtc, FaSave, FaCashRegister, FaDiscord } from 'react-icons/fa';
 import { GiHeartWings } from 'react-icons/gi';
 import { MdOutlineMultilineChart } from 'react-icons/md';
 import { GoGear } from 'react-icons/go';
@@ -11,17 +11,26 @@ import { BsFillPatchQuestionFill } from 'react-icons/bs';
 
 import { motion } from 'framer-motion';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 import NavBarLinkDisplay from '../NavBarLinkDisplay/NavBarLinkDisplay';
 
+import MenuSwitchClick from '../../songs/MenuSwitchClick.mp3';
+
 export default function NavBar() {
+  const navigate = useNavigate();
   const router = useLocation();
 
   const [ menuState, setMenuState ] = useState(false);
+
+  const playSong = () => {
+    let MenuSwitchEffect = new Audio(MenuSwitchClick);
+
+    MenuSwitchEffect.play();
+  }
 
   const openMenu = () => {
     let top = document.getElementById('top');
@@ -37,7 +46,7 @@ export default function NavBar() {
       middle.style.left = "-30px";
       bottom.style.bottom = "2px";
       bottom.style.transform = "rotate(-45deg)";
-      menuItems.style.right = "0";
+      menuItems.style.left = "0";
       setMenuState(!menuState);
       return;
     }
@@ -47,10 +56,20 @@ export default function NavBar() {
     middle.style.left = "0px";
     bottom.style.bottom = "-5px";
     bottom.style.transform = "rotate(0deg)";
-    menuItems.style.right = "-320px";
+    menuItems.style.left = "-320px";
     setMenuState(!menuState);
     return;
   }
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      if(e.ctrlKey && e.keyCode === 90) {
+        navigate('/melhorias');
+      } else if(e.ctrlKey && e.keyCode === 88) {
+        navigate('/lojabitcoin');
+      } 
+    });
+  }, []);
 
   return (
     <div className={styles.navbar}>
@@ -78,24 +97,25 @@ export default function NavBar() {
             <NavBarLinkDisplay icon={<FaSave/>} title="DADOS DO JOGO" path="/dados" />
             <NavBarLinkDisplay icon={<HiNewspaper/>} title="NOVIDADES E ATUALIZAÇÕES" path="/atualizacoes" />
             <NavBarLinkDisplay icon={<BsFillPatchQuestionFill/>} title="TUTORIAL" path="/comojogar" />
+            <NavBarLinkDisplay icon={<FaDiscord/>} title="COMUNIDADE" path="/social" />
             {/* <NavBarLinkDisplay icon={<FaHome/>} title="APOIAR O MONEY CLICKER" path="/apoiar" /> */}
           </div>
         </div>
       </motion.div>
       <ul>
-        <li data-tip="Cassino" className={router.pathname === "/cassino" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li onClick={() => playSong()} data-tip="Cassino" className={router.pathname === "/cassino" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/cassino"><MdOutlineMultilineChart className={styles.icon}/></Link>
         </li>
-        <li data-tip="Bitcoin" className={router.pathname === "/investimento/bitcoin" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li onClick={() => playSong()} data-tip="Bitcoin" className={router.pathname === "/investimento/bitcoin" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/investimento/bitcoin"><FaBtc className={styles.icon}/></Link>
         </li>
-        <li data-tip="Início" className={router.pathname === "/" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li onClick={() => playSong()} data-tip="Início" className={router.pathname === "/" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/"><FaHome className={styles.icon}/></Link>
         </li>
-        <li data-tip="Customização" className={router.pathname === "/customizar" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li onClick={() => playSong()} data-tip="Customização" className={router.pathname === "/customizar" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/customizar"><AiFillFormatPainter className={styles.icon}/></Link>
         </li>
-        <li data-tip="Renascimento" className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
+        <li onClick={() => playSong()} data-tip="Renascimento" className={router.pathname === "/renascimento" ? styles.navbarItemSelected : styles.navbarItem}>
           <Link to="/renascimento"><GiHeartWings className={styles.icon}/></Link>
         </li>
       </ul>

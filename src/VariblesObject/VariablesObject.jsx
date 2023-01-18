@@ -9,7 +9,8 @@ export const variablesList = [
     },
     advancedMining: {
       miningPower: 0.00,
-      miningPowerDecrease: 1.00,
+      miningPowerEnergyDecrease: 1.00,
+      miningPowerTempDecrease: 1.00,
       energyPower: 0.00,
       energyPowerUsed: 0.00,
       temperature: 0.00,
@@ -76,6 +77,9 @@ export const variablesList = [
       activeTheme: 1,
       activeColor: 1,
       unlocked: 0,
+    },
+    config: {
+      muted: false,
     }
   }
 ]

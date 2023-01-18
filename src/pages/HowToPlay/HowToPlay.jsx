@@ -2,11 +2,13 @@ import styles from './HowToPlay.module.css';
 
 import { motion } from 'framer-motion';
 
+import { AiFillYoutube } from 'react-icons/ai';
 import { FaShoppingCart, FaBtc } from 'react-icons/fa';
 import { BsChatTextFill } from 'react-icons/bs';
 import { GiBookPile, GiReceiveMoney, GiHeartburn, GiGoldMine, GiStairsGoal, GiPokerHand } from 'react-icons/gi';
 import { RiTimerFill } from 'react-icons/ri';
 import NomePagina from '../../components/NomePagina/NomePagina';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
 
 export default function HowToPlay() {
   return (
@@ -14,9 +16,16 @@ export default function HowToPlay() {
       className={styles.container}
       animate={{ opacity: [0, 1], x: [-600, 0] }}
     >
+      <AbrirMenuEfeito/>
       <NomePagina icon={<GiBookPile/>} name="TUTORIAL"/>
-
+      
       <div className={styles.tutorialContainer}>
+        <div className={styles.section}>
+          <p className={styles.title}><AiFillYoutube/>&nbsp;TUTORIAL EM VÍDEO!&nbsp;<AiFillYoutube/></p>
+          <p className={styles.dialogText}>Bateu aquela preguiça de ler? Eu te entendo, mas eu pensei em você!</p>
+          <a className={styles.gameLink} href="https://www.youtube.com/watch?v=ebfR4TTVKzc&t=392s" target="_blank"><p>https://www.youtube.com/watch?v=ebfR4TTVKzc&t=392s</p></a>
+        </div>
+
         <div className={styles.section}>
           <p className={styles.title}><BsChatTextFill/>&nbsp;O JOGO CONVERSA!&nbsp;<BsChatTextFill/></p>
           <p className={styles.dialogText}>Como eu posso explicar isso?... Já ouviu falar em quarta parede? Digamos que eu tento quebrar ela conversando com você ou comentando algumas coisas durante o jogo, e é simplesmente isso, eu não vou literalmente conversar com você sabe? Pelo menos não ainda... Eu sei que tem muita gente que não gosta de ler então em breve vou fazer um canal no Youtube explicando tudo em vídeo, até lá recomendo que pegue um óculos e boa leitura ^^</p>

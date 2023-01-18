@@ -66,12 +66,94 @@
   font-size: 14px;
   font-weight: 500;
 
-  margin-top: 2px;
   margin-left: 10px;
 
   color: var(--corTextoBranco);
 }
+.titleAlert {
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-left: 10px;
+
+  color: var(--alert);
+}
+.titleCritic {
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-left: 10px;
+
+  color: var(--critic);
+}
 .value {
+  font-size: 20px;
+  font-weight: 600;
+
+  margin-left: 10px;
+
+  color: var(--corTextoBranco);
+}
+.valueAlert {
+  font-size: 20px;
+  font-weight: 600;
+
+  margin-left: 10px;
+
+  color: var(--alert);
+}
+.valueCritic {
+  font-size: 20px;
+  font-weight: 600;
+
+  margin-left: 10px;
+
+  color: var(--critic);
+}
+
+/* Temperatura */
+
+.titleAlertTemp {
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-left: 10px;
+
+  color: var(--alert);
+}
+.titleCriticTemp {
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-left: 10px;
+
+  color: var(--critic);
+}
+.titleTemp {
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-left: 10px;
+
+  color: var(--corTextoBranco);
+}
+.valueAlertTemp {
+  font-size: 20px;
+  font-weight: 600;
+
+  margin-left: 10px;
+
+  color: var(--alert);
+}
+.valueCriticTemp {
+  font-size: 20px;
+  font-weight: 600;
+
+  margin-left: 10px;
+
+  color: var(--critic);
+}
+.valueTemp {
   font-size: 20px;
   font-weight: 600;
 

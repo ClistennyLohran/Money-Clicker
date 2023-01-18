@@ -7,7 +7,7 @@ import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 
 import { motion } from 'framer-motion';
 
-export default function DisplayCustomizar({ icon, title, value, nameChange, setMargin }) {
+export default function DisplayCustomizar({ dataTip, icon, title, value, nameChange, setMargin }) {
   const { setMiningBusinessName } = useContext(AdvancedMiningContext);
   const { balance, setBalance, setBusinessName, setNotificationType } = useContext(ValuesContext);
   
@@ -16,22 +16,31 @@ export default function DisplayCustomizar({ icon, title, value, nameChange, setM
 
   function changeName(option) {
     if(option === 1) {
-      console.log("I'm here 1");
-      if(balance >= 250000 && newName.trim(' ') !== '') {
-        setBalance(v => v - 250000);
-        setBusinessName(newName.toUpperCase());
-        setNewName('');
-      }else {
-        setNotificationType(5);
+      if(balance < 50000) {
+        setNotificationType(22);
+      } else {
+        if(balance >= 500000 && newName.trim(' ') !== '') {
+          setBalance(v => v - 500000);
+          setBusinessName(newName.toUpperCase());
+          setNewName('');
+          setNotificationType(23);
+        }else {
+          setNotificationType(5);
+        }
       }
+      
     } else if(option === 2) {
-      console.log("I'm here 2");
-      if(balance >= 250000 && newBitcoinName.trim(' ') !== '') {
-        setBalance(v => v - 250000);
-        setMiningBusinessName(newBitcoinName.toUpperCase());
-        setNewBitcoinName('');
-      }else {
-        setNotificationType(5);
+      if(balance < 50000) {
+        setNotificationType(22);
+      } else {
+        if(balance >= 500000 && newBitcoinName.trim(' ') !== '') {
+          setBalance(v => v - 500000);
+          setMiningBusinessName(newBitcoinName.toUpperCase());
+          setNewBitcoinName('');
+          setNotificationType(23);
+        }else {
+          setNotificationType(5);
+        }
       }
     }
   }
@@ -53,7 +62,7 @@ export default function DisplayCustomizar({ icon, title, value, nameChange, setM
   return (
     <div className={changeStyle()}>
       <div className={styles.display}>
-        <div data-tip="" className={styles.iconContainer}>
+        <div data-tip={dataTip} className={styles.iconContainer}>
           <p className={styles.icon}>{icon}</p>
         </div>
         <div className={styles.textContainer}>

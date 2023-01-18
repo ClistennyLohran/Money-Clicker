@@ -33,6 +33,9 @@
   --semDinheiro: #d11515;
   --crashColor: #920505;
 
+  --alert: #f2c214;
+  --critic: #d70303;
+
   /* Beta Tester */
 
   --betaTester: linear-gradient(263.66deg, #007AFF 0%, #3797FF 39.19%, #84BFFF 47.92%, #49A0FF 57.29%, #007AFF 100%);

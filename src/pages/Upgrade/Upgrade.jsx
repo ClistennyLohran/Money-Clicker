@@ -20,6 +20,7 @@ import { IoStorefront } from 'react-icons/io5';
 import { HiCursorClick } from 'react-icons/hi';
 
 import ReactTooltip from 'react-tooltip';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
 
 const SpecialUpgradesData = require('../../UpgradeObjects/SpecialUpgrade/SpecialUpgradesData');
 const SpecialUpgradesRebirthData = require('../../UpgradeObjects/SpecialUpgradeRebirth/SpecialUpgradesRebirthData');
@@ -100,6 +101,7 @@ export default function Upgrade() {
     <motion.div
       animate={{ opacity: [0, 1], x: [-600, 0] }}
     >
+      <AbrirMenuEfeito/>
       <ReactTooltip 
         place="top"
         multiline={true}

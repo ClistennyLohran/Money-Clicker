@@ -11,151 +11,151 @@
   -webkit-user-select: none;
 }
 
+/* Containers esquerda e Direita */
+
 .saveGameContainer {
   display: flex;
 
   align-items: center;
-
-  flex-direction: column;
+  justify-content: center;
 }
-.textContainerSave {
-  display: flex;
 
-  align-items: center;
+/* Lado Esquerdo */
 
-  flex-direction: column;
-}
-.backupContainer {
-  display: flex;
-
-  align-items: center;
-
-  flex-direction: column;
-
-  text-align: center;
-
-  width: 420px;
-  height: 200px;
-
-  border-radius: 5px;
-
-  background: var(--corFundoNav);
-}
-.loadContainer {
-  display: flex;
-
-  align-items: center;
-
-  flex-direction: column;
-
-  text-align: center;
-
-  width: 420px;
-  height: 200px;
-
-  margin-top: 10px;
-
-  border-radius: 5px;
-
-  background: var(--corFundoNav);
-}
-.saveText {
+.leftContainer {
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  font-size: 16px;
-  font-weight: 600;
+  flex-direction: column;
 
-  margin: 15px 0px;
+  width: 320px;
 
-  color: var(--corTextoBranco);
+  margin-right: 20px;
 }
-.alertText {
-  font-size: 12px;
-  font-weight: 400;
 
-  width: 80%;
+/* Lado Direito */
 
-  color: var(--corTextoBranco);
+.rightContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 320px;
 }
-.saveValueContainer {
-  position: relative;
 
-  width: 90%;
+/* CSS Esquerda e Direita */
+
+.displayIconNameContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+  
+  width: 320px;
+  height: 100px;
+
+  border: 5px solid var(--corFundoNav);
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+  background: var(--corFundo);
+}
+.iconContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 65px;
+
+  font-size: 58px;
+
+  color: var(--corIconeBranco);
+
+  cursor: pointer;
+}
+.icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+.titleContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
   height: 30px;
 
-  margin-top: 10px;
-}
-.saveCode {
-  width: calc(100% - 70px);
-  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
 
-  padding-right: 60px;
-  padding-left: 10px;
+  color: var(--corTextoBranco);
+}
+
+.inputContainer {
+  position: relative;
+
+  width: 100%;
+  height: 30px;
+
+  margin: 10px 0;
+}
+.input {
+  width: 100%;
+  height: 100%;
 
   text-align: center;
 
   border: none;
   border-radius: 5px;
 
-  background: var(--corInputClaro);
   color: var(--corTextoBranco);
+  background: var(--corFundoNav);
 }
-.saveCode::placeholder {
-  color: var(--corTextoPlaceHolder);
-}
-.removePadding {
-  width: calc(100% - 20px);
-  height: 100%;
-
-  padding-right: 10px;
-  padding-left: 10px;
-
-  text-align: center;
-
-  border: none;
-  border-radius: 5px;
-
-  background: var(--corInputClaro);
-  color: var(--corTextoBranco);
-}
-.removePadding::placeholder {
+.input::placeholder {
   color: var(--corTextoPlaceHolder);
 }
 .copyBtn {
   position: absolute;
+  display: flex;
 
-  right: 0px;
+  align-items: center;
+  justify-content: center;
 
-  width: 60px;
+  right: 0;
+  top: 0;
+
+  width: 30px;
   height: 30px;
 
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-
   border: none;
+  border-radius: 5px;
 
-  color: var(--corTextoBranco);
+  color: var(--corTextoBtn);
   background: var(--corPrimaria);
 
   transition: background 0.3s ease-in-out;
 
   cursor: pointer;
 }
-.copyBtn:hover {
-  background: var(--corPrimariaHover);
-}
-
-.dataBtn {
-  width: 220px;
-  height: 35px;
+.button {
+  width: 320px;
+  height: 45px;
 
   border: none;
   border-radius: 5px;
-
-  margin-top: 20px;
 
   font-size: 16px;
   font-weight: 500;
@@ -164,11 +164,11 @@
   background: var(--corPrimaria);
 
   transition: background 0.3s ease-in-out;
-  
+
   cursor: pointer;
 }
-.dataBtn:hover {
-  background: var(--corPrimaria);
+.button:hover {
+  background: var(--corPrimariaHover);
 }
 
 /* Botão Resetar Progresso */
@@ -280,4 +280,35 @@
   color: var(--corTextoBranco);
 
   font-size: 14px;
+}
+.volumeContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 420px;
+  height: 60px;
+
+  margin-bottom: 10px;
+
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.audioBtn {
+  width: 120px;
+  height: 30px;
+
+  border-radius: 5px;
+  border: none;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  font-weight: 500;
+
+  transition: background 0.3s ease-in-out;
+
+  cursor: pointer;
 }

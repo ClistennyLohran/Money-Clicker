@@ -4,7 +4,14 @@ import PoderMineracaoFormatter from '../../../Formatter/PoderMineracaoFormatter'
 import ValueFormatter from '../../../Formatter/ValueFormatter';
 import AnimatedNumber from '../../../AnimatedNumber/AnimatedNumber';
 
-export default function DisplayInfo({ icon, title, value, value2, twoValues, formatter, middle, dataTip }) {
+import { useState, useEffect } from 'react';
+
+export default function DisplayInfo({ tempAlert, tempAlertStatus, energyAlert, icon, title, value, value2, twoValues, formatter, middle, dataTip }) {
+  const [ classTitle, setClassTitle ] = useState();
+  const [ classValue, setClassValue ] = useState();
+
+  const [ classTitleTemp, setClassTitleTemp ] = useState();
+  const [ classValueTemp, setClassValueTemp ] = useState();
   
   const valueFormatter = (value) => {
     switch(formatter) {
@@ -18,6 +25,54 @@ export default function DisplayInfo({ icon, title, value, value2, twoValues, for
         return;
     }
   }
+
+  useEffect(() => {
+    const energyTitle = () => {
+      if(energyAlert === 1) {
+        return setClassTitle(styles.titleCritic);
+      } else if(energyAlert === 2) {
+        return setClassTitle(styles.titleAlert);
+      } else {
+        return setClassTitle(styles.title);
+      }
+    }
+    energyTitle();
+
+    const energyValue = () => {
+      if(energyAlert === 1) {
+        return setClassValue(styles.valueCritic);
+      } else if(energyAlert === 2) {
+        return setClassValue(styles.valueAlert);
+      } else {
+        return setClassValue(styles.value);
+      }
+    }
+    energyValue();
+  }, [energyAlert]);
+
+  useEffect(() => {
+    const tempTitle = () => {
+      if(tempAlert === 1) {
+        return setClassTitleTemp(styles.titleAlertTemp);
+      } else if(tempAlert === 2) {
+        return setClassTitleTemp(styles.titleCriticTemp);
+      } else {
+        return setClassTitleTemp(styles.titleTemp);
+      }
+    }
+    tempTitle();
+
+    const tempValue = () => {
+      if(tempAlert === 1) {
+        return setClassValueTemp(styles.valueAlertTemp);
+      } else if(tempAlert === 2) {
+        return setClassValueTemp(styles.valueCriticTemp);
+      } else {
+        return setClassValueTemp(styles.valueTemp);
+      }
+    }
+    tempValue();
+  }, [tempAlert]);
   
   return (
     <div className={!middle ? styles.container : styles.containerMiddle}>
@@ -25,8 +80,8 @@ export default function DisplayInfo({ icon, title, value, value2, twoValues, for
         <p className={styles.icon}>{icon}</p>
       </div>
       <div className={styles.textContainer}>
-        <p className={styles.title}>{title}</p>
-        {!twoValues ? <p className={styles.value}><AnimatedNumber value={value} formatValue={v => valueFormatter(v)}/></p> : <p className={styles.value}><AnimatedNumber value={value} formatValue={v => valueFormatter(v)}/> / <AnimatedNumber value={value2} formatValue={v => valueFormatter(v)}/></p>}
+        <p className={tempAlertStatus ? classTitleTemp : classTitle}>{title}</p>
+        {!twoValues ? <p className={tempAlertStatus ? classValueTemp : classValue}><AnimatedNumber value={value} formatValue={v => valueFormatter(v)}/></p> : <p className={tempAlertStatus ? classValueTemp : classValue}><AnimatedNumber value={value} formatValue={v => valueFormatter(v)}/> / <AnimatedNumber value={value2} formatValue={v => valueFormatter(v)}/></p>}
       </div>
     </div>
   );

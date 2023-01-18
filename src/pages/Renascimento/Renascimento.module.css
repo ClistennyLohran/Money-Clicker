@@ -309,3 +309,21 @@
 .containerBonus {
   display: flex;
 }
+
+/* Video Play Container */
+
+.videoContainer {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background: var(--corFundo);
+
+  z-index: 999;
+
+  overflow: hidden;
+}

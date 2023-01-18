@@ -144,38 +144,13 @@
   background: var(--corFundoNavHover);
   color: var(--corIconeHover);
 }
+.gameLink {
+  color: var(--corTextoBranco);
 
-/* Adaptabilidade */
+  margin-top: 5px;
 
-@media (max-width: 480px) {
-  .text {
-    font-size: 16px;
-  }
-
-  /* Content */
-
-  .tutorialContainer {
-    width: 90%;
-  }
-  .title {
-    font-size: 15px;
-  }
-  .dialogText {
-    font-size: 13px;
-  }
-
-  /* Icones e Items Tutorial */
-
-  .btnInvest {
-    width: 200px;
-    height: 30px;
-
-    font-size: 14px;
-  }
-  .topIcon {
-    width: 35px;
-    height: 35px;
-
-    font-size: 13px;
-  }
+  transition: 0.3s ease-in-out;
+}
+.gameLink:hover {
+  text-decoration: underline;
 }

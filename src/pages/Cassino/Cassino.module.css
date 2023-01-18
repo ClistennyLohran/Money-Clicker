@@ -49,7 +49,6 @@
   justify-content: center;
 
   width: 660px;
-  height: 80px;
 
   transition: 0.3s ease-in-out;
 }
@@ -57,11 +56,11 @@
   display: flex;
   
   width: 220px;
-  height: 80px;
+  height: 60px;
 
   margin-right: 10px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   background: var(--corFundoNav);
 
@@ -77,9 +76,9 @@
   padding-left: 10px;
 
   width: 420px;
-  height: 80px;
+  height: 60px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   background: var(--corFundoNav);
 
@@ -96,16 +95,16 @@
 
   margin-right: 10px;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border: 3px solid var(--corFundoNavHover);
 
   width: 80px;
-  height: 60px;
+  height: 40px;
 
   min-width: 80px;
-  min-height: 60px;
+  min-height: 40px;
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 
   color: var(--corTextoBranco);
@@ -114,6 +113,28 @@
   transition: 0.3s ease-in-out;
 }
 .timerIconContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  min-width: 50px;
+  min-height: 50px;
+
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 10px;
+
+  border-radius: 5px;
+
+  background: var(--corFundo);
+
+  transition: 0.3s ease-in-out;
+}
+.timerIconContainer2 {
   display: flex;
 
   align-items: center;
@@ -129,7 +150,7 @@
   margin-left: 5px;
   margin-right: 10px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
   background: var(--corFundo);
 
@@ -141,7 +162,7 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 50px;
+  font-size: 40px;
 
   color: var(--corIconeBranco);
 
@@ -154,9 +175,9 @@
   transition: 0.3s ease-in-out;
 }
 .timerTitle {
-  margin-top: 15px;
+  margin-top: 10px;
 
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 
   color: var(--corTextoBranco);
@@ -166,7 +187,7 @@
 .displayTimer {
   margin-top: 2px;
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
 
   color: var(--corTextoBranco);
@@ -232,13 +253,13 @@
 }
 .button {
   width: 660px;
-  height: 40px;
+  height: 45px;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
 
   color: var(--corTextoBtn);
   background: var(--corPrimaria);
@@ -260,13 +281,13 @@
   right: 5px;
   top: 5px;
 
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
 
   font-size: 24px;
 
   width: 70px;
-  height: 30px;
+  height: 35px;
 
   color: var(--corIconeBranco);
   background: var(--corPrimariaEscuro);
@@ -384,224 +405,6 @@
   font-weight: 400;
 
   color: var(--corTextoBranco);
-}
-
-@media (max-width: 720px) {
-  .timerCrashContainer {
-    display: grid;
-
-    width: 400px;
-    height: auto;
-
-    grid-template-columns: 1fr;
-  }
-  .crashHistoryContainer {
-    width: 390px;
-    height: 70px;
-
-    margin: 0;
-  }
-  .timerContainer {
-    width: 400px;
-    height: 70px;
-
-    margin: 0;
-
-    margin-bottom: 10px;
-  }
-  .timerTitle {
-    margin-top: 12px;
-  }
-  .timerIconContainer {
-    width: 60px;
-    height: 60px;
-
-    min-width: 60px;
-    min-height: 60px;
-  }
-  .inputsContainer {
-    display: grid;
-
-    width: 420px;
-    height: auto;
-
-    grid-template-columns: 1fr;
-  }
-  .marginRight {
-    margin-bottom: 10px;
-  }
-  .crashContainer {
-    height: 45px;
-
-    min-height: 45px;
-  }
-
-  /* Graph Container */
-
-  .graphContainer {
-    width: 400px;
-    height: 200px;
-  }
-  .button {
-    width: 400px;
-  }
-  .multiplierDisplay {
-    font-size: 24px;
-  }
-  .multiplierDisplayCrashed {
-    font-size: 24px;
-  }
-
-  /* Inputs */
-  .inputsContainer {
-    width: 400px;
-  }
-  .inputBox {
-    width: 400px;
-    height: 70px;
-  }
-  .icon {
-    font-size: 36px;
-  }
-  .inputTitle {
-    font-size: 13px;
-
-    margin-top: 4px;
-  }
-  .input {
-    width: 295px;
-  }
-
-  .lucroText {
-    font-size: 12px;
-  }
-  .lucroBold {
-    font-weight: 700;
-  }
-  .crashWithdraw {
-    font-size: 12px;
-    font-weight: 400;
-  
-    color: var(--corTextoBranco);
-  }
-}
-@media (max-width: 480px) {
-  .title {
-    font-size: 16px;
-  }
-
-  /* Top Items */
-
-  .timerCrashContainer {
-    display: grid;
-
-    width: 260px;
-    height: auto;
-
-    grid-template-columns: 1fr;
-  }
-  .crashHistoryContainer {
-    width: 250px;
-    height: 60px;
-
-    margin: 0;
-  }
-  .timerContainer {
-    width: 260px;
-    height: 60px;
-
-    margin: 0;
-
-    margin-bottom: 10px;
-  }
-  .timerTitle {
-    margin-top: 12px;
-
-    font-size: 12px;
-  }
-  .displayTimer {
-    font-size: 20px;
-  }
-  .timerIconContainer {
-    width: 50px;
-    height: 50px;
-
-    min-width: 50px;
-    min-height: 50px;
-
-    margin-right: 5px;
-  }
-  .inputsContainer {
-    display: grid;
-
-    width: 260px;
-    height: auto;
-
-    grid-template-columns: 1fr;
-  }
-  .marginRight {
-    margin-bottom: 10px;
-  }
-  .crashContainer {
-    height: 35px;
-    width: 60px;
-
-    min-height: 35px;
-    min-width: 60px;
-
-    font-size: 16px;
-  }
-
-  /* Graph Container */
-
-  .graphContainer {
-    width: 260px;
-    height: 130px;
-  }
-  .button {
-    width: 260px;
-  }
-  .multiplierDisplay {
-    font-size: 18px;
-  }
-  .multiplierDisplayCrashed {
-    font-size: 18px;
-  }
-
-  /* Inputs */
-  .inputsContainer {
-    width: 260px;
-  }
-  .inputBox {
-    width: 260px;
-    height: 60px;
-  }
-  .icon {
-    font-size: 32px;
-  }
-  .inputTitle {
-    font-size: 10px;
-
-    margin-top: 5px;
-  }
-  .input {
-    width: 170px;
-    height: 22px;
-
-    font-size: 11px;
-  }
-  .lucroText {
-    font-size: 10px;
-  }
-  .lucroBold {
-    font-weight: 700;
-  }
-  .crashWithdraw {
-    font-size: 10px;
-    font-weight: 400;
-  
-    color: var(--corTextoBranco);
-  }
 }
 
 input::-webkit-outer-spin-button,

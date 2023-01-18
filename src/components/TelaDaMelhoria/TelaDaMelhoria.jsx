@@ -11,6 +11,9 @@ import { BuyContext } from '../../contexts/BuyContext/BuyContext';
 import MoneyFormatter from '../../Formatter/MoneyFormatter';
 import { AdvancedMiningContext } from '../../contexts/AdvancedMiningContext/AdvancedMiningContext';
 
+/* Upgrades Song */
+import upgradeSong from '../../songs/Melhoria.mp3';
+
 export default function ShowUpgradeInfo() {
   
   const { rebirthPoints, setRebirthPoints, showHide, setShowHide, balance, setBalance, gpcBoost, setGpcBoost, setGpcMultiply, setNotificationType, gpsBoost, setGpsBoost, setGpsMultiply, gpsMultiply, gpcMultiply, levelMultiply, setLevelMultiply, levelBoost, setLevelBoost } = useContext(ValuesContext);
@@ -60,11 +63,17 @@ export default function ShowUpgradeInfo() {
     
   }
 
+  const playSong = () => {
+    let audio = new Audio(upgradeSong);
+    audio.play();
+  }
+
   function buyUpgrade() {
     if(upgradeType === 0) { // Melhorias especiais normais --------------------<
       if(buyId === 0) {
         /* Upgrade que melhora em 20% o lucro do GPS */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setGpcBoost(gpcBoost + 0.20);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -76,6 +85,7 @@ export default function ShowUpgradeInfo() {
         disableUpgrade(buyId);
         /* Gera um deconto de 10% na energia consumida */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setEnergyEconomy(energyEconomy => energyEconomy - 0.10);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -87,6 +97,7 @@ export default function ShowUpgradeInfo() {
         disableUpgrade(buyId);
         /* O GPS é multiplicado por 2 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(gpsMultiply < 2) {
             setGpsMultiply(2);
@@ -102,6 +113,7 @@ export default function ShowUpgradeInfo() {
         disableUpgrade(buyId);
         /* Orbs de XP aprimorados, multiplica os orbs ganhos por clique por 2 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(levelMultiply < 2) {
             setLevelMultiply(2);
@@ -117,6 +129,7 @@ export default function ShowUpgradeInfo() {
         disableUpgrade(buyId);
         /* O poder de mineração é duplicado */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(miningPowerMultiply < 2) {
             setMiningPowerMultiply(2);
@@ -132,6 +145,7 @@ export default function ShowUpgradeInfo() {
         disableUpgrade(buyId);
         /* Upgrade que aumenta +40% o lucro do GPS */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setGpcBoost(gpcBoost + 0.40);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -142,6 +156,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 6) {
         /* Acrescenta um boost de 30% para o XP */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setEnergyPowerBoost(energyPowerBoost => energyPowerBoost + 0.10);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -152,6 +167,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 7) {
         /* Acrescenta um boost de 10% para a energia gerada */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setLevelBoost(levelBoost + 0.30);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -162,6 +178,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 8) { 
         /* Multiplica a geração de energia por 2 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(energyPowerMultiply < 2) {
             setEnergyPowerMultiply(2);
@@ -176,6 +193,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 9) { 
         /* Gera um desconto de 30% na energia */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setEnergyEconomy(energyEconomy => energyEconomy - 0.30);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -186,6 +204,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 10) {
         /* Upgrade que duplica a quantidade de ganho do GPS */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(gpcMultiply < 2) {
             setGpcMultiply(2);
@@ -200,6 +219,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 11) {
         /* Acrescenta 10% ao MP/s */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setMiningPowerBoost(miningPower => miningPower + 0.10);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -210,6 +230,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 12) { 
         /* Acrescenta 20% na produção de GPS */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setLevelBoost(levelBoost + 0.60);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -220,6 +241,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 13) {
         /* Geração de energia é aumentada em 30% */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setEnergyPowerBoost(energyPowerBoost => energyPowerBoost + 0.30);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -230,6 +252,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 14) { 
         /* Acrescenta 30% no seu poder de mineração */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setMiningPowerBoost(miningPowerBoost => miningPowerBoost + 0.30);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -240,6 +263,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 15) {
         /* Acrescenta 20% na produção de GPS */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setGpsBoost(gpsBoost + 0.20);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -250,6 +274,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 16) {
         /* Upgrade que aumenta +60% o lucro do GPC */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setGpcBoost(gpcBoost + 0.60);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -260,6 +285,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 17) {
         /* Acrescenta +60% na produção de GPS */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setGpsBoost(gpsBoost + 0.60);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -270,6 +296,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 18) {
         /* Bônus de 30% para mineração manual */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setManualMiningBoost(manualMiningBoost => manualMiningBoost + 0.30);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -280,6 +307,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 19) {
         /* O XP ganho por clique será multiplicado por 4 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(levelMultiply < 4) {
             setLevelMultiply(4);
@@ -294,6 +322,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 20) {
         /* Multiverso, multiplica o GPS por 4 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(gpsMultiply < 4) {
             setGpsMultiply(4);
@@ -308,6 +337,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 21) {
         /* Poder de mineração multiplicado por 4 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(miningPowerMultiply < 4) {
             setMiningPowerMultiply(4);
@@ -322,6 +352,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 22) {
         /* Energia multiplicada por 4 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(energyPowerMultiply < 4) {
             setEnergyPowerMultiply(4);
@@ -336,6 +367,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 23) {
         /* O bônus de XP é aumentado em 60% */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setLevelBoost(levelBoost + 0.60);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -346,6 +378,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 24) {
         /* Mouse Quântico, agora o GPC é multiplicado por 4 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(gpcMultiply < 4) {
             setGpcMultiply(4);
@@ -360,6 +393,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 25) {
         /* Poder de mineração aumentado 60% */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setMiningPowerBoost(miningPowerBoost => miningPowerBoost + 0.60);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -370,6 +404,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 26) {
         /* Bônus de 60% para a mineração manual */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setManualMiningBoost(manualMiningBoost => manualMiningBoost + 0.60);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -380,6 +415,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 27) {
         /* Você ganha um bônus de 120% de poder de mineração */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setMiningPowerBoost(miningPowerBoost => miningPowerBoost + 1.20);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -390,6 +426,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 28) {
         /* Mouse Dourado, agora o GPS é multiplicado por 8 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(gpsMultiply < 8) {
             setGpsMultiply(8);
@@ -404,6 +441,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 29) {
         /* Multiplica o poder de mineração por 8 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(miningPowerMultiply < 8) {
             setMiningPowerMultiply(8);
@@ -418,6 +456,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 30) {
         /* Mouse Quântico, agora o GPC é multiplicado por 8 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(gpcMultiply < 8) {
             setGpcMultiply(8);
@@ -432,6 +471,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 31) {
         /* Sua energia gerada é multiplicada por 8 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(energyPowerMultiply < 8) {
             setEnergyPowerMultiply(8);
@@ -446,6 +486,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 32) {
         /* Orb Dourado, agora o GPC é multiplicado por 8 */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           if(levelMultiply < 8) {
             setLevelMultiply(8);
@@ -460,6 +501,7 @@ export default function ShowUpgradeInfo() {
       } else if (buyId === 33) {
         /* Poder de mineração manual aumentado em 120% */
         if(balance >= buyValue) {
+          playSong();
           setBalance(balance => balance - buyValue);
           setManualMiningBoost(manualMiningBoost => manualMiningBoost + 1.20);
           disableUpgrade(generalUpgrades[2][buyId]);
@@ -472,6 +514,7 @@ export default function ShowUpgradeInfo() {
       if(buyId === 0) {
         /* Bônus permanente que aumenta em 300% o lucro de GPS */
         if(rebirthPoints >= buyValue) {
+          playSong();
           setRebirthPoints(rebirthPoints => rebirthPoints - buyValue);
           setGpsRebirthBoost(gpsRebirthBoost + 3.00);
           disableUpgrade(generalUpgrades[3][buyId]);
@@ -482,6 +525,7 @@ export default function ShowUpgradeInfo() {
       } else if(buyId === 1) {
         /* Bônus permanente que aumenta em 300% o lucro de GPC */
         if(rebirthPoints >= buyValue) {
+          playSong();
           setRebirthPoints(rebirthPoints => rebirthPoints - buyValue);
           setGpcRebirthBoost(gpcRebirthBoost + 3.00);
           disableUpgrade(generalUpgrades[3][buyId]);
@@ -492,6 +536,7 @@ export default function ShowUpgradeInfo() {
       } else if(buyId === 2) { // Esse aqui
         /* Bônus permanente que aumenta em 300% o bônus XPC */
         if(rebirthPoints >= buyValue) {
+          playSong();
           setRebirthPoints(rebirthPoints => rebirthPoints - buyValue);
           setLevelRebirthBoost(levelRebirthBoost + 3.00);
           disableUpgrade(generalUpgrades[3][buyId]);
@@ -502,6 +547,7 @@ export default function ShowUpgradeInfo() {
       } else if(buyId === 3) {
         /* Bônus permanente que aumenta em 0.10% o GPS por cada Upgrade de GPS comprado */
         if(rebirthPoints >= buyValue) {
+          playSong();
           setRebirthPoints(rebirthPoints => rebirthPoints - buyValue);
           
           let gpsLevelCounter = 0;
@@ -521,6 +567,7 @@ export default function ShowUpgradeInfo() {
       } else if(buyId === 4) {
         /* Bônus permanente que aumenta em 0.5% o GPC por cada Upgrade de GPC comprado */
         if(rebirthPoints >= buyValue) {
+          playSong();
           setRebirthPoints(rebirthPoints => rebirthPoints - buyValue);
           
           let gpcLevelCounter = 0;
@@ -540,6 +587,7 @@ export default function ShowUpgradeInfo() {
       } else if(buyId === 5) {
         /* Bônus permanente que aumenta em 0.3% o XPC por cada Upgrade de GPC e GPS comprado */
         if(rebirthPoints >= buyValue) {
+          playSong();
           setRebirthPoints(rebirthPoints => rebirthPoints - buyValue);
           
           let gpcLevelCounter = 0;

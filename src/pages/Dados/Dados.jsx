@@ -4,22 +4,25 @@ import { motion } from 'framer-motion';
 
 import ReactTooltip from 'react-tooltip';
 import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
+import NomeSessao from '../../components/NomeSessao/NomeSessao';
+import NomePagina from '../../components/NomePagina/NomePagina';
+
+import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 
 import { useContext, useState } from 'react';
 
-import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { useNavigate } from 'react-router-dom';
-import NomePagina from '../../components/NomePagina/NomePagina';
+
 import { AiFillSave } from 'react-icons/ai';
-import NomeSessao from '../../components/NomeSessao/NomeSessao';
-import { MdBackup, MdCloudDownload } from 'react-icons/md';
-import { GiSave } from 'react-icons/gi';
 import { RiRestartFill } from 'react-icons/ri';
+import { IoCopy } from 'react-icons/io5';
+import { BsVolumeDownFill } from 'react-icons/bs';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
 
 export default function Dados() {
   const navigate = useNavigate();
   
-  const { balance, setBalance, setBusinessName, businessName, setNotificationType } = useContext(ValuesContext);
+  const { setNotificationType } = useContext(ValuesContext);
 
   const [ checked, setChecked ] = useState(false);
 
@@ -94,44 +97,43 @@ export default function Dados() {
   return (
     <motion.div className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <AbrirMenuEfeito/>
       <NomePagina icon={<AiFillSave/>} name="DADOS"/>
       <DisplayDinheiroXP/>
+      {/* <NomeSessao icon={<BsVolumeDownFill/>} marginTop={true} title="SOM DO JOGO"/>
+      <div className={styles.volumeContainer}>
+        <motion.button id="btnAudioController" className={styles.audioBtn} onClick={() => audioController()} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} >ATIVADO</motion.button>
+      </div> */}
       <NomeSessao icon={<AiFillSave/>} marginTop={true} title="GERAR E CARREGAR DADOS"/>
       <div className={styles.saveGameContainer}>
-        <div className={styles.textContainerSave}>
-          <div className={styles.backupContainer}>
-            <p className={styles.saveText}>{<MdBackup/>}&nbsp;FAZER BACKUP&nbsp;{<MdBackup/>}</p>
-            <p className={styles.alertText}>Clique no botão gerar save para gerar o seu código, guarde o código em um bloco de notas.</p>
-            <div className={styles.saveValueContainer}>
-              <input type="text" id="saveCode" className={styles.saveCode} autoComplete={'off'} placeholder="O seu save será gerado aqui!" ></input>
-              <button onClick={() => copyContent()} className={styles.copyBtn}>COPIAR</button>
+        <div className={styles.leftContainer}>
+          <div className={styles.displayIconNameContainer}>
+            <div data-tip="Aqui você vai gerar o seu save, você pode compartilhar<br>com outros amigos ou entre navegadores, basta<br>colar no campo ao lado." className={styles.iconContainer}>
+              <p className={styles.icon}>{<AiFillSave/>}</p>
             </div>
-            <motion.button 
-              className={styles.dataBtn}
-              transition={{ type: "spring", stiffness: 700, damping: 30 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
-              onClick={(e) => generateSave(e)}
-            >
-              GERAR SAVE
-            </motion.button>
-          </div>
-          <div className={styles.loadContainer}>
-            <p className={styles.saveText}>{<MdCloudDownload/>}&nbsp;CARREGAR SAVE&nbsp;{<MdCloudDownload/>}</p>
-            <p className={styles.alertText}>Cole o seu save no campo abaixo, é sempre recomendado fazer um backup do save atual no campo acima.</p>
-            <div className={styles.saveValueContainer}>
-              <input type="text" id="saveLoad" className={styles.removePadding} autoComplete={'off'} placeholder="Cole o seu save aqui!" />
+            <div className={styles.titleContainer}>
+              <p className={styles.title}>GERAR DADOS</p>
             </div>
-            <motion.button 
-              className={styles.dataBtn}
-              transition={{ type: "spring", stiffness: 700, damping: 30 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 1.0, transition: {duration: 0.1}}}
-              onClick={(e) => loadSave(e)}
-            >
-              CARREGAR SAVE
-            </motion.button>
           </div>
+          <div className={styles.inputContainer}>
+            <input type="text" id="saveCode" className={styles.input} autoComplete={'off'} placeholder="O seu save será gerado aqui!" ></input>
+            <button data-tip="Copia todo o seu save automaticamente, disponha S2" onClick={() => copyContent()} className={styles.copyBtn}><IoCopy/></button>
+          </div>
+          <motion.button className={styles.button} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={(e) => generateSave(e)}>GERAR SAVE</motion.button>
+        </div>
+        <div className={styles.rightContainer}>
+          <div className={styles.displayIconNameContainer}>
+            <div data-tip="Aqui você cola o código gerado no campo a direita<br>caso vá carregar o save de algum amigo<br>não esqueça de salvar o seu em um bloco de notas antes." className={styles.iconContainer}>
+              <p className={styles.icon}>{<AiFillSave/>}</p>
+            </div>
+            <div className={styles.titleContainer}>
+              <p className={styles.title}>CARREGAR DADOS</p>
+            </div>
+          </div>
+          <div className={styles.inputContainer}>
+            <input type="text" id="saveLoad" className={styles.input} autoComplete={'off'} placeholder="Cole o seu save aqui!" />
+          </div>
+          <motion.button className={styles.button} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={(e) => loadSave(e)}>CARREGAR SAVE</motion.button>
         </div>
       </div>
       <NomeSessao icon={<RiRestartFill/>} title="RESETAR PROGRESSO"/>

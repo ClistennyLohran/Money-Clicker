@@ -10,6 +10,9 @@ import ValueFormatter from '../../../Formatter/ValueFormatter';
 import styles from './GanhoPorSegundo.module.css';
 import { UpgradeContext } from '../../../contexts/UpgradeContext/UpgradeContext';
 
+/* upgradeSong */
+import upgradeSong from '../../../songs/Melhoria.mp3';
+
 export default function EarnPerSecond({ item, list, maxLevel, preview }) {
 
   const { balance, setBalance, gpsValue, setGpsValue, setNotificationType, gpsBoost, gpsMultiply, gpsRebirthBoost } = useContext(ValuesContext);
@@ -20,6 +23,8 @@ export default function EarnPerSecond({ item, list, maxLevel, preview }) {
     if((item.level + Number(preview)) <= maxLevel) {
       if(balance >= item.upgradeValue && balance >= calcPreviewPrice(item.upgradeValue)) {
         if(item.level <= (maxLevel - 1)) {
+          let audio = new Audio(upgradeSong);
+          audio.play();
           setBalance(balance => balance - calcPreviewPrice(item.upgradeValue));
           setGpsValue(gpsValue + (item.gpsAmount * Number(preview)));
           if(specialGpsBoostStatus === 1) {

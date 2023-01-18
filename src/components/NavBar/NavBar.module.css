@@ -105,7 +105,7 @@
 
   justify-content: center;
 
-  right: -320px;
+  left: -320px;
   top: 0;
 
   width: 320px;
@@ -121,7 +121,7 @@
 
   justify-content: center;
 
-  left: -30px;
+  right: -365px;
 
   width: 0px;
   height: 80px;

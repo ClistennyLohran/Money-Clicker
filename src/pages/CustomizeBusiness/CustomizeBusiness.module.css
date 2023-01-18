@@ -230,7 +230,7 @@
 
   background: var(--corFundoNavHover);
 
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .cor01 {
@@ -374,4 +374,7 @@
 }
 .changeNameBtn:hover {
   background: var(--corPrimariaHover);
+}
+.bottomSpace {
+  margin-bottom: 60px;
 }

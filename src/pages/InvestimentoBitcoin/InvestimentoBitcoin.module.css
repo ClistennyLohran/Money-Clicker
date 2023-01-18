@@ -303,6 +303,46 @@
   transition: 0.3s ease-in-out;
 }
 
+/* Temperatura Alerta */
+
+.temperatureAlert[value] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 25px;
+}
+.temperatureAlert[value]::-webkit-progress-bar {
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.temperatureAlert[value]::-webkit-progress-value {
+  border-radius: 5px;
+
+  background: var(--alert);
+}
+
+/* Temperatura Crítica */
+
+.temperatureCritical[value] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 25px;
+}
+.temperatureCritical[value]::-webkit-progress-bar {
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.temperatureCritical[value]::-webkit-progress-value {
+  border-radius: 5px;
+
+  background: var(--critic);
+}
+
 /* Loja de Acesso Rápido */
 
 .storeBtn {
@@ -318,8 +358,8 @@
   border: none;
   border-radius: 5px;
 
-  left: 10px;
-  top: 10px;
+  right: 15px;
+  top: 15px;
 
   opacity: 0;
 

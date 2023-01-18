@@ -12,6 +12,9 @@ import ValueFormatter from '../../../Formatter/ValueFormatter';
 import { React } from 'react';
 import { UpgradeContext } from '../../../contexts/UpgradeContext/UpgradeContext';
 
+/* upgradeSong */
+import upgradeSong from '../../../songs/Melhoria.mp3';
+
 export default function EarnPerClick({ item, list, maxLevel, preview }) {
   
   const { level, balance, setBalance, gpcValue, setGpcValue, setNotificationType, gpcBoost, gpcMultiply, gpcRebirthBoost } = useContext(ValuesContext);
@@ -22,6 +25,8 @@ export default function EarnPerClick({ item, list, maxLevel, preview }) {
     if((item.level + Number(preview)) <= maxLevel) {
       if(balance >= item.upgradeValue && balance >= calcPreviewPrice(item.upgradeValue)) {
         if(item.level <= (maxLevel - 1)) {
+          let audio = new Audio(upgradeSong);
+          audio.play();
           setBalance(balance => balance - calcPreviewPrice(item.upgradeValue));
           setGpcValue(gpcValue + (item.gpcAmount * Number(preview)));
           if(specialGpcBoostStatus === 1) {

@@ -2,7 +2,7 @@
 import styles from './DisplayDinheiroXP.module.css';
 
 /* Hooks */
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 /* Contextos */
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
@@ -21,9 +21,13 @@ import { motion } from 'framer-motion';
 import MoneyFormatter from '../../Formatter/MoneyFormatter';
 import MoneyDollarFormatter from '../../Formatter/MoneyDollarFormatter';
 
+/* Songs */
+import subirNivel from '../../songs/LevelUP.mp3';
+
 export default function DisplayDinheiroXP() {
   const { xp, setXp, levelProgressValue, setLevelProgressValue, clickAmount, setClickAmount, level, setLevel, setNotificationType, balance, setBalance, dollarBalance, setDollarBalance } = useContext(ValuesContext);
-  
+  const [ upLevelStatus, setUpLevelStatus ] = useState(false);
+
   useEffect(() => {
     updateProgress();
   }, [levelProgressValue]);
@@ -34,13 +38,24 @@ export default function DisplayDinheiroXP() {
       return;
     }else {
       setLevelProgressValue((clickAmount * 100) / xp);
+    }
+  }, [clickAmount]);
+
+  useEffect(() => {
+    let checkLevel = setInterval(() => {
       if(clickAmount >= xp) {
+        let playAudio = new Audio(subirNivel);
         setClickAmount(0);
         setLevel(level => level + 1);
         setXp(xp => Number((xp * 1.4688).toFixed(0)));
         setNotificationType(2);
+        playAudio.play();
         return;
       }
+    }, 10);
+
+    return () => {
+      clearInterval(checkLevel);
     }
   }, [clickAmount]);
 

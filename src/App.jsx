@@ -12,7 +12,7 @@ import { ValuesContext } from './contexts/ValuesContext/ValuesContext';
 import { BuyContext } from './contexts/BuyContext/BuyContext';
 import { AdvancedMiningContext } from './contexts/AdvancedMiningContext/AdvancedMiningContext';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
@@ -29,6 +29,7 @@ import InvestimentoBitcoin from './pages/InvestimentoBitcoin/InvestimentoBitcoin
 import Cassino from './pages/Cassino/Cassino';
 import LojaBitcoin from './pages/LojaBitcoin/LojaBitcoin';
 import Dados from './pages/Dados/Dados';
+import RedesSociais from './pages/Redes Sociais/RedesSociais';
 
 const varList = require('./VariblesObject/VariablesObject');
 
@@ -41,7 +42,6 @@ const GeradoresEnergia = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/Gerado
 const MaquinasRefrigeracao = require('./UpgradeObjects/ObjetosMelhoriaBitcoin/MaquinasRefrigeracao/MaquinasRefrigeracao');
 
 function App() {
-
   /* Grupo de objetos contendo todos os upgrades, utilizados para salvar os dados no localstorage */
   const upgradesGroup = [ upgradesGps.gpsList, upgradesGpc.gpcList, specialUpgrades.specialUpgradesList, specialUpgradesRebirth.specialUpgradeRebirthList, PlacaDeVideo.PlacaDeVideoList, GeradoresEnergia.GeradoresEnergiaList, MaquinasRefrigeracao.MaquinasRefrigeracaoList ];
 
@@ -88,7 +88,8 @@ function App() {
 
   /* Advanced Mining */
   const [ miningPower, setMiningPower ] = useState(() => parseFloat(variables[0].advancedMining.miningPower) || 0.00);
-  const [ miningPowerDecrease, setMiningPowerDecrease ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerDecrease) || 1.00);
+  const [ miningPowerEnergyDecrease, setMiningPowerEnergyDecrease ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerEnergyDecrease) || 1.00);
+  const [ miningPowerTempDecrease, setMiningPowerTempDecrease ] = useState(() => parseFloat(variables[0].advancedMining.miningPowerTempDecrease) || 1.00);
   const [ energyPower, setEnergyPower ] = useState(() => parseFloat(variables[0].advancedMining.energyPower) || 0.00);
   const [ energyPowerUsed, setEnergyPowerUsed ] = useState(() => parseFloat(variables[0].advancedMining.energyPowerUsed) || 0.00);
   const [ temperature, setTemperature ] = useState(() => parseFloat(variables[0].advancedMining.temperature) || 0.00);
@@ -157,12 +158,18 @@ function App() {
   const [ activeColor, setActiveColor ] = useState(() => variables[0].themes.activeColor || 1);
   const [ unlocked, setUnlocked ] = useState(() => variables[0].themes.unlocked || 0);
 
+  /* Audio Controller */
+  const [ audioStatus, setAudioStatus ] = useState(() => variables[0].config.audioStatus || false);
+
   /* END OF INITIAL VARIABLES */
 
   /* Variáveis de Estado */
   const [ openCloseLeftState, setOpenCloseLeftState ] = useState(true);
   const [ openCloseRightState, setOpenCloseRightState ] = useState(true);
   const [ crashHistory, setCrashHistory ] = useState([]);
+  const [ tempAlert, setTempAlert ] = useState(0);
+  const [ energyAlert, setEnergyAlert ] = useState(0);
+  const [ muted, setMuted ] = useState(false);
 
   /* Define todas as notificações geradas no jogo */
   useEffect(() => {
@@ -225,10 +232,16 @@ function App() {
       return NotificationManager.info('O Crash já está rodando, aguarde o término do crash atual!', 'Crash em Andamento', 3000);
     } else if(notificationType === 20) {
       setNotificationType(0);
-      return NotificationManager.info('O valor apostado deve ser maior que 0! Aposta alguma coisa ai...', 'Valor de Aposta', 3000);
+      return NotificationManager.info('O valor apostado deve ser maior que 0! Aposta alguma coisa aí...', 'Valor de Aposta', 3000);
     } else if(notificationType === 21) {
       setNotificationType(0);
       return NotificationManager.info('Você não pode colocar um valor de Crash menor que 1.01!', 'Valor não Permitido', 3000);
+    } else if(notificationType === 22) {
+      setNotificationType(0);
+      return NotificationManager.info('O valor para mudar de nome é R$ 50K certifique-se de ter este valor!', 'Sem Dinheiro', 3000);
+    } else if(notificationType === 23) {
+      setNotificationType(0);
+      return NotificationManager.info('Nome alterado com sucesso! Agora é hora de fazer o nome da sua empresa.', 'Nome Alterado', 3000);
     }
   }, [notificationType]);
 
@@ -245,7 +258,8 @@ function App() {
           },
           advancedMining: {
             miningPower: miningPower,
-            miningPowerDecrease: miningPowerDecrease,
+            miningPowerEnergyDecrease: miningPowerEnergyDecrease,
+            miningPowerTempDecrease: miningPowerTempDecrease,
             energyPower: energyPower,
             energyPowerUsed: energyPowerUsed,
             temperature: temperature,
@@ -312,11 +326,14 @@ function App() {
             activeTheme: activeTheme,
             activeColor: activeColor,
             unlocked: unlocked,
+          },
+          config: {
+            muted: muted,
           }
         }
       ]
     );
-  }, [balance, rebirthPoints, btcAmount, activeTheme, activeColor, miningPower, dollarBalance]);
+  }, [balance, rebirthPoints, btcAmount, activeTheme, activeColor, miningPower, dollarBalance, level, xp, xpAmountPerClick]);
 
   useEffect(() => {
     const savedVariables = JSON.stringify(variables);
@@ -326,11 +343,11 @@ function App() {
   useEffect(() => {
     let updateValue = setInterval(() => {
       if(specialGpsBoostStatus === 1) {
-        setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 4).toFixed(2)));
       }else {
-        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 50).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 4).toFixed(2)));
       }
-    }, 50);
+    }, 250);
 
     return () => {
       clearInterval(updateValue);
@@ -339,14 +356,48 @@ function App() {
 
   useEffect(() => {
     let btcAmountIncrease = setInterval(() => {
-      setBtcAmount(btcAmount => btcAmount + parseFloat((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerDecrease) / 10).toFixed(8)));
+      setBtcAmount(btcAmount => btcAmount + parseFloat(((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerEnergyDecrease) * miningPowerTempDecrease) / 4).toFixed(8)));
       setDollarAmountConvert(btcAmount * 3500000);
-    }, 100);
+    }, 250);
 
     return () => {
       clearInterval(btcAmountIncrease);
     }
-  }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerDecrease]);
+  }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerEnergyDecrease, miningPowerTempDecrease]);
+
+  /* Temperatura e Energia */
+
+  useEffect(() => {
+    if(((temperature + 26) - temperatureDecrease) >= 50 && ((temperature + 26) - temperatureDecrease) < 90) {
+      setMiningPowerTempDecrease(0.50);
+      setTempAlert(1);
+    } else if(((temperature + 26) - temperatureDecrease) >= 90) {
+      setMiningPowerTempDecrease(0);
+      setTempAlert(2);
+    } else if(((temperature + 26) - temperatureDecrease) <= -20) {
+      setMiningPowerTempDecrease(0);
+      setTempAlert(2);
+    } else if(((temperature + 26) - temperatureDecrease) > -20 && ((temperature + 26) - temperatureDecrease) < 50){
+      setMiningPowerTempDecrease(1);
+      setTempAlert(0);
+    }
+  }, [setMiningPowerTempDecrease, temperatureDecrease, temperature]);
+
+  useEffect(() => {
+    if((energyPowerUsed * energyEconomy) < ((energyPower * energyPowerBoost) * energyPowerMultiply)) {
+      setMiningPowerEnergyDecrease(1);
+      setEnergyAlert(0);
+    } else if((energyPowerUsed * energyEconomy) > ((energyPower * energyPowerBoost) * energyPowerMultiply) && (energyPowerUsed * energyEconomy) <= (((energyPower * energyPowerBoost) * energyPowerMultiply) + 200)) {
+      setMiningPowerEnergyDecrease(0.50);
+      setEnergyAlert(2);
+    } else if((energyPowerUsed * energyEconomy) > (((energyPower * energyPowerBoost) * energyPowerMultiply) + 200)) {
+      setMiningPowerEnergyDecrease(0);
+      setEnergyAlert(1);
+    } else if(((energyPower * energyPowerBoost) * energyPowerMultiply) === 0){
+      setMiningPowerEnergyDecrease(0);
+      setEnergyAlert(0);
+    }
+  }, [setMiningPowerEnergyDecrease, energyPowerUsed, energyPower]);
 
   const [ showHide, setShowHide ] = useState(false);
   const [ showHideRebirth, setShowHideRebirth ] = useState(false);
@@ -764,7 +815,12 @@ function App() {
           setOpenCloseLeftState,
           openCloseRightState,
           setOpenCloseRightState,
-
+          tempAlert,
+          setTempAlert,
+          energyAlert,
+          setEnergyAlert,
+          muted,
+          setMuted,
         }
       }
     >
@@ -789,7 +845,7 @@ function App() {
           }
         }
       >
-        <AdvancedMiningContext.Provider value={{ btcAmount, setBtcAmount, dollarBalance, setDollarBalance, miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, miningPowerBoost, setMiningPowerBoost, miningPowerMultiply, setMiningPowerMultiply, energyPowerBoost, setEnergyPowerBoost, energyPowerMultiply, setEnergyPowerMultiply, miningBusinessName, setMiningBusinessName, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount, cardLevel, setCardLevel, temperatureDecrease, setTemperatureDecrease, miningPowerDecrease, setMiningPowerDecrease, energyEconomy, setEnergyEconomy, manualMiningBoost, setManualMiningBoost }}>
+        <AdvancedMiningContext.Provider value={{ btcAmount, setBtcAmount, dollarBalance, setDollarBalance, miningPower, setMiningPower, energyPower, setEnergyPower, energyPowerUsed, setEnergyPowerUsed, temperature, setTemperature, miningPowerBoost, setMiningPowerBoost, miningPowerMultiply, setMiningPowerMultiply, energyPowerBoost, setEnergyPowerBoost, energyPowerMultiply, setEnergyPowerMultiply, miningBusinessName, setMiningBusinessName, graphicsCardAmount, setGraphicsCardAmount, energyGeneratorAmount, setEnergyGeneratorAmount, cardLevel, setCardLevel, temperatureDecrease, setTemperatureDecrease, energyEconomy, setEnergyEconomy, manualMiningBoost, setManualMiningBoost, miningPowerEnergyDecrease, setMiningPowerEnergyDecrease, miningPowerTempDecrease, setMiningPowerTempDecrease }}>
           <Router>
             <ShowUpgradeInfo/>
             <NavBar/>
@@ -805,6 +861,7 @@ function App() {
               <Route path="/dados" element={<Dados/>}></Route>
               <Route path="/atualizacoes" element={<Updates/>}></Route>
               <Route path="/comojogar" element={<HowToPlay/>}></Route>
+              <Route path="/social" element={<RedesSociais/>}></Route>
             </Routes>
           </Router>
         </AdvancedMiningContext.Provider>

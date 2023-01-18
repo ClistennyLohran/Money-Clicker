@@ -11,6 +11,9 @@ import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { ValuesContext } from '../../../contexts/ValuesContext/ValuesContext';
 
+/* Audio Play */
+import upgradeSong from '../../../songs/Melhoria.mp3';
+
 export default function MelhoriaGerador({ id, item, nome }) {
   
   const { level, dollarBalance, setDollarBalance, generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
@@ -33,6 +36,8 @@ export default function MelhoriaGerador({ id, item, nome }) {
 
     if(item.quantidadeAtiva >= item.quantidadeTotal) {
       if(item.valor <= dollarBalance) {
+        let audio = new Audio(upgradeSong);
+        audio.play();
         setDollarBalance(dollarBalance - item.valor);
         let newArr = [...generalUpgrades[5]];
         newArr[index] = {

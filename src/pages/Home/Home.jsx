@@ -20,14 +20,84 @@ import NomePagina from '../../components/NomePagina/NomePagina';
 import HomeInfoDisplay from '../../components/HomeInfoDisplay/HomeInfoDisplay';
 import HomeInfoPorcentagem from '../../components/HomeInfoPorcentagem/HomeInfoPorcentagem';
 import HomeInfoPorcentagemRenascimento from '../../components/HomeInfoPorcentagemRenascimento/HomeInfoPorcentagemRenascimento';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
+
+/* Song Import */
+import Click01 from '../../songs/Click01.mp3';
+import Click02 from '../../songs/Click02.mp3';
+import Click03 from '../../songs/Click03.mp3';
+import Click04 from '../../songs/Click04.mp3';
+import Click05 from '../../songs/Click05.mp3';
+import Click06 from '../../songs/Click06.mp3';
+import Click07 from '../../songs/Click07.mp3';
+import Click08 from '../../songs/Click08.mp3';
 
 import { Link } from 'react-router-dom';
 
+import MenuSwitchEffect from '../../songs/MenuSwitchClick.mp3';
+import Theme from '../../songs/MainMusic.mp3';
+import { useState } from 'react';
+
 export default function Home() {
-  const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost } = useContext(ValuesContext);
+  const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
   const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost } = useContext(ValuesContext);
+  
+  const [ playState, setPlayState ] = useState(false);
+
+  const playSong = () => {
+    let MenuSwitch = new Audio(MenuSwitchEffect);
+
+    MenuSwitch.play();
+  }
+
+  useEffect(() => {
+    if(playState) {
+      let ThemeSong = new Audio(Theme);
+
+      ThemeSong.play();
+      ThemeSong.loop = "true";
+    }
+  }, [playState]);
+
+  const soundEvent = () => {
+    /* Audio Play */
+    switch(Math.floor(Math.random() * 7)) {
+      case 0:
+        let click01 = new Audio(Click01);
+        click01.play();
+        return;
+      case 1:
+        let click02 = new Audio(Click02);
+        click02.play();
+        return;
+      case 2:
+        let click03 = new Audio(Click03);
+        click03.play();
+        return;
+      case 3:
+        let click04 = new Audio(Click04);
+        click04.play();
+        return;
+      case 4:
+        let click05 = new Audio(Click05);
+        click05.play();
+        return;
+      case 5:
+        let click06 = new Audio(Click06);
+        click06.play();
+        return;
+      case 6:
+        let click07 = new Audio(Click07);
+        click07.play();
+        return;
+      case 7:
+        let click08 = new Audio(Click08);
+        click08.play();
+        return;
+    }
+  }
 
   function clickEvent() {
     if(specialGpcBoostStatus === 1) {
@@ -144,14 +214,14 @@ export default function Home() {
       await sleep(1000);
       awakeBtn.style.opacity = "1";
     }
-
     awakeStore();
   }, []);
 
   return (
     <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
-      <Link to="/melhorias"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
+      <AbrirMenuEfeito/>
+      <Link onClick={() => playSong()} to="/melhorias"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
       <NomePagina icon={<GiCash/>} name={businessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.infoPanelContainer}>
@@ -184,7 +254,7 @@ export default function Home() {
           <button id="openCloseRight" className={`${styles.openCloseRight} ${styles.openCloseButton}`} onClick={() => openCloseR()} ><span id="rotateRight"><RiArrowRightSLine/></span></button>
         </div>
       </div>
-      <motion.button id="btnInvest" className={styles.btnInvest} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => clickEvent()}>INVESTIR</motion.button>
+      <motion.button id="btnInvest" className={styles.btnInvest} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => (clickEvent(), soundEvent(), setPlayState(true))}>INVESTIR</motion.button>
     </motion.div>
   );
 }

@@ -18,6 +18,7 @@ import MoneyFormatter from '../../Formatter/MoneyFormatter';
 import { motion } from 'framer-motion';
 import NomePagina from '../../components/NomePagina/NomePagina';
 import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
 
 ChartJS.register(
   Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler
@@ -361,10 +362,8 @@ export default function Cassino() {
   
   return (
     <motion.div className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
-      <ReactTooltip 
-        place="top"
-        multiline={true}
-      />
+      <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <AbrirMenuEfeito/>
       <NomePagina icon={<MdOutlineMultilineChart/>} name="CASSINO"/>
       <DisplayDinheiroXP/>
       <div className={styles.timerCrashContainer}>
@@ -389,7 +388,7 @@ export default function Cassino() {
       </div>
       <div className={styles.inputsContainer}>
         <div className={`${styles.inputBox} ${styles.marginRight}`}>
-          <div className={styles.timerIconContainer}>
+          <div className={styles.timerIconContainer2}>
           <p className={styles.icon}><GiTakeMyMoney/></p>
           </div>
           <div className={styles.inputInfoContainer}>
@@ -399,7 +398,7 @@ export default function Cassino() {
           </div>
         </div>
         <div className={styles.inputBox}>
-          <div className={styles.timerIconContainer}>
+          <div className={styles.timerIconContainer2}>
           <p className={styles.icon}><GiRobotHelmet/></p>
           </div>
           <div className={styles.inputInfoContainer}>

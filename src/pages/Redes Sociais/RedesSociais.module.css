@@ -1,0 +1,173 @@
+.container {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.introContainer {
+  width: 640px;
+
+  text-align: center;
+}
+.text {
+  font-size: 14px;
+  font-weight: 400;
+
+  text-align: center;
+
+  color: var(--corTextoBranco);
+}
+.conviteContainer {
+  width: 500px;
+  height: 140px;
+
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.topBoxText {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+}
+.title {
+  font-weight: 500;
+  font-size: 14px;
+
+  margin-left: 20px;
+
+  color: var(--corTexto);
+}
+.bottomContent {
+  display: flex;
+
+  width: 100%;
+  height: calc(100% - 50px);
+}
+.imageBox {
+  display: flex;
+
+  align-items: center;
+
+  width: 80px;
+  height: calc(100% - 20px);
+
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.textBox {
+  display: flex;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 260px;
+  height: calc(100% - 20px);
+}
+.buttonBox {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 110px;
+  height: calc(100% - 20px);
+}
+.imageContainer {
+  position: relative;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  background: red;
+}
+.inviteImage {
+  width: 100%;
+}
+.textBoxTitle {
+  display: flex;
+
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  margin-bottom: 5px;
+
+  color: var(--corTextoBranco);
+}
+.textBoxContent {
+  color: var(--corTexto);
+}
+.hashtag {
+  font-size: 20px;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+.joinButton {
+  width: 90px;
+  height: 45px;
+
+  border-radius: 5px;
+  border: none;
+
+  font-size: 16px;
+
+  transition: background 0.3s ease-in-out;
+
+  background: var(--corPrimaria);
+  color: var(--corTextoBtn);
+
+  cursor: pointer;
+}
+.socialMediaContainer {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+.socialMediaBox {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+
+  transition: 0.3s ease-in-out;
+}
+.socialMediaLink {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 45px;
+  height: 45px;
+
+  color: var(--corTextoBranco);
+  font-size: 20px;
+}
+.socialMediaBox:hover {
+  background: var(--corFundoNavHover);
+}

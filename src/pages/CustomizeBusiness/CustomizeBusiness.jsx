@@ -16,6 +16,10 @@ import NomePagina from '../../components/NomePagina/NomePagina';
 import NomeSessao from '../../components/NomeSessao/NomeSessao';
 import DisplayCustomizar from '../../components/DisplayCustomizar/DisplayCustomizar';
 
+/* upgradeSong */
+import upgradeSong from '../../songs/Melhoria.mp3';
+import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
+
 export default function CustomizeBusiness() {
   const { unlocked, setUnlocked } = useContext(ValuesContext);
   const { balance, setBalance, setNotificationType } = useContext(ValuesContext);
@@ -23,6 +27,8 @@ export default function CustomizeBusiness() {
 
   function buyThemesAndColors() {
     if(balance >= 250000) {
+      let audio = new Audio(upgradeSong);
+      audio.play();
       setBalance(v => v - 250000);
       setUnlocked(1);
     }else {
@@ -35,12 +41,13 @@ export default function CustomizeBusiness() {
   return (
     <motion.div className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
+      <AbrirMenuEfeito/>
       <NomePagina icon={<GiPaintBucket/>} name="CUSTOMIZAÇÃO DA LOJA"/>
       <DisplayDinheiroXP/>
       <NomeSessao icon={<AiFillEdit/>} marginTop={true} title="ALTERAR NOME DAS EMPRESAS" />
       <div className={styles.displayContainer}>
-        <DisplayCustomizar setMargin={true} icon={<FaHome/>} title="EMPRESA" value="R$ 50K" nameChange={1} />
-        <DisplayCustomizar setMargin={false} icon={<BiChip/>} title="CENTRAL DE MINERAÇÃO" value="R$ 50K" nameChange={2} />
+        <DisplayCustomizar dataTip="Nesse aqui você muda o nome da sua empresa<br>que produz dinheiro!" setMargin={true} icon={<FaHome/>} title="EMPRESA" value="R$ 50K" nameChange={1} />
+        <DisplayCustomizar dataTip="E aqui você muda o nome da empresa<br>de produção de Bitcoin!" setMargin={false} icon={<BiChip/>} title="CENTRAL DE MINERAÇÃO" value="R$ 50K" nameChange={2} />
       </div>
       <NomeSessao icon={<GiPaintRoller/>} title="TEMAS CUSTOMIZADOS" />
       <div className={styles.containerTemas}>
@@ -124,7 +131,7 @@ export default function CustomizeBusiness() {
           {buyThemes}
         </>
       : 
-        <></>
+        <div className={styles.bottomSpace}></div>
       }
     </motion.div>
   );
