@@ -191,6 +191,9 @@ export default function Cassino() {
   let keyCodeList = [188, 69, 189, 187, 110, 109, 107];
 
   const checkInsertValue = (e) => {
+    if(e.keyCode === 38 || e.keyCode === 40) {
+      e.preventDefault();
+    }
     if(e.target.value.length >= 300 && e.keyCode !== 8) {
       e.preventDefault();
     }
@@ -232,7 +235,7 @@ export default function Cassino() {
   }, [countTimerStatus]);
 
   useEffect(() => { // Quando o timer display chegar em 0 inicia os eventos do crash.
-    if(timerDisplay === 0) {
+    if(timerDisplay <= 0) {
       setTimerDisplay(0);
       setCountTimerStatus(false); // Indica que o timer deve parar.
       setCrashIsRunning(true); // Para controlar qual botão vai aparecer, START ou RUNNING.

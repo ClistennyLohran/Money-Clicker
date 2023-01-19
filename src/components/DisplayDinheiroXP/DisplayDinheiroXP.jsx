@@ -96,7 +96,7 @@ export default function DisplayDinheiroXP() {
           </div>
           <div className={styles.textInfosContainerRight}>
             <div className={styles.textGroupRight}>
-              <p className={styles.infoTitle}>DINHEIRO EM DOLARES</p>
+              <p className={styles.infoTitle}>DINHEIRO EM DÓLARES</p>
               <p className={styles.infoValue}><AnimatedNumber value={dollarBalance} formatValue={v => MoneyDollarFormatter(v)}/></p>
             </div>
           </div>

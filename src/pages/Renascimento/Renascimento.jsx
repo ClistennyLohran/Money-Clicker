@@ -197,12 +197,12 @@ export default function Renascimento() {
           <p className={styles.innerText}><GiDragonOrb/>&nbsp;BÔNUS DE RENASCIMENTO&nbsp;<GiDragonOrb/></p>
         </div>
         <div className={styles.containerBonus}>
-          <DisplayBonus dataTip="Este bônus será aplicado ao seu GPC quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<GiArrowCursor/>} title="BÔNUS DE GPC" middle={false} value={gpcRebirth.toFixed(2)} />
-          <DisplayBonus dataTip="Este bônus será aplicado ao seu GPS quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<AiFillClockCircle/>} title="BÔNUS DE GPS" middle={true} value={gpsRebirth.toFixed(2)} />
-          <DisplayBonus dataTip="Este bônus será aplicado ao seu XPC quando renascer<br>caso já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual, este bônus também é permanente<br><br>O valor máximo por renascimento é 300%" icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC" middle={false} value={levelRebirth.toFixed(2)} />
+          <DisplayBonus dataTip="Este bônus será aplicado ao seu GPC quando renascer, caso<br> já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual. Este bônus também é permanente.<br><br>O valor máximo por renascimento é 300%" icon={<GiArrowCursor/>} title="BÔNUS DE GPC" middle={false} value={gpcRebirth.toFixed(2)} />
+          <DisplayBonus dataTip="Este bônus será aplicado ao seu GPS quando renascer, caso<br> já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual. Este bônus também é permanente.<br><br>O valor máximo por renascimento é 300%" icon={<AiFillClockCircle/>} title="BÔNUS DE GPS" middle={true} value={gpsRebirth.toFixed(2)} />
+          <DisplayBonus dataTip="Este bônus será aplicado ao seu XPC quando renascer, caso<br> já tenha renascido uma vez, o bônus anteiror será<br>somado ao bônus atual. Este bônus também é permanente.<br><br>O valor máximo por renascimento é 300%" icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC" middle={false} value={levelRebirth.toFixed(2)} />
         </div>
         <motion.button
-          data-tip="Ao clicar em renascer todo o seu progresso atual será perdido incluindo<br>melhorias especiais, dinheiro, melhorias comuns, bitcoins, em troca<br>você ganhará tdoos os bônus listados acima, caso você já tenha renascido<br>antes o bônus atual será somado ao bônus anterior!"
+          data-tip="Ao clicar em renascer, todo o seu progresso atual será perdido, incluindo<br>melhorias especiais, dinheiro, melhorias comuns e bitcoins. <br>Em troca, você ganhará todos os bônus listados acima, caso você já tenha renascido antes, o <br>bônus atual será somado ao bônus anterior!"
           className={styles.rebirthButton}
           transition={{ type: "spring", stiffness: 700, damping: 30 }}
           whileHover={{ scale: 1.05 }}
@@ -217,7 +217,7 @@ export default function Renascimento() {
               <input type="checkbox" name="translateRadio" onChange={() => setChecked(!checked)} />
               <span className={styles.checkmark}></span>
             </label>
-            <p className={styles.checkBoxText}>Li e estou ciente!</p>
+            <p className={styles.checkBoxText}>LI E ESTOU CIENTE!</p>
           </div>
         </div>
         </>

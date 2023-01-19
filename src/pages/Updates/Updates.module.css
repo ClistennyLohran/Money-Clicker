@@ -12,7 +12,9 @@
   user-select: none;
   -webkit-user-select: none;
 
-  width: 100%;
+  margin: 0 auto;
+
+  width: 900px;
 }
 
 /* Title */

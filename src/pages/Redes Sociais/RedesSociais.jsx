@@ -49,7 +49,7 @@ export default function RedesSociais() {
           <a className={styles.socialMediaLink} href="https://www.facebook.com/profile.php?id=100089821470701&sk=about_contact_and_basic_info" target="_blank"><ImFacebook2/></a>
         </div>
         <div className={styles.socialMediaBox}>
-          <a className={styles.socialMediaLink} href="patreon.com/moneyclicker" target="_blank"><FaPatreon/></a>
+          <a className={styles.socialMediaLink} href="https://www.patreon.com/moneyclicker" target="_blank"><FaPatreon/></a>
         </div>
         <div className={styles.socialMediaBox}>
           <a className={styles.socialMediaLink} href="https://www.youtube.com/@LohranBM/featured" target="_blank"><AiFillYoutube/></a>

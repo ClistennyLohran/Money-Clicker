@@ -12,7 +12,7 @@ import { ValuesContext } from './contexts/ValuesContext/ValuesContext';
 import { BuyContext } from './contexts/BuyContext/BuyContext';
 import { AdvancedMiningContext } from './contexts/AdvancedMiningContext/AdvancedMiningContext';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
@@ -30,6 +30,7 @@ import Cassino from './pages/Cassino/Cassino';
 import LojaBitcoin from './pages/LojaBitcoin/LojaBitcoin';
 import Dados from './pages/Dados/Dados';
 import RedesSociais from './pages/Redes Sociais/RedesSociais';
+import { useCallback } from 'react';
 
 const varList = require('./VariblesObject/VariablesObject');
 
@@ -170,6 +171,8 @@ function App() {
   const [ tempAlert, setTempAlert ] = useState(0);
   const [ energyAlert, setEnergyAlert ] = useState(0);
   const [ muted, setMuted ] = useState(false);
+  const [ playState, setPlayState ] = useState(false);
+  const [ audioCounter, setAudioCounter ] = useState(0);
 
   /* Define todas as notificações geradas no jogo */
   useEffect(() => {
@@ -336,18 +339,13 @@ function App() {
   }, [balance, rebirthPoints, btcAmount, activeTheme, activeColor, miningPower, dollarBalance, level, xp, xpAmountPerClick]);
 
   useEffect(() => {
-    const savedVariables = JSON.stringify(variables);
-    localStorage.setItem('MoneyClickerSave', Buffer.from(savedVariables, 'binary').toString('base64'));
-  }, [variables]);
-
-  useEffect(() => {
     let updateValue = setInterval(() => {
       if(specialGpsBoostStatus === 1) {
-        setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 4).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
       }else {
-        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 4).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
       }
-    }, 250);
+    }, 10);
 
     return () => {
       clearInterval(updateValue);
@@ -356,9 +354,9 @@ function App() {
 
   useEffect(() => {
     let btcAmountIncrease = setInterval(() => {
-      setBtcAmount(btcAmount => btcAmount + parseFloat(((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerEnergyDecrease) * miningPowerTempDecrease) / 4).toFixed(8)));
+      setBtcAmount(btcAmount => btcAmount + parseFloat(((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerEnergyDecrease) * miningPowerTempDecrease) / 10).toFixed(8)));
       setDollarAmountConvert(btcAmount * 3500000);
-    }, 250);
+    }, 100);
 
     return () => {
       clearInterval(btcAmountIncrease);
@@ -821,6 +819,10 @@ function App() {
           setEnergyAlert,
           muted,
           setMuted,
+          playState,
+          setPlayState,
+          audioCounter,
+          setAudioCounter,
         }
       }
     >

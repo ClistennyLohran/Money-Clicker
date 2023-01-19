@@ -36,15 +36,12 @@ import { Link } from 'react-router-dom';
 
 import MenuSwitchEffect from '../../songs/MenuSwitchClick.mp3';
 import Theme from '../../songs/MainMusic.mp3';
-import { useState } from 'react';
 
 export default function Home() {
-  const { levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
+  const { audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
   const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost } = useContext(ValuesContext);
-  
-  const [ playState, setPlayState ] = useState(false);
 
   const playSong = () => {
     let MenuSwitch = new Audio(MenuSwitchEffect);
@@ -54,12 +51,16 @@ export default function Home() {
 
   useEffect(() => {
     if(playState) {
-      let ThemeSong = new Audio(Theme);
+      if(audioCounter === 0) {
+        let ThemeSong = new Audio(Theme);
 
-      ThemeSong.play();
-      ThemeSong.loop = "true";
+        ThemeSong.play();
+        ThemeSong.loop = "true";
+
+        setAudioCounter(1);
+      }
     }
-  }, [playState]);
+  }, [playState, audioCounter]);
 
   const soundEvent = () => {
     /* Audio Play */
