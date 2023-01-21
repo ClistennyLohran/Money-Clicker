@@ -27,13 +27,13 @@ export default function Updates() {
         </div>
         <ul className={styles.newsContainer}>
           <li>• Olá clickers, obrigado a todos que aguardaram pela atualização 1.7.0 e obrigado aos que a tornaram possível, sei que levou um tempo considerável para que a mesma fosse disponibilizada, porém as próximas atualizações irão demandar mais tempo e esforço, mas garanto que farei meu melhor para valer a espera! Tenha um bom jogo.</li>
-          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização é facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no mesmo, sugerido pelo Beta Tester <span className={styles.betaTester}>ArthurVihOficial</span>.</li>
+          <li>• Novo design, a 1.7.0 será marcada pela repaginação quase total do Money Clicker, a motivação para esta atualização é facilitar e otimizar a visualização das informações do jogo, além de também promover uma melhor harmonização para os elementos presentes no mesmo, sugerido pelo Beta Tester <span className={styles.betaTester}>ArthurVihOficial</span></li>
           <li>• Botão de acesso rápido para as lojas de melhorias, comuns e bitcoin, sugerido pelo Beta Tester <span className={styles.betaTester}>Nyox</span></li>
           <li>• Sugestões para aprimoramento da barra lateral, pelo Beta Tester <span className={styles.betaTester}>Vinícius</span></li>
           <li>• Sistema de som e trilha sonora para o jogo, criado pelo Audio Designer <span className={styles.betaTester}>Leonardo</span></li>
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
           <li>• Ajustado o problema no qual algumas partes do savegame não eram atualizadas.</li>
-          <li>• Corrigido problema de lentidão no aumento do GPS, descoberto pelo beta tester <span className={styles.betaTester}>Lopes</span>.</li>
+          <li>• Corrigido problema de lentidão no aumento do GPS e problema quanto ao sistema de save que não estava salvando o dinheiro e o XP, descoberto pelo beta tester <span className={styles.betaTester}>Lopes</span></li>
           <li>• Correção em erros de escrita e bugs com o sistema de som com ajuda dos beta testers! Muito obrigado a todos vocês.</li>
         </ul>
         <div className={styles.updateSeparator}></div>
@@ -117,7 +117,7 @@ export default function Updates() {
           <li>• 2 Novos upgrades comuns para GPS, GPC e MPC.</li>
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
           <li>• Problema na animação de números subindo ao converter os bitcoins.</li>
-          <li>• Aprimoramentos no algorítmo de save do jogo sugeridos pelo beta tester <span className={styles.betaTester}>Jão</span>.</li>
+          <li>• Aprimoramentos no algorítmo de save do jogo sugeridos pelo beta tester <span className={styles.betaTester}>Jão</span></li>
           <li>• Correção na adaptabilidade da tela de renascimento.</li>
           <li>• Mudanças na adaptabilidade da loja.</li>
         </ul>

@@ -64,7 +64,7 @@ export default function RedesSociais() {
       <NomeSessao icon={<AiFillCreditCard/>} title="PIX" />
       <div className={styles.pixContainer}>
         <p className={styles.text}>Quer contribuir de alguma forma que não seja o Patreon?<br></br>Sem problemas, use a nossa chave PIX.</p>
-        <h1 className={styles.pix}>49.278.474/0001-99</h1>
+        <h2 className={styles.pix}>CNPJ: 49.278.474/0001-99</h2>
       </div>
     </motion.div>
   );
