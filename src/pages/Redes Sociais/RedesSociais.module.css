@@ -171,3 +171,21 @@
 .socialMediaBox:hover {
   background: var(--corFundoNavHover);
 }
+.pixContainer {
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+}
+.pix {
+  color: var(--corTextoBranco);
+
+  background: var(--corPrimaria);
+
+  padding: 5px 15px;
+
+  border-radius: 5px;
+
+  margin: 20px 0px;
+}

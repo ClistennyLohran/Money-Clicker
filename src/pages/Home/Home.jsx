@@ -54,8 +54,8 @@ export default function Home() {
       if(audioCounter === 0) {
         let ThemeSong = new Audio(Theme);
 
-        ThemeSong.play();
         ThemeSong.loop = "true";
+        ThemeSong.play();
 
         setAudioCounter(1);
       }

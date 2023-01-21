@@ -9,7 +9,7 @@ import { HiMail } from 'react-icons/hi';
 import { GiGoldBar } from 'react-icons/gi';
 import { ImFacebook2 } from 'react-icons/im';
 import { FaPatreon } from 'react-icons/fa';
-import { AiFillYoutube, AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
+import { AiFillYoutube, AiFillGithub, AiFillLinkedin, AiFillCreditCard } from 'react-icons/ai';
 
 import InviteImage from '../../img/moneyclickerinvite.png';
 import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
@@ -60,6 +60,11 @@ export default function RedesSociais() {
         <div className={styles.socialMediaBox}>
           <a className={styles.socialMediaLink} href="https://www.linkedin.com/in/cl%C3%ADstennylohran/" target="_blank"><AiFillLinkedin/></a>
         </div>
+      </div>
+      <NomeSessao icon={<AiFillCreditCard/>} title="PIX" />
+      <div className={styles.pixContainer}>
+        <p className={styles.text}>Quer contribuir de alguma forma que não seja o Patreon?<br></br>Sem problemas, use a nossa chave PIX.</p>
+        <h1 className={styles.pix}>49.278.474/0001-99</h1>
       </div>
     </motion.div>
   );

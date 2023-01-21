@@ -350,7 +350,7 @@ function App() {
     return () => {
       clearInterval(updateValue);
     }
-  }, [balance]);
+  }, [balance, gpsValue, gpsBoost, specialGpsBoost, gpsRebirthBoost, gpsMultiply]);
 
   useEffect(() => {
     let btcAmountIncrease = setInterval(() => {
@@ -363,6 +363,10 @@ function App() {
     }
   }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerEnergyDecrease, miningPowerTempDecrease]);
 
+  useEffect(() => {
+    const savedVariables = JSON.stringify(variables);
+    localStorage.setItem('MoneyClickerSave', Buffer.from(savedVariables, 'binary').toString('base64'));
+  }, [variables]);
   /* Temperatura e Energia */
 
   useEffect(() => {
