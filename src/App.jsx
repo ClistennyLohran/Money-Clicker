@@ -161,7 +161,7 @@ function App() {
 
   /* Audio Controller */
   const [ audioStatus, setAudioStatus ] = useState(() => variables[0].config.audioStatus || false);
-  const [ disableEffect, setDisableEffect ] = useState(() => variables[0].config.disableEffect || false);
+  const [ disableEffect, setDisableEffect ] = useState(() => variables[0].config.disableEffect || true);
 
   /* END OF INITIAL VARIABLES */
 
