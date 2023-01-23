@@ -34,7 +34,7 @@ export default function Renascimento() {
   const navigate = useNavigate();
   
   const { balance, setNotificationType, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, rebirthPoints, setVariables, levelRebirthBoost, levelRebirth, muted } = useContext(ValuesContext);
-  const { maxValueRebirth, specialGpsBoostStatus, specialGpcBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
+  const { maxValueRebirth, specialGpsBoostStatus, specialGpcBoostStatus, specialLevelBoostStatus, disableEffect } = useContext(ValuesContext);
   const { generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
 
   const [ checked, setChecked ] = useState(false);
@@ -143,6 +143,7 @@ export default function Renascimento() {
             },
             config: {
               muted: muted,
+              disableEffect: disableEffect,
             }
           }
         ]

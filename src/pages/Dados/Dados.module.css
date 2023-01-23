@@ -312,3 +312,10 @@
 
   cursor: pointer;
 }
+.effectContainer {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  width: 420px;
+}

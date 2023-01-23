@@ -80,6 +80,7 @@ export const variablesList = [
     },
     config: {
       muted: false,
+      disableEffect: false,
     }
   }
 ]

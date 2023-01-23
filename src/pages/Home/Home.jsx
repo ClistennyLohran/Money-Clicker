@@ -41,7 +41,7 @@ export default function Home() {
   const { audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
   const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
-  const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost } = useContext(ValuesContext);
+  const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost, disableEffect } = useContext(ValuesContext);
 
   const playSong = () => {
     let MenuSwitch = new Audio(MenuSwitchEffect);
@@ -54,8 +54,8 @@ export default function Home() {
       if(audioCounter === 0) {
         let ThemeSong = new Audio(Theme);
 
-        ThemeSong.loop = "true";
         ThemeSong.play();
+        ThemeSong.loop = "true";
 
         setAudioCounter(1);
       }
@@ -150,25 +150,27 @@ export default function Home() {
   }
 
   useEffect(() => {
-    let btnInvest = document.getElementById('btnInvest');
-    let container = document.getElementById('container');
-
-    btnInvest.onclick = async (e) => {
-      let number = document.createElement('p');
-      number.className = `${styles.number}`;
-      if(specialGpcBoostStatus === 1) {
-        number.innerText = `${MoneyFormatter(((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply))}`;
-      }else {
-        number.innerText = `${MoneyFormatter(((gpcValue * (gpcBoost + gpcRebirthBoost)) * gpcMultiply))}`;
+    if(disableEffect) {
+      let btnInvest = document.getElementById('btnInvest');
+      let container = document.getElementById('container');
+  
+      btnInvest.onclick = async (e) => {
+        let number = document.createElement('p');
+        number.className = `${styles.number}`;
+        if(specialGpcBoostStatus === 1) {
+          number.innerText = `${MoneyFormatter(((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply))}`;
+        }else {
+          number.innerText = `${MoneyFormatter(((gpcValue * (gpcBoost + gpcRebirthBoost)) * gpcMultiply))}`;
+        }
+        number.style.pointerEvents = "none";
+        number.style.transition = "none";
+        number.style.position = "absolute";
+        number.style.left = `${e.pageX - 35}px`;
+        number.style.top = `${e.pageY - 30}px`;
+        container.appendChild(number);
+        await sleep(1500);
+        container.removeChild(number);
       }
-      number.style.pointerEvents = "none";
-      number.style.transition = "none";
-      number.style.position = "absolute";
-      number.style.left = `${e.pageX - 35}px`;
-      number.style.top = `${e.pageY - 30}px`;
-      container.appendChild(number);
-      await sleep(1500);
-      container.removeChild(number);
     }
   }, []);
 

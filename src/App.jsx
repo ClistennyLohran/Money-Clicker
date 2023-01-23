@@ -161,6 +161,7 @@ function App() {
 
   /* Audio Controller */
   const [ audioStatus, setAudioStatus ] = useState(() => variables[0].config.audioStatus || false);
+  const [ disableEffect, setDisableEffect ] = useState(() => variables[0].config.disableEffect || false);
 
   /* END OF INITIAL VARIABLES */
 
@@ -332,6 +333,7 @@ function App() {
           },
           config: {
             muted: muted,
+            disableEffect: disableEffect,
           }
         }
       ]
@@ -341,27 +343,27 @@ function App() {
   useEffect(() => {
     let updateValue = setInterval(() => {
       if(specialGpsBoostStatus === 1) {
-        setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * ((gpsBoost + specialGpsBoost) + gpsRebirthBoost)) * gpsMultiply) / 4).toFixed(2)));
       }else {
-        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 100).toFixed(2)));
+        setBalance(balance => balance + parseFloat((((gpsValue * (gpsBoost + gpsRebirthBoost)) * gpsMultiply) / 4).toFixed(2)));
       }
-    }, 10);
+    }, 250);
 
     return () => {
       clearInterval(updateValue);
     }
-  }, [balance, gpsValue, gpsBoost, specialGpsBoost, gpsRebirthBoost, gpsMultiply]);
+  }, [gpsValue, gpsBoost, specialGpsBoost, gpsMultiply]);
 
   useEffect(() => {
     let btcAmountIncrease = setInterval(() => {
-      setBtcAmount(btcAmount => btcAmount + parseFloat(((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerEnergyDecrease) * miningPowerTempDecrease) / 10).toFixed(8)));
+      setBtcAmount(btcAmount => btcAmount + parseFloat(((((((miningPower * miningPowerBoost) * miningPowerMultiply)  * 0.00000001226) * miningPowerEnergyDecrease) * miningPowerTempDecrease) / 4).toFixed(8)));
       setDollarAmountConvert(btcAmount * 3500000);
-    }, 100);
+    }, 250);
 
     return () => {
       clearInterval(btcAmountIncrease);
     }
-  }, [btcAmount, miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerEnergyDecrease, miningPowerTempDecrease]);
+  }, [miningPower, energyPower, energyPowerUsed, dollarAmountConvert, temperatureDecrease, temperature, miningPowerEnergyDecrease, miningPowerTempDecrease]);
 
   useEffect(() => {
     const savedVariables = JSON.stringify(variables);
@@ -827,6 +829,8 @@ function App() {
           setPlayState,
           audioCounter,
           setAudioCounter,
+          disableEffect,
+          setDisableEffect,
         }
       }
     >

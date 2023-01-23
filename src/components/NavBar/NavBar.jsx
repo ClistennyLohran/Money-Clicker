@@ -94,10 +94,10 @@ export default function NavBar() {
             <NavBarLinkDisplay icon={<FaBtc/>} title="LOJA BITCOIN" path="/lojabitcoin" />
             <NavBarLinkDisplay icon={<GiHeartWings/>} title="RENASCIMENTO" path="/renascimento" />
             <NavBarLinkDisplay icon={<AiFillFormatPainter/>} title="CUSTOMIZAÇÃO" path="/customizar" />
-            <NavBarLinkDisplay icon={<FaSave/>} title="DADOS DO JOGO" path="/dados" />
+            <NavBarLinkDisplay icon={<FaSave/>} title="DADOS E CONFIGURAÇÕES" path="/dados" />
             <NavBarLinkDisplay icon={<HiNewspaper/>} title="NOVIDADES E ATUALIZAÇÕES" path="/atualizacoes" />
             <NavBarLinkDisplay icon={<BsFillPatchQuestionFill/>} title="TUTORIAL" path="/comojogar" />
-            <NavBarLinkDisplay icon={<FaDiscord/>} title="COMUNIDADE E APOIO" path="/social" />
+            <NavBarLinkDisplay icon={<FaDiscord/>} title="COMUNIDADE" path="/social" />
             {/* <NavBarLinkDisplay icon={<FaHome/>} title="APOIAR O MONEY CLICKER" path="/apoiar" /> */}
           </div>
         </div>

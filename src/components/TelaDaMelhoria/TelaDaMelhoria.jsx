@@ -82,7 +82,6 @@ export default function ShowUpgradeInfo() {
           setNotificationType(1);
         }
       } else if (buyId === 1) { // esse aq
-        disableUpgrade(buyId);
         /* Gera um deconto de 10% na energia consumida */
         if(balance >= buyValue) {
           playSong();
@@ -94,7 +93,6 @@ export default function ShowUpgradeInfo() {
           setNotificationType(1);
         }
       } else if (buyId === 2) {
-        disableUpgrade(buyId);
         /* O GPS é multiplicado por 2 */
         if(balance >= buyValue) {
           playSong();
@@ -110,7 +108,6 @@ export default function ShowUpgradeInfo() {
           setNotificationType(1);
         }
       } else if (buyId === 3) {
-        disableUpgrade(buyId);
         /* Orbs de XP aprimorados, multiplica os orbs ganhos por clique por 2 */
         if(balance >= buyValue) {
           playSong();
@@ -126,7 +123,6 @@ export default function ShowUpgradeInfo() {
           setNotificationType(1);
         }
       } else if (buyId === 4) {
-        disableUpgrade(buyId);
         /* O poder de mineração é duplicado */
         if(balance >= buyValue) {
           playSong();
@@ -142,7 +138,6 @@ export default function ShowUpgradeInfo() {
           setNotificationType(1);
         }
       } else if (buyId === 5) {
-        disableUpgrade(buyId);
         /* Upgrade que aumenta +40% o lucro do GPS */
         if(balance >= buyValue) {
           playSong();

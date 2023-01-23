@@ -16,13 +16,15 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillSave } from 'react-icons/ai';
 import { RiRestartFill } from 'react-icons/ri';
 import { IoCopy } from 'react-icons/io5';
-import { BsVolumeDownFill } from 'react-icons/bs';
+import { GiSpeedometer } from 'react-icons/gi';
+
 import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
+import CheckMenu from '../../components/CheckMenu/CheckMenu';
 
 export default function Dados() {
   const navigate = useNavigate();
   
-  const { setNotificationType } = useContext(ValuesContext);
+  const { setNotificationType, disableEffect, setDisableEffect } = useContext(ValuesContext);
 
   const [ checked, setChecked ] = useState(false);
 
@@ -135,6 +137,10 @@ export default function Dados() {
           </div>
           <motion.button className={styles.button} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={(e) => loadSave(e)}>CARREGAR SAVE</motion.button>
         </div>
+      </div>
+      <NomeSessao icon={<GiSpeedometer/>} title="DESEMPENHO"/>
+      <div className={styles.effectContainer}>
+        <CheckMenu itemId={1} controller={disableEffect} tipText={"O valor que sobe ao clicar botão Investir"} title={"Efeito Clique"} />
       </div>
       <NomeSessao icon={<RiRestartFill/>} title="RESETAR PROGRESSO"/>
       <div className={styles.resetContainer}>
