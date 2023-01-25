@@ -267,6 +267,110 @@ body {
   background: var(--corPrimariaHover);
 }
 
+.comboDisplay {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+
+  width: 650px;
+  height: 60px;
+}
+
+.valueDisplay {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  width: 490px;
+  height: 50px;
+
+  border-radius: 5px;
+  border-bottom: 4px solid var(--corPrimaria);
+
+  font-size: 18px;
+  font-weight: 600;
+  
+  color: var(--corTextoBranco);
+  background: var(--corFundoNav);
+
+  cursor: pointer;
+}
+.textValueDisplay {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--corTextoBranco);
+}
+.tipsContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 10px;
+
+  width: 1128px;
+  height: 30px;
+
+  border-radius: 5px;
+
+  background: var(--corFundoNav);
+}
+.tipText {
+  font-size: 14px;
+  font-weight: 400;
+
+  color: var(--corTextoBranco);
+}
+.timerDisplay {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 50px;
+
+  margin-right: 10px;
+
+  border-radius: 5px;
+  border-bottom: 4px solid var(--corPrimaria);
+
+  background: var(--corFundoNav);
+
+  cursor: pointer;
+}
+.comboTextDisplay {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 50px;
+
+  margin-left: 10px;
+
+  border-radius: 5px;
+  border-bottom: 4px solid var(--corPrimaria);
+
+  background: var(--corFundoNav);
+
+  cursor: pointer;
+}
+.textTimer {
+  font-size: 16px;
+  font-weight: 500;
+
+  color: var(--corTextoBranco);
+}
+
 @keyframes number {
   0% {
     opacity: 1;

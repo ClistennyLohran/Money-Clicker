@@ -33,7 +33,7 @@ export default function Renascimento() {
   
   const navigate = useNavigate();
   
-  const { balance, setNotificationType, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, rebirthPoints, setVariables, levelRebirthBoost, levelRebirth, muted } = useContext(ValuesContext);
+  const { balance, setNotificationType, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, rebirthPoints, setVariables, levelRebirthBoost, levelRebirth, muted, setActiveTheme, setActiveColor } = useContext(ValuesContext);
   const { maxValueRebirth, specialGpsBoostStatus, specialGpcBoostStatus, specialLevelBoostStatus, disableEffect } = useContext(ValuesContext);
   const { generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
 
@@ -49,6 +49,8 @@ export default function Renascimento() {
     
     if(checked && balance >= 20000000000) {
       setPlayVideo(true);
+      setActiveTheme(1);
+      setActiveColor(1);
       await sleep(100);
       let video = document.getElementById("video");
       video.play();
@@ -57,6 +59,10 @@ export default function Renascimento() {
       for (var i = 0 ; i < highestTimeoutId ; i++) {
         clearTimeout(i);
       }
+      await sleep(100);
+      localStorage.clear();
+      await sleep(100);
+      localStorage.clear();
       await sleep(100);
       localStorage.clear();
       await sleep(100);

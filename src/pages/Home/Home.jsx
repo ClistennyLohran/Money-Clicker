@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import MoneyFormatter from '../../Formatter/MoneyFormatter';
 
 import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { useEffect } from 'react';
 
@@ -36,12 +36,31 @@ import { Link } from 'react-router-dom';
 
 import MenuSwitchEffect from '../../songs/MenuSwitchClick.mp3';
 import Theme from '../../songs/MainMusic.mp3';
+import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
 
 export default function Home() {
-  const { audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
+  const { tipMessage, audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
   const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost, disableEffect } = useContext(ValuesContext);
+
+  const [ comboValue, setComboValue ] = useState(0);
+  const [ comboDisplayTime, setComboDisplayTime ] = useState(0);
+  const [ tempoClicando, setTempoClicando ] = useState(0);
+  const [ clickingStatus, setClickingStatus ] = useState(0);
+  const [ comboMultiplier, setComboMultiplier ] = useState(1);
+
+  useEffect(() => {
+    if(clickingStatus === 1) {
+      let timer = setInterval(() => {
+        setTempoClicando(v => v + 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(timer);
+      }
+    }
+  }, [clickingStatus]);
 
   const playSong = () => {
     let MenuSwitch = new Audio(MenuSwitchEffect);
@@ -101,10 +120,13 @@ export default function Home() {
   }
 
   function clickEvent() {
+    setComboDisplayTime(3);
+    setClickingStatus(1);
+
     if(specialGpcBoostStatus === 1) {
-      setBalance(prevBalance => prevBalance + ((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO COM REBIRTH BOOST
+      setComboValue(v => v + ((gpcValue * ((gpcBoost + specialGpcBoost) + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO COM REBIRTH BOOST
     }else {
-      setBalance(prevBalance => prevBalance + ((gpcValue * (gpcBoost + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO
+      setComboValue(v => v + ((gpcValue * (gpcBoost + gpcRebirthBoost)) * gpcMultiply)); // PARA O DINHEIRO
     }
 
     if(specialLevelBoostStatus === 1) {
@@ -173,6 +195,51 @@ export default function Home() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    let comboTime = setInterval(() => {
+      setBalance(v => v + comboValue * comboMultiplier);
+      setComboValue(0);
+    }, 3000);
+
+    return () => {
+      clearInterval(comboTime);
+    }
+  }, [comboValue]);
+
+  useEffect(() => {
+    let comboDisplay = setInterval(() => {
+      if(comboDisplayTime <= 0) {
+        setComboDisplayTime(0);
+        setClickingStatus(0);
+        setTempoClicando(0);
+      } else {
+        setComboDisplayTime(v => v - 1);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(comboDisplay);
+    }
+  }, [comboDisplayTime]);
+
+  useEffect(() => {
+    if(tempoClicando >= 30 && tempoClicando < 60) {
+      setComboMultiplier(1.25);
+    } else if(tempoClicando >= 60 && tempoClicando < 120) {
+      setComboMultiplier(1.50);
+    } else if(tempoClicando >= 120 && tempoClicando < 240) {
+      setComboMultiplier(1.75);
+    } else if(tempoClicando >= 240 && tempoClicando < 600) {
+      setComboMultiplier(2.00);
+    } else if(tempoClicando >= 600 && tempoClicando < 1800) {
+      setComboMultiplier(5.00);
+    } else if(tempoClicando >= 1800) {
+      setComboMultiplier(10.00);
+    } else if(tempoClicando < 30) {
+      setComboMultiplier(1);
+    }
+  }, [tempoClicando]);
 
   const openCloseL = () => {
     setOpenCloseLeftState(!openCloseLeftState);
@@ -255,6 +322,21 @@ export default function Home() {
           <HomeInfoPorcentagemRenascimento dataTip="Este bônus só pode ser adquirido através do<br>renascimento, o mesmo é permanente e não é perdido ao renascer." icon={<AiFillClockCircle/>} title="BÔNUS DE GPS DO RENASCIMENTO" value={specialGpsBoostStatus === 1 ? parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%" : parseFloat(gpsRebirthBoost * 100).toFixed(2) + "%"} />
           <HomeInfoPorcentagemRenascimento dataTip="Este bônus só pode ser adquirido através do<br>renascimento, o mesmo é permanente e não é perdido ao renascer." icon={<GiDoubleRingedOrb/>} title="BÔNUS DE XPC DO RENASCIMENTO" value={specialLevelBoostStatus === 1 ? parseFloat(levelRebirthBoost * 100).toFixed(2) + "%" : parseFloat(levelRebirthBoost * 100).toFixed(2) + "%"} />
           <button id="openCloseRight" className={`${styles.openCloseRight} ${styles.openCloseButton}`} onClick={() => openCloseR()} ><span id="rotateRight"><RiArrowRightSLine/></span></button>
+        </div>
+      </div>
+      <div className={styles.tipsContainer}>
+        <p className={styles.tipText}>{tipMessage}</p>
+      </div>
+      <div className={styles.comboDisplay}>
+        <div data-tip="Se este valor chegar a zero, você perde o combo!<br>O valor adquirido será depositado na sua conta automaticamente." className={styles.timerDisplay}>
+          <p className={styles.textTimer}>{comboDisplayTime}s</p>
+        </div>
+        <div data-tip="Este é o valor total, o seu combo já é aplicado no valor abaixo!" className={styles.valueDisplay}>
+          <p className={styles.textValueDisplay}>COMBO TOTAL</p>
+          <p className={styles.comboText}><AnimatedNumber value={comboValue * comboMultiplier} formatValue={v => MoneyFormatter(v)} duration={300} /></p>
+        </div>
+        <div data-tip="Aqui você pode ver o seu combo atual!<br><br>1.00x - Tempo menor que 30 segundos<br>1.25x - Tempo entre 30 e 60 segundos<br>1.50x - Tempo entre 1min a 2min<br>1.75x - Tempo entre 2min a 4min<br>2.00x - Tempo entre 4min a 10min<br>5.00x - Tempo entre 10min a 30min<br>10.00x - Tempo maior que 30min" className={styles.comboTextDisplay}>
+          <p className={styles.textTimer}>{comboMultiplier.toFixed(2)}x</p>
         </div>
       </div>
       <motion.button id="btnInvest" className={styles.btnInvest} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={() => (clickEvent(), soundEvent(), setPlayState(true))}>INVESTIR</motion.button>

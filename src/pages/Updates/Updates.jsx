@@ -19,10 +19,23 @@ export default function Updates() {
         <ReactTooltip place="top" multiline={true} effect="solid"/>
         <NomePagina icon={<MdTipsAndUpdates/>} name="ATUALIZAÇÕES"/>
 
-        {/* v1.7.1 */}
+        {/* v1.7.2 */}
 
         <div className={styles.versionContainer}>
           <p data-tip="Este ícone representa<br>a Versão Atual" className={styles.atual}><MdVerified /></p>
+          <p className={styles.version}>v1.7.2 - Combo - 25/01/2023</p>
+        </div>
+        <ul className={styles.newsContainer}>
+          <li>• Novo sistema de combo! Agora você pode lucrar muito mais, caso você tenha paciência é claro.</li>
+          <li>• Agora é possível ver dicas e alguns diálogos que o jogo tem com você! Sim, o jogo vai conversar com você.</li>
+          <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
+          <li>• Correção de problema na desaceleração do aumento de GPS, descoberto pelo Beta Tester <span className={styles.betaTester}>Lopes</span></li>
+        </ul>
+        <div className={styles.updateSeparator}></div>
+
+        {/* v1.7.1 */}
+
+        <div className={styles.versionContainer}>
           <p className={styles.version}>v1.7.1 - 23/01/2023</p>
         </div>
         <ul className={styles.newsContainer}>
@@ -45,8 +58,8 @@ export default function Updates() {
           <li>• Sistema de som e trilha sonora para o jogo, criado pelo Audio Designer <span className={styles.betaTester}>Leonardo</span></li>
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
           <li>• Ajustado o problema no qual algumas partes do savegame não eram atualizadas.</li>
-          <li>• Corrigido problema de lentidão no aumento do GPS, descoberto pelo beta tester <span className={styles.betaTester}>Lopes</span>.</li>
-          <li>• Correção em erros de escrita e bugs com o sistema de som com ajuda dos beta testers! Muito obrigado a todos vocês.</li>
+          <li>• Corrigido problema de lentidão no aumento do GPS, descoberto pelo Beta Tester <span className={styles.betaTester}>Lopes</span>.</li>
+          <li>• Correção em erros de escrita e bugs com o sistema de som com ajuda dos Beta Testers! Muito obrigado a todos vocês.</li>
         </ul>
         <div className={styles.updateSeparator}></div>
 

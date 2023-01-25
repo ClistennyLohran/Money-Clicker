@@ -74,7 +74,7 @@ export default function HowToPlay() {
 
         <div className={styles.section}>
           <p className={styles.title}><GiHeartburn/>&nbsp;COMO FUNCIONA O RENASCIMENTO?&nbsp;<GiHeartburn/></p>
-          <p className={styles.dialogText}>A central de renascimento é bem simples, você irá perder todo o progresso do jogo, porém o bônus adquirido será aplicado, caso queira renascer novamente o bônus anterior será somado ao atual, ou seja, você pode renascer quantas vezes quiser e ir acumulando todos os seus bônus, eu pessoalmente recomendo você esperar conseguir uma boa quantia de bônus antes de renascer.</p>
+          <p className={styles.dialogText}>A central de renascimento é bem simples, você irá perder todo o progresso do jogo, porém o bônus adquirido será aplicado, caso queira renascer novamente o bônus anterior será somado ao atual, ou seja, você pode renascer quantas vezes quiser e ir acumulando todos os seus bônus, eu pessoalmente recomendo você esperar conseguir uma boa quantia de bônus antes de renascer, o Bônus aumenta conforme o seu dinheiro aumenta, quanto mais dinheiro você tiver maior a quantidade de bônus de você vai ganhar, até chegar ao limite de 300%</p>
           <br></br>
           <p className={styles.dialogText}><span className={styles.textBold}>Atenção:</span> Os upgrades comprados com RN (Abreviação dos pontos de Renascimento) nunca serão perdidos ao renascer, porém, não poderão ser comprados mais de uma vez!</p>
         </div>

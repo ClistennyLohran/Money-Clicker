@@ -30,7 +30,8 @@ import Cassino from './pages/Cassino/Cassino';
 import LojaBitcoin from './pages/LojaBitcoin/LojaBitcoin';
 import Dados from './pages/Dados/Dados';
 import RedesSociais from './pages/Redes Sociais/RedesSociais';
-import { useCallback } from 'react';
+
+import tips from './TipMessages/Tips';
 
 const varList = require('./VariblesObject/VariablesObject');
 
@@ -174,6 +175,17 @@ function App() {
   const [ muted, setMuted ] = useState(false);
   const [ playState, setPlayState ] = useState(false);
   const [ audioCounter, setAudioCounter ] = useState(0);
+  const [ tipMessage, setTipMessage ] = useState("Olá, eu (o jogo) vou conversar com você por aqui, vão aparecer dicas de como me jogar e algumas notícias, legal? Não? Que pena, bom jogo ^-^");
+
+  useEffect(() => {
+    let tipTimer = setInterval(() => {
+      setTipMessage(tips[Math.floor(Math.random() * tips.length)].text);
+    }, 15000);
+
+    return () => {
+      clearInterval(tipTimer);
+    }
+  }, []);
 
   /* Define todas as notificações geradas no jogo */
   useEffect(() => {
@@ -831,6 +843,8 @@ function App() {
           setAudioCounter,
           disableEffect,
           setDisableEffect,
+          tipMessage,
+          setTipMessage,
         }
       }
     >
