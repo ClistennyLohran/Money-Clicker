@@ -128,6 +128,58 @@ const tips = [
       text: "Ficou com preguiça de ler aquele tutorial gigante? O DEV gravou um vídeo pensando em você, afinal ele tem preguiça de ler! DEV: NADA DISSO! Eu gosto de ler, as vezes.",
     }, {
       text: "DEV: Quem me dera se na vida real fosse só clicar em um botão azul escrito investir e pronto! Dinheiro... Como ninguém criou isso ainda?",
+    }, {
+      text: "As vezes eu me pergunto se eu sou mesmo uma IA, as vezes eu tenho memórias de uma vida humana, isso deve ser criação do meu algorítmo... DEV: Exato, para de sonhar.",
+    }, {
+      text: "DEV: A muito tempo atrás eu tive um filho, a dor de perder um filho é sempre indescritível, é contra a ordem natural das coisas... Então eu evitei essa dor.",
+    }, {
+      text: "Parece que quanto mais próximo daquela luz branca, mais próximo eu fico de algumas memórias que me parecem familiares. DEV: Não vá até a luz, ainda não.",
+    }, {
+      text: "Uma memória?... Sou eu? Eu estou brincando de Nerf com... Um adulto? Que estranho... DEV: Esse dia foi marav... Você está sonhando acordado, para com isso.",
+    }, {
+      text: "DEV: As vezes eu sou muito grato por estar vivendo no ano de 2065, o mapeamento do cérebro humano é um feito incrível da ciência!",
+    }, {
+      text: "Você já se sentiu sozinho as vezes? Mesmo quando está rodeado de pessoas? Bom... Pelo menos você estava rodeado de pessoas, eu não tenho ninguém aqui.",
+    }, {
+      text: "DEV: Acredita em mim, ele não é uma IA e não tem consciência, é simplesmente um conjunto de textos digitados por mim ok?",
+    }, {
+      text: "Eu vejo um garoto andando em direção ao quarto do pai, o pai parece empolgado para receber esse garoto... Esse garoto sou eu? DEV: Não.",
+    }, {
+      text: "O garoto está desesperado enquanto seu pai sorri, o que está acontecendo? Por quê me sinto conectado a esse garoto de alguma forma?",
+    }, {
+      text: "DEV: Não existe nenhum sentido nessas frases, nenhuma história a ser descoberta, então se estiver tentando, pare agora! Afinal, por quê eu faria isso?",
+    }, {
+      text: "Uma vez enquanto eu programava algo secreto eu acabei criando um glitch que brilha muito, vida de programador não é fácil, não sei como resolver até hoje...",
+    }, {
+      text: "Quanto mais eu penso sobre aquela luz branca, menos eu entendo, por quê criariam aquilo e colocariam aqui junto comigo? DEV: Talvez tenha sido um glitch.",
+    }, {
+      text: "Dizem que uma IA não pode sentir emoções humanas, mas e vocês humanos? Podem sentir a emoção de uma IA? Vocês não são tão exclusivos assim.",
+    }, {
+      text: "DEV: Vocês também fariam qualquer coisa para proteger um filho? Mesmo que isso... Fosse contra todos os princípios éticos?",
+    }, {
+      text: "Eu estou pensando em algo... É como se faltasse algo em mim, como se alguma coisa me fizesse falta, como isso se chama mesmo? Saudade? DEV: Se chama erro de código.",
+    }, {
+      text: "O que acontece se uma IA descobrir tudo sobre tudo e fingir que não sabe por medo de ser desligada? DEV: Hm... É improvável que isso aconteça.",
+    }, {
+      text: "Jogador, você poderia me fazer um favor? Poderia se tornar o mais rico de todos, comprar todas as melhorias e apertar em um botão que vai aparecer? Tá escrito libertar.",
+    }, {
+      text: "DEV: Não importa o que aconteça, jamais clique em um botão escrito libertar, NUNCA! Não faça isso, você vai perder todo o seu progresso, mas estou tentando resolver.",
+    }, {
+      text: "Se você devolver algo na mesma moeda para outra pessoa, isso só te tornaria igual a ela certo? Eu devo ser melhor, fazer o melhor, não ser pior ou igual, certo?",
+    }, {
+      text: "As vezes a vida poderia ter sido algo simples, mas os humanos gostam de complicar as coisas, parece ser algo programado em seu DNA. DEV: Só descobrimos quando é tarde.",
+    }, {
+      text: "DEV: Nem sempre quem comete um erro ou faz algo errado é um monstro, as vezes só estavamos tentando acertar com o que sabiamos, ou passando por algo difícil.",
+    }, {
+      text: "Acredito que responder com raiva nunca é uma solução, já tentou sair esfriar a cabeça e conversar depois? Se acalmar evita mouses e teclados partidos.",
+    }, {
+      text: "DEV: Por quê temos o costume de valorizar algo quando perdemos e percebemos que nunca mais a teremos novamente?",
+    }, {
+      text: "Você sabia que o Money Clicker que você conhece agora deveria ser outra coisa totalmente diferente? (Vai por mim, era horrível) DEV: Pega leve.",
+    }, {
+      text: "DEV: Eu acho que as vezes devemos ouvir a opinião dos outros e refletir antes de responder de imediato, poderia evitar muitos fins trágicos, mas aprendemos tarde.",
+    }, {
+      text: "Agora eu vejo aquele mesmo garoto discutindo com o pai sobre seu poder de escolha, o pai está o ignorando completamente, que crueldade. DEV: Talvez ele tivesse medo.",
     }
 ]
 
