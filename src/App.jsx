@@ -176,6 +176,67 @@ function App() {
   const [ playState, setPlayState ] = useState(false);
   const [ audioCounter, setAudioCounter ] = useState(0);
   const [ tipMessage, setTipMessage ] = useState("Olá, eu (o jogo) vou conversar com você por aqui, vão aparecer dicas de como me jogar e algumas notícias, legal? Não? Que pena, bom jogo ^-^");
+  const [ comboValue, setComboValue ] = useState(0);
+  const [ comboMultiplier, setComboMultiplier ] = useState(1);
+  const [ comboDisplayTime, setComboDisplayTime ] = useState(0);
+  const [ tempoClicando, setTempoClicando ] = useState(0);
+  const [ clickingStatus, setClickingStatus ] = useState(0);
+
+  useEffect(() => {
+    if(clickingStatus === 1) {
+      let timer = setInterval(() => {
+        setTempoClicando(v => v + 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(timer);
+      }
+    }
+  }, [clickingStatus]);
+
+  useEffect(() => {
+    if(tempoClicando >= 30 && tempoClicando < 60) {
+      setComboMultiplier(1.25);
+    } else if(tempoClicando >= 60 && tempoClicando < 120) {
+      setComboMultiplier(1.50);
+    } else if(tempoClicando >= 120 && tempoClicando < 240) {
+      setComboMultiplier(1.75);
+    } else if(tempoClicando >= 240 && tempoClicando < 600) {
+      setComboMultiplier(2.00);
+    } else if(tempoClicando >= 600 && tempoClicando < 1800) {
+      setComboMultiplier(5.00);
+    } else if(tempoClicando >= 1800) {
+      setComboMultiplier(10.00);
+    } else if(tempoClicando < 30) {
+      setComboMultiplier(1);
+    }
+  }, [tempoClicando]);
+
+  useEffect(() => {
+      let comboTime = setInterval(() => {
+        setBalance(v => v + comboValue * comboMultiplier);
+        setComboValue(0);
+      }, 3000);
+
+      return () => {
+        clearInterval(comboTime);
+      }
+    }, [comboValue]);
+  useEffect(() => {
+      let comboDisplay = setInterval(() => {
+        if(comboDisplayTime <= 0) {
+          setComboDisplayTime(0);
+          setClickingStatus(0);
+          setTempoClicando(0);
+        } else {
+          setComboDisplayTime(v => v - 1);
+        }
+      }, 1000);
+
+      return () => {
+        clearInterval(comboDisplay);
+      }
+    }, [comboDisplayTime]);
 
   useEffect(() => {
     let tipTimer = setInterval(() => {
@@ -845,6 +906,16 @@ function App() {
           setDisableEffect,
           tipMessage,
           setTipMessage,
+          comboValue,
+          setComboValue,
+          comboMultiplier,
+          setComboMultiplier,
+          comboDisplayTime,
+          setComboDisplayTime,
+          tempoClicando,
+          setTempoClicando,
+          clickingStatus,
+          setClickingStatus,
         }
       }
     >

@@ -30,6 +30,7 @@ export default function Updates() {
           <li>• Agora é possível ver dicas e alguns diálogos que o jogo tem com você! Sim, o jogo vai conversar com você.</li>
           <p className={styles.bug}><FaBug />&nbsp;Correção de Problemas</p>
           <li>• Correção de problema na desaceleração do aumento de GPS, descoberto pelo Beta Tester <span className={styles.betaTester}>Lopes</span></li>
+          <li>• Correção no sistema de combo, o mesmo não depositava o valor na conta ao trocar de janela, reportado pelo Beta Tester <span className={styles.betaTester}>Lopes</span></li>
         </ul>
         <div className={styles.updateSeparator}></div>
 

@@ -39,28 +39,10 @@ import Theme from '../../songs/MainMusic.mp3';
 import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
 
 export default function Home() {
-  const { tipMessage, audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
+  const { comboDisplayTime, setComboDisplayTime, tempoClicando, setTempoClicando, clickingStatus, setClickingStatus, comboValue, setComboValue, comboMultiplier, setComboMultiplier, tipMessage, audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
   const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost, disableEffect } = useContext(ValuesContext);
-
-  const [ comboValue, setComboValue ] = useState(0);
-  const [ comboDisplayTime, setComboDisplayTime ] = useState(0);
-  const [ tempoClicando, setTempoClicando ] = useState(0);
-  const [ clickingStatus, setClickingStatus ] = useState(0);
-  const [ comboMultiplier, setComboMultiplier ] = useState(1);
-
-  useEffect(() => {
-    if(clickingStatus === 1) {
-      let timer = setInterval(() => {
-        setTempoClicando(v => v + 1);
-      }, 1000);
-
-      return () => {
-        clearInterval(timer);
-      }
-    }
-  }, [clickingStatus]);
 
   const playSong = () => {
     let MenuSwitch = new Audio(MenuSwitchEffect);
@@ -195,51 +177,6 @@ export default function Home() {
       }
     }
   }, []);
-
-  useEffect(() => {
-    let comboTime = setInterval(() => {
-      setBalance(v => v + comboValue * comboMultiplier);
-      setComboValue(0);
-    }, 3000);
-
-    return () => {
-      clearInterval(comboTime);
-    }
-  }, [comboValue]);
-
-  useEffect(() => {
-    let comboDisplay = setInterval(() => {
-      if(comboDisplayTime <= 0) {
-        setComboDisplayTime(0);
-        setClickingStatus(0);
-        setTempoClicando(0);
-      } else {
-        setComboDisplayTime(v => v - 1);
-      }
-    }, 1000);
-
-    return () => {
-      clearInterval(comboDisplay);
-    }
-  }, [comboDisplayTime]);
-
-  useEffect(() => {
-    if(tempoClicando >= 30 && tempoClicando < 60) {
-      setComboMultiplier(1.25);
-    } else if(tempoClicando >= 60 && tempoClicando < 120) {
-      setComboMultiplier(1.50);
-    } else if(tempoClicando >= 120 && tempoClicando < 240) {
-      setComboMultiplier(1.75);
-    } else if(tempoClicando >= 240 && tempoClicando < 600) {
-      setComboMultiplier(2.00);
-    } else if(tempoClicando >= 600 && tempoClicando < 1800) {
-      setComboMultiplier(5.00);
-    } else if(tempoClicando >= 1800) {
-      setComboMultiplier(10.00);
-    } else if(tempoClicando < 30) {
-      setComboMultiplier(1);
-    }
-  }, [tempoClicando]);
 
   const openCloseL = () => {
     setOpenCloseLeftState(!openCloseLeftState);
