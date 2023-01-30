@@ -10,10 +10,11 @@ import { useEffect } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 
-import { GiCash, GiDoubleRingedOrb, GiArrowCursor, GiHeartWings, GiStarFormation } from 'react-icons/gi';
+import { GiCash, GiDoubleRingedOrb, GiArrowCursor, GiHeartWings, GiStarFormation, GiUpgrade } from 'react-icons/gi';
 import { AiFillBulb, AiFillClockCircle } from 'react-icons/ai';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { FaCashRegister } from 'react-icons/fa';
+import { IoIosArrowBack } from 'react-icons/io';
 
 import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
 import NomePagina from '../../components/NomePagina/NomePagina';
@@ -38,8 +39,14 @@ import MenuSwitchEffect from '../../songs/MenuSwitchClick.mp3';
 import Theme from '../../songs/MainMusic.mp3';
 import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
 
+import SpecialUpgrades from '../../components/SpecialUpgrades/SpecialUpgrades';
+import SpecialUpgradeItem from '../../components/CompUpgrades/ItemMelhoriaEspecial/ItemMelhoriaEspecial';
+
+const SpecialUpgradesData = require('../../UpgradeObjects/SpecialUpgrade/SpecialUpgradesData');
+const SpecialUpgradesRebirthData = require('../../UpgradeObjects/SpecialUpgradeRebirth/SpecialUpgradesRebirthData');
+
 export default function Home() {
-  const { comboDisplayTime, setComboDisplayTime, tempoClicando, setTempoClicando, clickingStatus, setClickingStatus, comboValue, setComboValue, comboMultiplier, setComboMultiplier, tipMessage, audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, setBalance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, setPlayMain } = useContext(ValuesContext);
+  const { comboDisplayTime, setComboDisplayTime, setClickingStatus, comboValue, setComboValue, comboMultiplier, setComboMultiplier, tipMessage, audioCounter, setAudioCounter, playState, setPlayState, levelRebirth, setLevelRebirth, setClickAmount, setTotalClickAmount, balance, gpcValue, businessName, gpsValue, gpcMultiply, gpcBoost, gpsBoost, gpsMultiply, setGpsRebirth, setGpcRebirth, gpsRebirth, gpcRebirth, gpcRebirthBoost, gpsRebirthBoost, levelRebirthBoost, generalUpgrades, setGeneralUpgrades } = useContext(ValuesContext);
   const { specialGpcBoost, specialGpsBoost, specialLevelBoost, openCloseLeftState, setOpenCloseLeftState, openCloseRightState, setOpenCloseRightState } = useContext(ValuesContext);
   const { specialGpcBoostStatus, specialGpsBoostStatus, specialLevelBoostStatus } = useContext(ValuesContext);
   const { maxValueRebirth, xpAmountPerClick, levelMultiply, levelBoost, disableEffect } = useContext(ValuesContext);
@@ -224,11 +231,56 @@ export default function Home() {
     awakeStore();
   }, []);
 
+  const [ openCloseState, setOpenCloseState ] = useState(false);
+
+  const openCloseStoreFunc = () => {
+    let storeContainer = document.getElementById('storeContainer');
+    let rotateArrow = document.getElementById('rotateArrow');
+    let itensListGrid = document.getElementById('itensListGrid');
+
+    if(!openCloseState) {
+      storeContainer.style.width = "460px";
+      rotateArrow.style.transform = "rotate(180deg)";
+      itensListGrid.style.opacity = "1";
+      setOpenCloseState(v => !v);
+      return;
+    }
+    storeContainer.style.width = "0px";
+    rotateArrow.style.transform = "rotate(0deg)";
+    itensListGrid.style.opacity = "0";
+    setOpenCloseState(v => !v);
+  }
+
   return (
     <motion.div id="container" className={styles.container} animate={{ opacity: [0, 1], x: [-600, 0] }}>
       <ReactTooltip place="top" multiline={true} effect="solid"/>
       <AbrirMenuEfeito/>
-      <Link onClick={() => playSong()} to="/melhorias"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
+      <div id="storeContainer" className={styles.storeContainer}>
+        <motion.button id="openCloseStore" onClick={() => openCloseStoreFunc()} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} className={styles.openCloseSide}><p id="rotateArrow" className={styles.arrowIcon}><IoIosArrowBack/></p></motion.button>
+        <div className={styles.rightIcons}>
+          <Link onClick={() => playSong()} to="/melhorias"><button id="awakeBtn" data-tip="Acesso rápido para loja de melhorias comuns!" className={styles.storeBtn} ><FaCashRegister/></button></Link>
+        </div>
+        <div id="itensListGrid" className={styles.itensListGrid}>
+          <div className={styles.normalItens}>
+            <SpecialUpgrades title="MELHORIAS ESPECIAIS" icon={<GiUpgrade/>}>
+              {generalUpgrades[2].map(item => {
+                return (
+                  <SpecialUpgradeItem type={0} classId={item.classId} tooltip={item.tooltip} key={item.id} id={item.id} title={SpecialUpgradesData} active={item.status} description={SpecialUpgradesData} icon={SpecialUpgradesData} value={item.value} upgradeType={0} />
+                );
+              })}
+            </SpecialUpgrades>
+          </div>
+          <div className={styles.specialItens}>
+            <SpecialUpgrades title="MELHORIAS DO RENASCIMENTO" icon={<GiUpgrade/>}>
+              {generalUpgrades[3].map(item => {
+                return (
+                  <SpecialUpgradeItem type={1} classId={item.classId} tooltip={item.tooltip} key={item.id} id={item.id} title={SpecialUpgradesRebirthData} active={item.status} description={SpecialUpgradesRebirthData} icon={SpecialUpgradesRebirthData} value={item.value} upgradeType={1} />
+                );
+              })}
+            </SpecialUpgrades>
+          </div>
+        </div>
+      </div>
       <NomePagina icon={<GiCash/>} name={businessName}/>
       <DisplayDinheiroXP/>
       <div className={styles.infoPanelContainer}>

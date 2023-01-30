@@ -138,7 +138,7 @@ export default function Dados() {
           <motion.button className={styles.button} transition={{ type: "spring", stiffness: 700, damping: 30 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 1.0, transition: {duration: 0.1}}} onClick={(e) => loadSave(e)}>CARREGAR SAVE</motion.button>
         </div>
       </div>
-      <NomeSessao icon={<GiSpeedometer/>} title="DESEMPENHO"/>
+      <NomeSessao icon={<GiSpeedometer/>} title="OPÇÕES VISUAIS"/>
       <div className={styles.effectContainer}>
         <CheckMenu itemId={1} controller={disableEffect} tipText={"O valor que sobe ao clicar botão Investir"} title={"Efeito Clique"} />
       </div>

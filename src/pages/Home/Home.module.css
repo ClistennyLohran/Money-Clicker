@@ -247,8 +247,10 @@ body {
   border: none;
   border-radius: 5px;
 
-  right: 15px;
+  left: 50%;
   top: 15px;
+
+  transform: translateX(-50%);
 
   opacity: 0;
 
@@ -369,6 +371,94 @@ body {
   font-weight: 500;
 
   color: var(--corTextoBranco);
+}
+
+/* Right Store Menu */
+
+.storeContainer {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 0px;
+  height: 100vh;
+
+  background: var(--corFundo);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+  transition: 0.3s ease-in-out;
+
+  z-index: 10;
+}
+.rightIcons {
+  position: absolute;
+
+  width: 80px;
+  height: 80px;
+
+  left: -80px;
+}
+.openCloseSide {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 60px;
+
+  left: -30px;
+
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  top: 50%;
+
+  background: var(--corPrimaria);
+
+  transition: background 0.3s ease-in-out;
+  cursor: pointer;
+}
+.arrowIcon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--corIconeBranco);
+  font-size: 20px;
+
+  transition: 0.3s ease-in-out;
+}
+.openCloseSide:hover {
+  background: var(--corPrimariaHover);
+}
+.itensListGrid {
+  position: relative;
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  width: 420px;
+  height: calc(100% - 40px);
+
+  top: 20px;
+  left: 20px;
+
+  opacity: 0;
+
+  transition: 0.3s ease-in-out;
+}
+.normalItens {
+  width: 100%;
+  height: 100%;
+}
+.specialItens {
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes number {

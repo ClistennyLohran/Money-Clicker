@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import UpgradeContainer from '../../components/UpgradeContainer/UpgradeContainer';
 import EarnPerClick from '../../components/CompUpgrades/GanhoPorClique/GanhoPorClique';
 import EarnPerSecond from '../../components/CompUpgrades/GanhoPorSegundo/GanhoPorSegundo';
-import SpecialUpgrades from '../../components/SpecialUpgrades/SpecialUpgrades';
-import SpecialUpgradeItem from '../../components/CompUpgrades/ItemMelhoriaEspecial/ItemMelhoriaEspecial';
 import DisplayDinheiroXP from '../../components/DisplayDinheiroXP/DisplayDinheiroXP';
 
 import { useContext, useState, useEffect } from 'react';
@@ -14,16 +12,12 @@ import { ValuesContext } from '../../contexts/ValuesContext/ValuesContext';
 import { UpgradeContext } from '../../contexts/UpgradeContext/UpgradeContext';
 
 import { FaShoppingCart } from 'react-icons/fa';
-import { GiUpgrade } from 'react-icons/gi';
 import { IoMdClock } from 'react-icons/io';
 import { IoStorefront } from 'react-icons/io5';
 import { HiCursorClick } from 'react-icons/hi';
 
 import ReactTooltip from 'react-tooltip';
 import AbrirMenuEfeito from '../../components/AbrirMenuEfeito/AbrirMenuEfeito';
-
-const SpecialUpgradesData = require('../../UpgradeObjects/SpecialUpgrade/SpecialUpgradesData');
-const SpecialUpgradesRebirthData = require('../../UpgradeObjects/SpecialUpgradeRebirth/SpecialUpgradesRebirthData');
 
 export default function Upgrade() {
 
@@ -113,22 +107,6 @@ export default function Upgrade() {
             <p className={styles.title}>{<IoStorefront/>}&nbsp;<span>LOJA DE MELHORIAS</span>&nbsp;{<IoStorefront/>}</p>
           </div>
           <DisplayDinheiroXP/>
-          <div className={styles.specialGridContainer}>
-            <SpecialUpgrades title="MELHORIAS ESPECIAIS" icon={<GiUpgrade/>}>
-              {generalUpgrades[2].map(item => {
-                return (
-                  <SpecialUpgradeItem type={0} classId={item.classId} tooltip={item.tooltip} key={item.id} id={item.id} title={SpecialUpgradesData} active={item.status} description={SpecialUpgradesData} icon={SpecialUpgradesData} value={item.value} upgradeType={0} />
-                );
-              })}
-            </SpecialUpgrades>
-            <SpecialUpgrades title="MELHORIAS DO RENASCIMENTO" icon={<GiUpgrade/>}>
-              {generalUpgrades[3].map(item => {
-                return (
-                  <SpecialUpgradeItem type={1} classId={item.classId} tooltip={item.tooltip} key={item.id} id={item.id} title={SpecialUpgradesRebirthData} active={item.status} description={SpecialUpgradesRebirthData} icon={SpecialUpgradesRebirthData} value={item.value} upgradeType={1} />
-                );
-              })}
-            </SpecialUpgrades>
-          </div>
           <div className={styles.gridContainer}>
             <div className={styles.amountContainer}>
               <div className={styles.amountTitleContainer}>
